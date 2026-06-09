@@ -96,10 +96,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
 
 /* ── BUTTONS ── */
 .btn{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.04em;padding:6px 13px;border-radius:7px;cursor:pointer;border:none;transition:all .15s}
-.btn-gold{background:var(--gold);color:var(--bg)}
-.btn-gold:hover{opacity:.85}
-.btn-ghost{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-gold{background:var(--gold);color:var(--bg)}.btn-gold:hover{opacity:.85}
+.btn-ghost{background:var(--surface2);color:var(--text);border:1px solid var(--border)}.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
 
 /* ── LOG ENTRIES ── */
 .log-entry{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 32px 10px 11px;margin-bottom:7px;position:relative}
@@ -183,22 +181,22 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
 .bg-blue{background:var(--blue-d);border:1px solid rgba(90,141,176,.2)}
 .bg-teal{background:var(--teal-d);border:1px solid rgba(79,168,154,.2)}
 .bg-orange{background:var(--orange-d);border:1px solid rgba(196,122,69,.2)}
-
 .divider{border:none;border-top:1px solid var(--border);margin:12px 0}
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}::-webkit-scrollbar-thumb:hover{background:var(--muted)}
 </style>
 </head>
 <body>
 
+<!-- ═══ SIDEBAR ═══ -->
 <nav id="sidebar">
   <div class="sb-logo">
     <div class="sb-logo-title">OLIVER OS</div>
     <div class="sb-logo-sub">Life Tracker</div>
     <div class="sb-version">v1.0 · Est. 2026</div>
   </div>
+
   <div class="sb-section">
     <div class="sb-label">Life</div>
     <div class="nav-item active" onclick="nav('dashboard',this)"><div class="nav-dot" style="background:var(--gold)"></div>Dashboard</div>
@@ -238,6 +236,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
   </div>
 </nav>
 
+<!-- ═══ MAIN ═══ -->
 <div id="main">
   <div class="topbar">
     <div class="tb-left"><strong id="tb-date">—</strong><span id="tb-time"></span></div>
@@ -247,13 +246,16 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
     </div>
   </div>
 
+  <!-- ══════ DASHBOARD ══════ -->
   <div id="panel-dashboard" class="panel active">
     <div class="sec-hd"><h2>Good day, Oliver. 🇻🇪</h2><p>Your life operating system. One day at a time.</p></div>
+
     <div class="aff-box">
       <div class="aff-text" id="aff-text">—</div>
       <div class="aff-sub" id="aff-sub">Daily Affirmation</div>
     </div>
-    
+
+    <!-- Summer bar (shown only during summer) -->
     <div class="card" id="summer-card" style="margin-bottom:12px">
       <div class="card-hd">
         <div class="card-title c-gold">☀️ Verano Venezuela 2026</div>
@@ -275,7 +277,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
         <div class="card-title">⚡ Daily Non-Negotiables</div>
         <div style="display:flex;align-items:center;gap:8px">
           <span class="pct-tag" id="dc-pct" style="background:var(--gold-d);color:var(--gold)">0%</span>
-          <button class="btn btn-ghost" style="font-size:9px;padding:3px 9px" onclick="if(confirm('Reset today\'s checklist?'))resetCL('dc',DAILY_CHECKS,'dc-list','var(--gold)',updateDash)">Reset</button>
+          <button class="btn btn-ghost" style="font-size:9px;padding:3px 9px" onclick="if(confirm('Reset today\\'s checklist?'))resetCL('dc',DAILY_CHECKS,'dc-list','var(--gold)',updateDash)">Reset</button>
         </div>
       </div>
       <div class="prog-track" style="margin-bottom:12px"><div class="prog-fill" id="dc-fill" style="width:0%;background:var(--gold)"></div></div>
@@ -288,6 +290,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
     </div>
   </div>
 
+  <!-- ══════ PAST DAYS ══════ -->
   <div id="panel-history" class="panel">
     <div class="sec-hd"><h2>Past Days</h2><p>Every day you showed up is recorded here permanently.</p></div>
     <div class="card">
@@ -309,8 +312,10 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
     </div>
   </div>
 
+  <!-- ══════ SPIRITUALITY ══════ -->
   <div id="panel-spirit" class="panel">
     <div class="sec-hd"><h2 class="c-purple">Spirituality & Prayer</h2><p>Build peace. Release worry. Connect deeply every single day.</p></div>
+
     <div class="spirit-quote">
       <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;color:var(--purple);line-height:1.7" id="spirit-verse-text">
         "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God."
@@ -318,17 +323,20 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
       <div style="font-size:9px;color:var(--muted);margin-top:9px;letter-spacing:.1em;text-transform:uppercase" id="spirit-verse-ref">Philippians 4:6</div>
       <button class="btn btn-ghost" style="margin-top:10px;font-size:9px;border-color:var(--purple);color:var(--purple)" onclick="nextVerse()">Next verse ↻</button>
     </div>
+
     <div class="card">
       <div class="card-hd">
         <div class="card-title c-purple">🕊 Prayer Checklist</div>
         <div style="display:flex;align-items:center;gap:8px">
-          <span style="font-size:18px">🔥</span>          <span style="font-family:Syne;font-size:16px;font-weight:800;color:var(--purple)" id="prayer-streak">0</span>
+          <span style="font-size:18px">🔥</span>
+          <span style="font-family:Syne;font-size:16px;font-weight:800;color:var(--purple)" id="prayer-streak">0</span>
           <span style="font-size:9px;color:var(--muted)">day streak</span>
           <button class="btn btn-ghost" style="font-size:9px;padding:3px 9px;border-color:var(--purple);color:var(--purple)" onclick="resetCL('prayer',PRAYER_CHECKS,'prayer-list','var(--purple)',updatePrayerStreak)">Reset</button>
         </div>
       </div>
       <div id="prayer-list"></div>
     </div>
+
     <div class="card">
       <div class="card-hd"><div class="card-title c-purple">🙏 Gratitude · 3 Things</div></div>
       <div style="display:flex;flex-direction:column;gap:7px">
@@ -337,6 +345,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
         <div style="display:flex;align-items:center;gap:8px"><span style="font-size:10px;color:var(--muted);width:16px;flex-shrink:0">3.</span><input class="txt-in" id="f-grat-3" placeholder="I am grateful for..." oninput="sf('grat-3')"></div>
       </div>
     </div>
+
     <div class="card">
       <div class="card-hd"><div class="card-title c-purple">📓 Prayer Journal</div></div>
       <textarea class="log-area" id="f-prayer-journal" placeholder="Write your prayer, reflection, or what's on your heart..." style="min-height:110px" oninput="sf('prayer-journal')"></textarea>
@@ -344,18 +353,22 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
         <button class="btn" style="background:var(--purple);color:var(--bg)" onclick="saveJournalEntry()">Save Entry</button>
       </div>
     </div>
+
     <div class="card">
       <div class="card-hd"><div class="card-title c-purple">📚 Reflection History</div></div>
       <div id="spirit-log"></div>
     </div>
   </div>
 
+  <!-- ══════ FEARLESS ══════ -->
   <div id="panel-fearless" class="panel">
     <div class="sec-hd"><h2 class="c-red">Fearless Log</h2><p>Every uncomfortable moment is a rep for your character.</p></div>
+
     <div class="card bg-red" style="text-align:center;padding:20px">
       <div style="font-family:Syne;font-size:42px;font-weight:800;color:var(--red);line-height:1" id="fear-total">0</div>
       <div style="font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:5px">Total Fearless Acts · All Time</div>
     </div>
+
     <div class="card">
       <div class="card-hd"><div class="card-title c-red">🔥 Log a Fearless Moment</div></div>
       <div style="margin-bottom:9px">
@@ -375,6 +388,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
     <div class="card"><div class="card-hd"><div class="card-title c-red">History</div></div><div id="fear-log"></div></div>
   </div>
 
+  <!-- ══════ PHYSICAL ══════ -->
   <div id="panel-physical" class="panel">
     <div class="sec-hd"><h2 class="c-green">Calisthenics & Stretching</h2><p>Daily movement builds the body that carries the vision.</p></div>
     <div class="card">
@@ -398,6 +412,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
     </div>
   </div>
 
+  <!-- ══════ HANDSTAND ══════ -->
   <div id="panel-handstand" class="panel">
     <div class="sec-hd"><h2 class="c-green">Handstand Progression</h2><p>Trust the process. Each milestone is the foundation for the next.</p></div>
     <div class="card">
@@ -408,14 +423,17 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
       <div class="prog-track" style="margin-bottom:12px"><div class="prog-fill" id="hs-fill" style="width:0%;background:var(--green)"></div></div>
       <div id="hs-milestones"></div>
     </div>
-    <div class="card"><div class="card-hd"><div class="card-title c-green">📋 Daily Practice</div>      <button class="btn btn-ghost" style="font-size:9px;padding:3px 9px" onclick="resetCL('hs_daily',HS_DAILY,'hs-daily-list','var(--green)',()=>{})">Reset</button>
+    <div class="card"><div class="card-hd"><div class="card-title c-green">📋 Daily Practice</div>
+      <button class="btn btn-ghost" style="font-size:9px;padding:3px 9px" onclick="resetCL('hs_daily',HS_DAILY,'hs-daily-list','var(--green)',()=>{})">Reset</button>
     </div><div id="hs-daily-list"></div></div>
     <div class="card"><div class="card-hd"><div class="card-title c-green">📅 Practice Log</div></div>
-      <textarea class="log-area" id="hs-inp" placeholder="Log today's handstand practice..."></textarea>      <button class="btn" style="margin-top:7px;background:var(--green);color:var(--bg)" onclick="addLog('hs','hs-inp','hs-log')">+ Log Practice</button>
+      <textarea class="log-area" id="hs-inp" placeholder="Log today's handstand practice..."></textarea>
+      <button class="btn" style="margin-top:7px;background:var(--green);color:var(--bg)" onclick="addLog('hs','hs-inp','hs-log')">+ Log Practice</button>
       <div class="divider"></div><div id="hs-log"></div>
     </div>
   </div>
 
+  <!-- ══════ SPLITS ══════ -->
   <div id="panel-splits" class="panel">
     <div class="sec-hd"><h2 class="c-green">Splits Progression</h2><p>Track distance to floor. Small gains compound over time.</p></div>
     <div class="card">
@@ -423,7 +441,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
       <div style="font-size:10px;color:var(--muted);margin-bottom:10px">Record in cm after your session. Lower = better.</div>
       <div id="splits-metrics"></div>
     </div>
-    <div class="card"><div class="card-hd"><div class="card-title c-green">🧘 Flexibility Routine</div>      <button class="btn btn-ghost" style="font-size:9px;padding:3px 9px" onclick="resetCL('splits_r',SPLITS_ROUTINE,'splits-routine','var(--green)',()=>{})">Reset</button>
+    <div class="card"><div class="card-hd"><div class="card-title c-green">🧘 Flexibility Routine</div>
+      <button class="btn btn-ghost" style="font-size:9px;padding:3px 9px" onclick="resetCL('splits_r',SPLITS_ROUTINE,'splits-routine','var(--green)',()=>{})">Reset</button>
     </div><div id="splits-routine"></div></div>
     <div class="card"><div class="card-hd"><div class="card-title c-green">📅 Progress Journal</div></div>
       <textarea class="log-area" id="splits-inp" placeholder="Log measurements, what opened up, what felt tight..."></textarea>
@@ -432,8 +451,10 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
     </div>
   </div>
 
+  <!-- ══════ FRENCH MASTERY ══════ -->
   <div id="panel-french" class="panel">
     <div class="sec-hd"><h2 class="c-blue">French Mastery Track</h2><p>Reading · Writing · Listening · Speaking. Full proficiency is the goal.</p></div>
+
     <div class="card bg-blue" style="display:flex;align-items:center;justify-content:space-between;padding:15px 18px">
       <div>
         <div style="font-family:Syne;font-size:12px;font-weight:700;color:var(--blue)">🦉 Duolingo Session</div>
@@ -447,6 +468,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
         <div id="duo-box" onclick="toggleDuo()" style="width:32px;height:32px;border-radius:8px;border:2px solid var(--blue);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s"></div>
       </div>
     </div>
+
     <div class="card" style="margin-top:12px">
       <div class="card-hd">
         <div class="card-title c-blue">📚 Daily Study Checklist</div>
@@ -458,16 +480,20 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
       <div class="prog-track" style="margin-bottom:12px"><div class="prog-fill" id="fr-fill" style="width:0%;background:var(--blue)"></div></div>
       <div id="fr-list"></div>
     </div>
+
+    <!-- Self-assessed skill bars -->
     <div class="card">
       <div class="card-hd"><div class="card-title c-blue">📊 Proficiency Self-Assessment</div><span style="font-size:9px;color:var(--muted)">click bar to adjust</span></div>
       <div style="font-size:10px;color:var(--muted);margin-bottom:10px">Honest self-rating 0–100%. Update after each study block.</div>
       <div id="fr-skill-bars"></div>
     </div>
+
     <div class="card">
       <div class="card-hd"><div class="card-title c-blue">✍️ Daily French Writing</div></div>
       <div style="font-size:10px;color:var(--muted);margin-bottom:7px">Write 5–10 sentences in French. Think in French — don't translate.</div>
       <textarea class="log-area" id="f-fr-writing" placeholder="Aujourd'hui, j'ai..." style="min-height:100px" oninput="sf('fr-writing')"></textarea>
     </div>
+
     <div class="card">
       <div class="card-hd"><div class="card-title c-blue">🗂 Vocabulary Log</div></div>
       <textarea class="log-area" id="fr-vocab-inp" placeholder="New words / phrases learned today..."></textarea>
@@ -476,19 +502,25 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
     </div>
   </div>
 
+  <!-- ══════ SPEAKING & ORAL ══════ -->
   <div id="panel-speaking" class="panel">
     <div class="sec-hd"><h2 class="c-blue">Speaking & Oral Mastery</h2><p>The hardest skill. The most rewarding. Track it deliberately.</p></div>
+
     <div class="card bg-blue" style="padding:18px;margin-bottom:12px">
       <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:14px;color:var(--blue);line-height:1.65;text-align:center">
         "Language is not learned by studying rules. It is acquired through massive, comprehensible input — and then activated through consistent speaking output."
       </div>
       <div style="font-size:9px;color:var(--muted);text-align:center;margin-top:8px;letter-spacing:.08em;text-transform:uppercase">The acquisition principle · Krashen</div>
     </div>
+
+    <!-- What you must master -->
     <div class="card">
       <div class="card-hd"><div class="card-title c-blue">🗺 Complete Speaking Roadmap</div></div>
       <div style="font-size:10px;color:var(--muted);margin-bottom:12px">The full picture of what oral French mastery requires. Not all at once — but nothing missing.</div>
       <div id="speaking-roadmap"></div>
     </div>
+
+    <!-- Daily oral checklist -->
     <div class="card">
       <div class="card-hd">
         <div class="card-title c-blue">🎙 Daily Oral Practice</div>
@@ -500,6 +532,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
       <div class="prog-track" style="margin-bottom:12px"><div class="prog-fill" id="oral-fill" style="width:0%;background:var(--blue)"></div></div>
       <div id="oral-list"></div>
     </div>
+
+    <!-- Shadowing log -->
     <div class="card">
       <div class="card-hd"><div class="card-title c-blue">🔊 Shadowing Session Log</div></div>
       <div style="font-size:10px;color:var(--muted);margin-bottom:8px">Shadowing = listen to native audio, repeat immediately, match rhythm & intonation. Log source + what you noticed.</div>
@@ -507,6 +541,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
       <button class="btn" style="margin-top:7px;background:var(--blue);color:var(--bg)" onclick="addLog('shadow','shadow-inp','shadow-log')">+ Log Session</button>
       <div class="divider"></div><div id="shadow-log"></div>
     </div>
+
+    <!-- Pronunciation errors -->
     <div class="card">
       <div class="card-hd"><div class="card-title c-blue">🔬 Error Tracker</div></div>
       <div style="font-size:10px;color:var(--muted);margin-bottom:8px">Log recurring pronunciation or grammar errors you catch. Awareness kills them faster.</div>
@@ -516,6 +552,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
     </div>
   </div>
 
+  <!-- ══════ IMMERSION HUB ══════ -->
   <div id="panel-media" class="panel">
     <div class="sec-hd"><h2 class="c-blue">French Immersion Hub</h2><p>Native input is the fastest path to fluency. Watch, absorb, repeat.</p></div>
     <div class="card"><div class="card-hd"><div class="card-title c-blue">🎬 Curated Show List</div></div><div id="shows-list"></div></div>
@@ -526,8 +563,10 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
     </div>
   </div>
 
+  <!-- ══════ CURIOSITY LAB ══════ -->
   <div id="panel-curiosity" class="panel">
     <div class="sec-hd"><h2 class="c-teal">Curiosity Lab</h2><p>Know your body. Know the world. Stay a student forever.</p></div>
+
     <div class="card">
       <div class="card-hd">
         <div class="card-title c-teal">🧪 Daily Exploration Checklist</div>
@@ -539,6 +578,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
       <div class="prog-track" style="margin-bottom:12px"><div class="prog-fill" id="cur-fill" style="width:0%;background:var(--teal)"></div></div>
       <div id="cur-list"></div>
     </div>
+
+    <!-- Human Body & Nutrition -->
     <div class="card">
       <div class="card-hd"><div class="card-title c-teal">🫀 Human Body & Nutrition Log</div></div>
       <div style="font-size:10px;color:var(--muted);margin-bottom:10px">Understand your own biology. How systems work, what you eat, how it affects you.</div>
@@ -548,18 +589,24 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
       <button class="btn" style="margin-top:7px;background:var(--teal);color:var(--bg)" onclick="addLog('body','body-inp','body-log')">+ Log Discovery</button>
       <div class="divider"></div><div id="body-log"></div>
     </div>
+
+    <!-- Botany -->
     <div class="card">
       <div class="card-hd"><div class="card-title c-teal">🌿 Botany & Plant Life</div></div>
       <textarea class="log-area" id="bot-inp" placeholder="Plant species, where you found it, what's fascinating..."></textarea>
       <button class="btn" style="margin-top:7px;background:var(--teal);color:var(--bg)" onclick="addLog('bot','bot-inp','bot-log')">+ Log Discovery</button>
       <div class="divider"></div><div id="bot-log"></div>
     </div>
+
+    <!-- Extinct Animals -->
     <div class="card">
       <div class="card-hd"><div class="card-title c-teal">🦕 Extinct Animals</div></div>
       <textarea class="log-area" id="ext-inp" placeholder="Animal name, era, why it fascinates you, key facts..."></textarea>
       <button class="btn" style="margin-top:7px;background:var(--teal);color:var(--bg)" onclick="addLog('ext','ext-inp','ext-log')">+ Log Research</button>
       <div class="divider"></div><div id="ext-log"></div>
     </div>
+
+    <!-- Philosophy & Mental Models (bonus niche) -->
     <div class="card">
       <div class="card-hd"><div class="card-title c-teal">🧠 Mental Models & Philosophy</div></div>
       <div style="font-size:10px;color:var(--muted);margin-bottom:8px">Frameworks for thinking clearly. Stoicism, cognitive biases, systems thinking — the invisible tools of great minds.</div>
@@ -569,6 +616,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
     </div>
   </div>
 
+  <!-- ══════ CONTENT ══════ -->
   <div id="panel-content" class="panel">
     <div class="sec-hd"><h2>Content Pipeline</h2><p>Your faceless nature & travel page. Document everything.</p></div>
     <div class="card">
@@ -591,6 +639,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
     </div>
   </div>
 
+  <!-- ══════ FINANCE ══════ -->
   <div id="panel-finance" class="panel">
     <div class="sec-hd"><h2 class="c-gold">Finance & Future Ventures</h2><p>1.5 years to graduation. Build the foundation now.</p></div>
     <div class="card">
@@ -629,7 +678,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
       <div class="divider"></div><div id="fin-log"></div>
     </div>
   </div>
-</div>
+
+</div><!-- /main -->
 
 <script>
 // ═══════════════════════════════════════
@@ -638,6 +688,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
 const SUMMER_START = new Date('2026-06-17T00:00:00');
 const SUMMER_END   = new Date('2026-08-28T23:59:59');
 const TOTAL_DAYS   = 72;
+
 const AFFIRMATIONS = [
   "I am capable of more than I can currently imagine.",
   "Fear is a compass. I move toward it.",
@@ -670,6 +721,7 @@ const AFFIRMATIONS = [
   "Understanding your own biology is the ultimate life hack.",
   "Parler français, c'est ouvrir une autre version de toi-même.",
 ];
+
 const DAILY_CHECKS = [
   {id:'dc1',label:'Morning Prayer / Reflection',sub:'Even 5 minutes of stillness'},
   {id:'dc2',label:'Movement / Workout',sub:'Calisthenics, walk, or stretch'},
@@ -680,6 +732,7 @@ const DAILY_CHECKS = [
   {id:'dc7',label:'Journal or log entry',sub:'Reflect on the day'},
   {id:'dc8',label:'In bed by midnight',sub:'Protect recovery'},
 ];
+
 const PRAYER_CHECKS = [
   {id:'pc1',label:'Express gratitude (3 specific things)',sub:''},
   {id:'pc2',label:'Name and release one worry to God',sub:'Surrender it completely'},
@@ -687,6 +740,7 @@ const PRAYER_CHECKS = [
   {id:'pc4',label:'Ask for clarity on your path',sub:''},
   {id:'pc5',label:'Meditate on a verse or affirmation',sub:'5 min of silence'},
 ];
+
 const PHYSICAL_CHECKS = [
   {id:'ph1',label:'Warm-up (5–10 min)',sub:'Joint circles, light cardio'},
   {id:'ph2',label:'Push-ups (3 sets)',sub:'Full range of motion'},
@@ -698,6 +752,7 @@ const PHYSICAL_CHECKS = [
   {id:'ph8',label:'Handstand practice (10–15 min)',sub:''},
   {id:'ph9',label:'Splits / Flexibility work (10 min)',sub:''},
 ];
+
 const HS_MILESTONES = [
   {id:'hs1',name:'Wrist & Shoulder Mobility',desc:'Pain-free loaded wrist extension, band dislocates with control'},
   {id:'hs2',name:'Hollow Body Hold (30 sec)',desc:'Posterior pelvic tilt locked, lower back pressed flat'},
@@ -705,18 +760,21 @@ const HS_MILESTONES = [
   {id:'hs4',name:'Wall Walks (5 reps)',desc:'Walk up wall, 10s hold at top, controlled descent'},
   {id:'hs5',name:'Chest-to-Wall Hold (30 sec)',desc:'Straight line, actively working toward free balance'},
 ];
+
 const HS_DAILY = [
   {id:'hd1',label:'Wrist warm-up protocol',sub:''},
   {id:'hd2',label:'Hollow body (3×30s)',sub:''},
   {id:'hd3',label:'Kick-up attempts (10 reps)',sub:'Consistent entry focus'},
   {id:'hd4',label:'Wall-supported holds (3×10s)',sub:''},
 ];
+
 const SPLITS_METRICS = [
   {id:'sm1',label:'Right Leg Forward Split'},
   {id:'sm2',label:'Left Leg Forward Split'},
   {id:'sm3',label:'Middle / Straddle Split'},
   {id:'sm4',label:'Seated Hamstring Reach'},
 ];
+
 const SPLITS_ROUTINE = [
   {id:'sr1',label:'Standing hamstring stretch (2×60s each)',sub:''},
   {id:'sr2',label:'Lizard / hip flexor stretch (2×60s each)',sub:''},
@@ -725,6 +783,7 @@ const SPLITS_ROUTINE = [
   {id:'sr5',label:'Forward fold hold (2×60s)',sub:''},
   {id:'sr6',label:'Split attempt with blocks / support',sub:'Measure and record'},
 ];
+
 const FRENCH_CHECKS = [
   {id:'fr1',label:'Duolingo (min. 1 lesson)',sub:''},
   {id:'fr2',label:'Read 1 page of French text',sub:'News, book, or social post'},
@@ -734,6 +793,7 @@ const FRENCH_CHECKS = [
   {id:'fr6',label:'French writing (5+ sentences)',sub:'Think in French, not translate'},
   {id:'fr7',label:'French listening (20+ min)',sub:'Show, podcast, or radio'},
 ];
+
 const ORAL_CHECKS = [
   {id:'or1',label:'Shadowing session (10–15 min)',sub:'Match rhythm, intonation, speed of native speaker'},
   {id:'or2',label:'Read aloud (5 min)',sub:'Any French text — feel your mouth forming sounds'},
@@ -742,6 +802,7 @@ const ORAL_CHECKS = [
   {id:'or5',label:'Speak freely for 2+ min',sub:'Voice record yourself. No script. Just talk in French.'},
   {id:'or6',label:'Review 1 error from error tracker',sub:'Correct it consciously'},
 ];
+
 const SPEAKING_ROADMAP = [
   {cat:'🗣 Pronunciation Foundations', items:[
     {id:'rm1',name:'IPA vowel chart mastery',desc:'All French vowels distinct from English — especially é/è/ê, u/ou, o/au'},
@@ -776,6 +837,7 @@ const SPEAKING_ROADMAP = [
     {id:'rm20',name:'Think in French during daily tasks',desc:'Internal monologue shifts — the true sign of acquisition'},
   ]},
 ];
+
 const CURIOSITY_CHECKS = [
   {id:'cu1',label:'Learn 1 body system or nutrition concept',sub:'Digestion, hormones, sleep, macros...'},
   {id:'cu2',label:'Identify or research 1 plant / tree',sub:'Venezuela biodiversity is extraordinary'},
@@ -783,6 +845,7 @@ const CURIOSITY_CHECKS = [
   {id:'cu4',label:'Read or watch something purely for curiosity',sub:'No algorithm — your own choosing'},
   {id:'cu5',label:'Connect what you learned to your own life',sub:'Write 1 sentence of application'},
 ];
+
 const BODY_TOPICS = [
   {id:'bt1',name:'Muscular system & hypertrophy',desc:'How muscles grow, tear, recover — relevant to your training'},
   {id:'bt2',name:'Nervous system & CNS fatigue',desc:'Why overtraining feels different from muscle soreness'},
@@ -793,12 +856,14 @@ const BODY_TOPICS = [
   {id:'bt7',name:'Cardiovascular system',desc:'VO2 max, heart rate zones, longevity implications'},
   {id:'bt8',name:'Fascia & flexibility science',desc:'What\'s actually happening when you stretch — proprioceptors, golgi tendon organ'},
 ];
+
 const FINANCE_CHECKS = [
   {id:'fin1',label:'Read investing content (20 min)',sub:''},
   {id:'fin2',label:'Finance podcast or video',sub:'We Study Billionaires, Motley Fool, etc.'},
   {id:'fin3',label:'Log 1 concept or insight',sub:''},
   {id:'fin4',label:'Research 1 Quebec job opportunity',sub:''},
 ];
+
 const CONTENT_MILESTONES = [
   {id:'cm1',name:'Choose page name & niche'},
   {id:'cm2',name:'Design visual brand (colors, logo concept)'},
@@ -809,6 +874,7 @@ const CONTENT_MILESTONES = [
   {id:'cm7',name:'First collaboration or feature'},
   {id:'cm8',name:'First monetization (affiliate / brand)'},
 ];
+
 const SHOWS = [
   {id:'lupin',e:'🎩',title:'Lupin',meta:'Netflix · Drama',diff:'Beginner–Int.',why:"Omar Sy's clear, articulate Parisian diction. Excellent for modern slang and register shifts."},
   {id:'callmyagent',e:'📞',title:'Dix pour cent',meta:'Netflix · Comedy',diff:'Intermediate',why:"Fast-paced overlapping speech — real French rhythm. How people actually talk."},
@@ -816,12 +882,14 @@ const SHOWS = [
   {id:'famille',e:'🌻',title:"Famille d'accueil",meta:'French TV',diff:'Beginner',why:"Rural everyday French, slower tempo. Very close to conversational Quebec French."},
   {id:'bureau',e:'🕵️',title:'Le Bureau des Légendes',meta:'Canal+',diff:'Advanced',why:"Dense, sophisticated French. Political vocabulary. Best for advanced sessions."},
 ];
+
 const VENTURES = [
   {name:'🌐 Bilingual Tutoring (FR/EN/ES)',desc:'Leverage French (improving), English (fluent), Spanish (native). Tutor via Superprof or Preply. Zero capital, immediate income.'},
   {name:'📱 Faceless Nature Content Page',desc:'Already in progress. Monetize through affiliate links, brand deals, Venezuela biodiversity digital guides.'},
   {name:'💻 Student Tech Services',desc:'BIT background gives an edge. Website builds, data cleaning, automation scripts for local SMBs. $40–80/hr, referral-based.'},
   {name:'📊 BIT Consulting (Quebec SMBs)',desc:'Post-graduation: help SMBs with system design and digital workflows. Quebec SMB sector is underserved by bilingual tech consultants.'},
 ];
+
 const VERSES = [
   {text:"Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",ref:"Philippians 4:6"},
   {text:"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",ref:"Jeremiah 29:11"},
@@ -832,6 +900,7 @@ const VERSES = [
   {text:"Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",ref:"Joshua 1:9"},
   {text:"Come to me, all you who are weary and burdened, and I will give you rest.",ref:"Matthew 11:28"},
 ];
+
 const FR_SKILLS = [
   {id:'sk-read',name:'Reading'},
   {id:'sk-write',name:'Writing'},
@@ -868,13 +937,14 @@ function updateTopbar(){
   const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
   document.getElementById('tb-date').textContent=`${DAYS[now.getDay()]}, ${MONTHS[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
   document.getElementById('tb-time').textContent=now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+
   const pill=document.getElementById('tb-pill');
   const ctx=document.getElementById('tb-context');
   const sc=document.getElementById('summer-card');
   const sf2=document.getElementById('summer-fill');
   const sl=document.getElementById('summer-pct-lbl');
   const sd=document.getElementById('summer-days-lbl');
-  
+
   if(inSummer()){
     const d=summerDayNum();
     const pct=Math.round(d/TOTAL_DAYS*100);
@@ -891,11 +961,13 @@ function updateTopbar(){
     ctx.textContent='';
     sc.style.display='';sf2.style.width='100%';sl.textContent='100%';sd.textContent='Completed';
   }
+
   // Affirmation
   const doy=Math.floor((now-new Date(now.getFullYear(),0,0))/86400000);
   document.getElementById('aff-text').textContent=AFFIRMATIONS[doy%AFFIRMATIONS.length];
   const m2=MONTHS[now.getMonth()];
-  document.getElementById('aff-sub').textContent=`Daily Affirmation · ${m2} ${now.getDate()}, ${now.getFullYear()}`;}
+  document.getElementById('aff-sub').textContent=`Daily Affirmation · ${m2} ${now.getDate()}, ${now.getFullYear()}`;
+}
 
 // ═══════════════════════════════════════
 // CHECKLIST ENGINE (with auto-reset)
@@ -907,7 +979,8 @@ function getCLState(key,items){
     snapshotDay(stored.date,key,stored.checks,items);
     return {date:today,checks:{}};
   }
-  return stored;}
+  return stored;
+}
 function saveCL(key,state){W('cl_'+key,state);}
 function snapshotDay(dateStr,key,checks,items){
   const done=items.filter(i=>checks[i.id]).length;
@@ -915,15 +988,18 @@ function snapshotDay(dateStr,key,checks,items){
   const snaps=S('snapshots')||{};
   if(!snaps[dateStr])snaps[dateStr]={};
   snaps[dateStr][key]={done,total:items.length,pct};
-  W('snapshots',snaps);}
+  W('snapshots',snaps);
+}
 function resetCL(key,items,listId,color,cb){
   W('cl_'+key,{date:todayKey(),checks:{}});
   buildChecklist(listId,items,key,color,cb);
-  if(cb)cb();}
+  if(cb)cb();
+}
 function getPct(key,items){
   const s=getCLState(key,items);
   const done=items.filter(i=>s.checks[i.id]).length;
-  return items.length?Math.round(done/items.length*100):0;}
+  return items.length?Math.round(done/items.length*100):0;
+}
 function buildChecklist(containerId,items,storeKey,color,onCb){
   const el=document.getElementById(containerId);if(!el)return;
   const state=getCLState(storeKey,items);
@@ -946,10 +1022,12 @@ function buildChecklist(containerId,items,storeKey,color,onCb){
       if(onCb)onCb();
     };
     el.appendChild(div);
-  });}
+  });
+}
 function updateProg(fillId,pctId,pct){
   const f=document.getElementById(fillId);const p=document.getElementById(pctId);
-  if(f)f.style.width=pct+'%';if(p)p.textContent=pct+'%';}
+  if(f)f.style.width=pct+'%';if(p)p.textContent=pct+'%';
+}
 
 // ═══════════════════════════════════════
 // DASHBOARD STATS
@@ -962,7 +1040,8 @@ function updateDash(){
   document.getElementById('stat-fear').textContent=(S('logs_fear')||[]).length;
   const duo=S('duo')||{streak:0};
   document.getElementById('stat-duo').textContent=duo.streak||0;
-  document.getElementById('stat-streak').textContent=inSummer()?summerDayNum():(S('global_streak')||0);}
+  document.getElementById('stat-streak').textContent=inSummer()?summerDayNum():(S('global_streak')||0);
+}
 
 // ═══════════════════════════════════════
 // MIDNIGHT AUTO-RESET CHECK
@@ -986,7 +1065,8 @@ function midnightCheck(){
       }
     });
   }
-  W('last_date',today);}
+  W('last_date',today);
+}
 
 // ═══════════════════════════════════════
 // NAVIGATION
@@ -997,7 +1077,8 @@ function nav(panel,el){
   document.getElementById('panel-'+panel).classList.add('active');
   el.classList.add('active');
   document.getElementById('main').scrollTop=0;
-  if(panel==='history'){buildHeatmap();buildHistoryEntries();}}
+  if(panel==='history'){buildHeatmap();buildHistoryEntries();}
+}
 
 // ═══════════════════════════════════════
 // LOG SYSTEM
@@ -1005,22 +1086,25 @@ function nav(panel,el){
 function addLog(key,inputId,listId){
   const inp=document.getElementById(inputId);
   const text=inp.value.trim();if(!text)return;
-  const logs=S('logs_'+key)|| [];
+  const logs=S('logs_'+key)||[];
   logs.unshift({text,time:new Date().toLocaleString(),date:todayKey(),id:Date.now()});
   W('logs_'+key,logs);inp.value='';
-  renderLog(key,listId);updateDash();}
+  renderLog(key,listId);updateDash();
+}
 function renderLog(key,listId){
   const el=document.getElementById(listId);if(!el)return;
-  const logs=S('logs_'+key)|| [];
+  const logs=S('logs_'+key)||[];
   if(!logs.length){el.innerHTML='<div class="no-entries">No entries yet.</div>';return;}
   el.innerHTML=logs.map(l=>`<div class="log-entry">
     <div class="log-time">${l.date||''} · ${l.time}</div>
     <div class="log-text">${esc(l.text)}</div>
     <span class="log-del" onclick="delLog('${key}','${listId}',${l.id})">✕</span>
-  </div>`).join('');}
+  </div>`).join('');
+}
 function delLog(key,listId,id){
   W('logs_'+key,(S('logs_'+key)||[]).filter(l=>l.id!==id));
-  renderLog(key,listId);updateDash();}
+  renderLog(key,listId);updateDash();
+}
 
 // ═══════════════════════════════════════
 // HEATMAP & HISTORY
@@ -1029,6 +1113,7 @@ function buildHeatmap(){
   const grid=document.getElementById('heatmap');if(!grid)return;
   const snaps=S('snapshots')||{};
   grid.innerHTML='';
+  // Jun 17 2026 = Wednesday = index 2 (Mon=0)
   for(let i=0;i<2;i++){const b=document.createElement('div');b.className='cal-cell';b.style.background='transparent';grid.appendChild(b);}
   for(let d=0;d<TOTAL_DAYS;d++){
     const date=new Date(SUMMER_START);date.setDate(date.getDate()+d);
@@ -1046,7 +1131,8 @@ function buildHeatmap(){
     const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     cell.setAttribute('data-tip',`${months[date.getMonth()]} ${date.getDate()} · Day ${d+1}${snap?' · '+avg+'%':''}`);
     grid.appendChild(cell);
-  }}
+  }
+}
 function buildHistoryEntries(){
   const container=document.getElementById('history-entries');if(!container)return;
   const snaps=S('snapshots')||{};
@@ -1085,7 +1171,8 @@ function buildHistoryEntries(){
         ${!vals.length&&!dl.length?'<div class="no-entries">No data for this day.</div>':''}
       </div>
     </div>`;
-  }).join('');}
+  }).join('');
+}
 function toggleH(id){const el=document.getElementById(id);if(el)el.classList.toggle('open');}
 
 // ═══════════════════════════════════════
@@ -1095,22 +1182,25 @@ let verseIdx=0;
 function nextVerse(){
   verseIdx=(verseIdx+1)%VERSES.length;
   document.getElementById('spirit-verse-text').textContent=`"${VERSES[verseIdx].text}"`;
-  document.getElementById('spirit-verse-ref').textContent=VERSES[verseIdx].ref;}
+  document.getElementById('spirit-verse-ref').textContent=VERSES[verseIdx].ref;
+}
 function saveJournalEntry(){
   const val=document.getElementById('f-prayer-journal').value.trim();
   if(!val)return;
-  const logs=S('logs_spirit')|| [];
+  const logs=S('logs_spirit')||[];
   logs.unshift({text:val,time:new Date().toLocaleString(),date:todayKey(),id:Date.now()});
   W('logs_spirit',logs);
   renderLog('spirit','spirit-log');
   document.getElementById('f-prayer-journal').value='';
-  W('field_prayer-journal','');}
+  W('field_prayer-journal','');
+}
 function updatePrayerStreak(){
   const pct=getPct('prayer',PRAYER_CHECKS);
   const today=todayKey();
   const ps=S('prayer_streak')||{count:0,lastDate:''};
   if(pct===100&&ps.lastDate!==today){ps.count++;ps.lastDate=today;W('prayer_streak',ps);}
-  document.getElementById('prayer-streak').textContent=ps.count||0;}
+  document.getElementById('prayer-streak').textContent=ps.count||0;
+}
 
 // ═══════════════════════════════════════
 // FEARLESS
@@ -1119,13 +1209,14 @@ let activeFearCat='Social';
 function addFear(){
   const inp=document.getElementById('fear-inp');
   const text=inp.value.trim();if(!text)return;
-  const logs=S('logs_fear')|| [];
+  const logs=S('logs_fear')||[];
   logs.unshift({text,cat:activeFearCat,time:new Date().toLocaleString(),date:todayKey(),id:Date.now()});
   W('logs_fear',logs);inp.value='';
-  renderFear();updateDash();}
+  renderFear();updateDash();
+}
 function renderFear(){
   const el=document.getElementById('fear-log');if(!el)return;
-  const logs=S('logs_fear')|| [];
+  const logs=S('logs_fear')||[];
   document.getElementById('fear-total').textContent=logs.length;
   const cc={Social:'var(--red)',Physical:'var(--green)',Creative:'var(--purple)',Financial:'var(--gold)',Spiritual:'var(--blue)',Other:'var(--muted)'};
   if(!logs.length){el.innerHTML='<div class="no-entries">No fearless acts logged yet. Go do something scary.</div>';return;}
@@ -1136,7 +1227,8 @@ function renderFear(){
     </div>
     <div class="log-text" style="margin-top:5px">${esc(l.text)}</div>
     <span class="log-del" onclick="delFear(${l.id})">✕</span>
-  </div>`).join('');}
+  </div>`).join('');
+}
 function delFear(id){W('logs_fear',(S('logs_fear')||[]).filter(l=>l.id!==id));renderFear();updateDash();}
 
 // ═══════════════════════════════════════
@@ -1156,11 +1248,13 @@ function buildMilestones(containerId,items,storeKey,pctId,fillId,total){
   const done=items.filter(m=>state[m.id]).length;
   const p=document.getElementById(pctId);const f=document.getElementById(fillId);
   if(p)p.textContent=`${done} / ${total}`;
-  if(f)f.style.width=(done/total*100)+'%';}
+  if(f)f.style.width=(done/total*100)+'%';
+}
 function toggleMs(sk,id,cid,pid,fid,total){
   const state=S(sk)||{};state[id]=!state[id];W(sk,state);
   const items=sk==='hs_milestones'?HS_MILESTONES:CONTENT_MILESTONES;
-  buildMilestones(cid,items,sk,pid,fid,total);}
+  buildMilestones(cid,items,sk,pid,fid,total);
+}
 
 // ═══════════════════════════════════════
 // SPEAKING ROADMAP
@@ -1178,10 +1272,12 @@ function buildSpeakingRoadmap(){
           <div><div class="ms-name ${done?'c-green':''}" style="font-size:11px">${item.name}</div><div class="ms-desc">${item.desc}</div></div>
         </div>`;
       }).join('')}
-    </div>`).join('');}
+    </div>`).join('');
+}
 function toggleRoadmap(id){
   const state=S('speaking_roadmap')||{};state[id]=!state[id];W('speaking_roadmap',state);
-  buildSpeakingRoadmap();}
+  buildSpeakingRoadmap();
+}
 
 // ═══════════════════════════════════════
 // FRENCH SKILL BARS
@@ -1198,14 +1294,16 @@ function buildFrSkillBars(){
       </div>
       <div class="skill-pct" id="sp-${s.id}">${v}%</div>
     </div>`;
-  }).join('');}
+  }).join('');
+}
 function adjustSkill(id,e){
   const track=e.currentTarget;const rect=track.getBoundingClientRect();
   const pct=Math.round(((e.clientX-rect.left)/rect.width)*100);
   const clamped=Math.max(0,Math.min(100,pct));
   const vals=S('fr_skills')||{};vals[id]=clamped;W('fr_skills',vals);
   const f=document.getElementById('sb-'+id);const p=document.getElementById('sp-'+id);
-  if(f)f.style.width=clamped+'%';if(p)p.textContent=clamped+'%';}
+  if(f)f.style.width=clamped+'%';if(p)p.textContent=clamped+'%';
+}
 
 // ═══════════════════════════════════════
 // BODY TOPICS
@@ -1220,9 +1318,11 @@ function buildBodyTopics(){
       <div class="ms-c ${done?'done':''}" style="width:22px;height:22px;font-size:10px;cursor:pointer" onclick="toggleBodyTopic('${t.id}')">${done?'✓':''}</div>
       <div><div class="ms-name ${done?'c-teal':''}" style="font-size:11px">${t.name}</div><div class="ms-desc">${t.desc}</div></div>
     </div>`;
-  }).join('');}
+  }).join('');
+}
 function toggleBodyTopic(id){
-  const state=S('body_topics')||{};state[id]=!state[id];W('body_topics',state);buildBodyTopics();}
+  const state=S('body_topics')||{};state[id]=!state[id];W('body_topics',state);buildBodyTopics();
+}
 
 // ═══════════════════════════════════════
 // SPLITS METRICS
@@ -1233,10 +1333,11 @@ function buildSplitsMetrics(){
     <div class="split-row">
       <div style="font-size:12px">${m.label}</div>
       <div style="display:flex;align-items:center;gap:6px">
-        <input class="split-in" type="number" id="spl_${m.id}" value="${S('split_'+m.id)||''}" placeholder="—" oninput="W('split_'+m.id}',this.value)">
+        <input class="split-in" type="number" id="spl_${m.id}" value="${S('split_'+m.id)||''}" placeholder="—" oninput="W('split_${m.id}',this.value)">
         <span style="font-size:10px;color:var(--muted)">cm to floor</span>
       </div>
-    </div>`).join('');}
+    </div>`).join('');
+}
 
 // ═══════════════════════════════════════
 // SHOWS
@@ -1258,10 +1359,12 @@ function buildShows(){
         </div>
       </div>
     </div>`;
-  }).join('');}
+  }).join('');
+}
 function toggleShow(id,prop){
   const state=S('shows')||{};if(!state[id])state[id]={};
-  state[id][prop]=!state[id][prop];W('shows',state);buildShows();}
+  state[id][prop]=!state[id][prop];W('shows',state);buildShows();
+}
 
 // ═══════════════════════════════════════
 // DUOLINGO
@@ -1278,21 +1381,24 @@ function toggleDuo(){
     else if(state.lastStreakDate!==today)state.streak=1;
     state.lastStreakDate=today;
   }
-  W('duo',state);renderDuo();updateDash();}
+  W('duo',state);renderDuo();updateDash();
+}
 function renderDuo(){
   const today=todayKey();const state=S('duo')||{streak:0};
   const done=state.lastDate===today&&state.done;
   document.getElementById('duo-streak').textContent=state.streak||0;
   const box=document.getElementById('duo-box');
   box.style.background=done?'var(--blue)':'transparent';
-  box.innerHTML=done?'<span style="color:white;font-size:15px">✓</span>':'';}
+  box.innerHTML=done?'<span style="color:white;font-size:15px">✓</span>':'';
+}
 
 // ═══════════════════════════════════════
 // VENTURES
 // ═══════════════════════════════════════
 function buildVentures(){
   const el=document.getElementById('ventures-list');if(!el)return;
-  el.innerHTML=VENTURES.map(v=>`<div class="venture"><h4>${v.name}</h4><p>${v.desc}</p></div>`).join('');}
+  el.innerHTML=VENTURES.map(v=>`<div class="venture"><h4>${v.name}</h4><p>${v.desc}</p></div>`).join('');
+}
 
 // ═══════════════════════════════════════
 // JOB ROWS
@@ -1305,11 +1411,13 @@ function addJobRow(data){
     <input class="txt-in" placeholder="~$CAD/hr" value="${esc(data?.salary||'')}" oninput="saveJobRows()">
     <input class="txt-in" placeholder="Key skill" value="${esc(data?.skill||'')}" oninput="saveJobRows()">
     <span class="log-del" style="position:static;padding:4px 7px" onclick="this.parentElement.remove();saveJobRows()">✕</span>`;
-  c.appendChild(row);}
+  c.appendChild(row);
+}
 function saveJobRows(){
   const rows=[];document.querySelectorAll('#job-rows > div').forEach(r=>{
     const i=r.querySelectorAll('input');rows.push({role:i[0]?.value||'',salary:i[1]?.value||'',skill:i[2]?.value||''});
-  });W('job_rows',rows);}
+  });W('job_rows',rows);
+}
 function loadJobRows(){(S('job_rows')||[]).forEach(r=>addJobRow(r));}
 
 // ═══════════════════════════════════════
@@ -1321,7 +1429,8 @@ function initFearBtns(){
       document.querySelectorAll('.fear-btn').forEach(x=>x.classList.remove('active'));
       b.classList.add('active');activeFearCat=b.dataset.c;
     });
-  });}
+  });
+}
 
 // ═══════════════════════════════════════
 // INIT
@@ -1330,8 +1439,10 @@ function init(){
   midnightCheck();
   updateTopbar();
   setInterval(updateTopbar,60000);
+
   // Load persisted text fields
   ['daily-intention','grat-1','grat-2','grat-3','prayer-journal','phy-notes','fr-writing','invest-notes'].forEach(lf);
+
   // Checklists
   buildChecklist('dc-list',DAILY_CHECKS,'dc','var(--gold)',updateDash);
   buildChecklist('prayer-list',PRAYER_CHECKS,'prayer','var(--purple)',updatePrayerStreak);
@@ -1342,6 +1453,7 @@ function init(){
   buildChecklist('oral-list',ORAL_CHECKS,'oral','var(--blue)',()=>updateProg('oral-fill','oral-pct',getPct('oral',ORAL_CHECKS)));
   buildChecklist('cur-list',CURIOSITY_CHECKS,'cur','var(--teal)',()=>updateProg('cur-fill','cur-pct',getPct('cur',CURIOSITY_CHECKS)));
   buildChecklist('fin-list',FINANCE_CHECKS,'fin','var(--gold)',()=>updateProg('fin-fill','fin-pct',getPct('fin',FINANCE_CHECKS)));
+
   // Complex components
   buildMilestones('hs-milestones',HS_MILESTONES,'hs_milestones','hs-pct','hs-fill',5);
   buildMilestones('ct-milestones',CONTENT_MILESTONES,'ct_milestones','ct-pct','ct-fill',8);
@@ -1352,6 +1464,7 @@ function init(){
   buildShows();
   buildVentures();
   loadJobRows();
+
   // Render all logs
   [['spirit','spirit-log'],['phy','phy-log'],['hs','hs-log'],['splits','splits-log'],
    ['fr-vocab','fr-vocab-log'],['shadow','shadow-log'],['fr-errors','error-log'],
@@ -1359,6 +1472,7 @@ function init(){
    ['phil','phil-log'],['ct-ideas','ct-ideas-log'],['ct-pub','ct-pub-log'],['fin','fin-log']
   ].forEach(([k,l])=>renderLog(k,l));
   renderFear();
+
   // Misc
   renderDuo();
   updatePrayerStreak();
@@ -1368,7 +1482,9 @@ function init(){
   updateProg('oral-fill','oral-pct',getPct('oral',ORAL_CHECKS));
   updateProg('cur-fill','cur-pct',getPct('cur',CURIOSITY_CHECKS));
   updateProg('fin-fill','fin-pct',getPct('fin',FINANCE_CHECKS));
-  initFearBtns();}
+  initFearBtns();
+}
+
 document.addEventListener('DOMContentLoaded',init);
 </script>
 </body>
