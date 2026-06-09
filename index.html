@@ -3,58 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oliver · Verano Venezuela 2026</title>
+<title>Oliver · Life OS</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#0a0a08;--surface:#111110;--surface2:#191918;--surface3:#222220;
-  --border:#2a2a26;--text:#e8e6df;--muted:#6a6860;
-  --gold:#c8a96e;--green:#6e9e8a;--purple:#8e7ec0;--red:#c87868;--blue:#5e8eae;
-  --gold-dim:rgba(200,169,110,0.12);--green-dim:rgba(110,158,138,0.12);
-  --purple-dim:rgba(142,126,192,0.12);--red-dim:rgba(200,120,104,0.12);--blue-dim:rgba(94,142,174,0.12);
+  --bg:#09090b;--surface:#111113;--surface2:#18181c;--surface3:#202025;
+  --border:#2c2c32;--text:#e4e2db;--muted:#5e5c58;
+  --gold:#c9a96e;--green:#5fa87a;--purple:#9b7fd4;--red:#d07068;--blue:#5a8db0;--teal:#4fa89a;--orange:#c47a45;
+  --gold-d:rgba(201,169,110,.11);--green-d:rgba(95,168,122,.11);--purple-d:rgba(155,127,212,.11);
+  --red-d:rgba(208,112,104,.11);--blue-d:rgba(90,141,176,.11);--teal-d:rgba(79,168,154,.11);--orange-d:rgba(196,122,69,.11);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;min-height:100vh;overflow-x:hidden}
-h1,h2,h3,h4,h5,h6,.syne{font-family:'Syne',sans-serif}
-.serif{font-family:'Instrument Serif',serif}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;display:flex}
 
 /* ── SIDEBAR ── */
-#sidebar{position:fixed;left:0;top:0;bottom:0;width:210px;background:var(--surface);border-right:1px solid var(--border);z-index:200;display:flex;flex-direction:column;overflow-y:auto}
-.sb-logo{padding:22px 20px 18px;border-bottom:1px solid var(--border)}
-.sb-logo-title{font-size:16px;font-weight:800;letter-spacing:-.02em;color:var(--gold);line-height:1}
-.sb-logo-sub{font-size:9px;color:var(--muted);margin-top:4px;letter-spacing:.1em;text-transform:uppercase}
-.sb-logo-dates{font-size:10px;color:var(--text);margin-top:8px;opacity:.7}
-.sb-section{padding:14px 0 4px}
-.sb-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:0 18px 6px}
-.nav-item{display:flex;align-items:center;gap:9px;padding:7px 18px;cursor:pointer;font-size:11px;font-family:'Syne',sans-serif;font-weight:600;color:var(--muted);border-left:2px solid transparent;transition:all .15s;letter-spacing:.02em}
+#sidebar{width:200px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;height:100vh;position:sticky;top:0}
+.sb-logo{padding:20px 18px 16px;border-bottom:1px solid var(--border)}
+.sb-logo-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;letter-spacing:-.02em;color:var(--gold)}
+.sb-logo-sub{font-size:9px;color:var(--muted);margin-top:3px;letter-spacing:.1em;text-transform:uppercase}
+.sb-version{font-size:9px;color:var(--muted);margin-top:6px;opacity:.6}
+.sb-section{padding:12px 0 2px}
+.sb-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:0 16px 5px;font-family:'DM Mono',monospace}
+.nav-item{display:flex;align-items:center;gap:8px;padding:6px 16px;cursor:pointer;font-size:11px;font-family:'Syne',sans-serif;font-weight:600;color:var(--muted);border-left:2px solid transparent;transition:all .15s;letter-spacing:.02em;user-select:none}
 .nav-item:hover{color:var(--text);background:var(--surface2)}
 .nav-item.active{color:var(--text);border-left-color:var(--gold);background:var(--surface2)}
 .nav-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.nav-coming{opacity:.35;cursor:default;font-style:italic}
+.nav-coming:hover{background:none;color:var(--muted)}
 
 /* ── MAIN ── */
-#main{margin-left:210px;min-height:100vh}
-.topbar{position:sticky;top:0;z-index:100;background:rgba(10,10,8,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 28px;display:flex;align-items:center;justify-content:space-between}
-.topbar-left strong{font-family:'Syne',sans-serif;font-size:14px;font-weight:700}
-.topbar-left span{font-size:10px;color:var(--muted);margin-left:10px}
-.day-pill{background:var(--gold);color:var(--bg);font-family:'Syne',sans-serif;font-weight:800;font-size:10px;padding:4px 12px;border-radius:100px;letter-spacing:.05em}
-.days-left{font-size:10px;color:var(--muted);margin-right:10px}
+#main{flex:1;height:100vh;overflow-y:auto;display:flex;flex-direction:column}
+
+/* ── TOPBAR ── */
+.topbar{position:sticky;top:0;z-index:100;background:rgba(9,9,11,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:11px 26px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.tb-left strong{font-family:'Syne',sans-serif;font-size:13px;font-weight:700}
+.tb-left span{font-size:10px;color:var(--muted);margin-left:10px}
+.tb-right{display:flex;align-items:center;gap:10px}
+.day-pill{background:var(--gold);color:var(--bg);font-family:'Syne',sans-serif;font-weight:800;font-size:10px;padding:3px 11px;border-radius:100px;letter-spacing:.04em}
+.day-pill.offseason{background:var(--surface3);color:var(--muted)}
 
 /* ── PANELS ── */
-.panel{display:none;padding:28px 28px 60px;animation:fadeIn .2s ease}
+.panel{display:none;padding:26px 26px 60px;animation:fadeIn .18s ease}
 .panel.active{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── CARDS ── */
-.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:14px}
-.card-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.card-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.02em;display:flex;align-items:center;gap:8px}
+@keyframes fadeIn{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── SECTION HEADER ── */
-.section-hd{margin-bottom:24px}
-.section-hd h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:3px}
-.section-hd p{font-size:11px;color:var(--muted)}
+.sec-hd{margin-bottom:22px}
+.sec-hd h2{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-.02em;margin-bottom:2px}
+.sec-hd p{font-size:11px;color:var(--muted)}
+
+/* ── CARDS ── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:12px}
+.card-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.card-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.02em;display:flex;align-items:center;gap:7px}
 
 /* ── PROGRESS ── */
 .prog-track{height:3px;background:var(--surface3);border-radius:100px;overflow:hidden}
@@ -62,120 +65,126 @@ h1,h2,h3,h4,h5,h6,.syne{font-family:'Syne',sans-serif}
 .pct-tag{font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:100px;font-family:'DM Mono',monospace}
 
 /* ── CHECKLIST ── */
-.check-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:opacity .15s}
+.check-item{display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:opacity .15s}
 .check-item:last-child{border-bottom:none}
 .check-item:hover{opacity:.8}
-.chk{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--border);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s;font-size:9px;font-weight:bold}
-.check-item.done .chk{background:var(--gold);border-color:var(--gold);color:var(--bg)}
+.chk{width:15px;height:15px;border-radius:4px;border:1.5px solid var(--border);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s;font-size:9px;color:transparent}
+.check-item.done .chk{color:var(--bg);font-weight:bold}
 .check-item.done .chk::after{content:'✓'}
-.check-item.done .chk-label{text-decoration:line-through;color:var(--muted)}
-.chk-label{font-size:12px;line-height:1.4;flex:1}
+.check-item.done .chk-lbl{text-decoration:line-through;color:var(--muted)}
+.chk-lbl{font-size:12px;line-height:1.4;flex:1}
 .chk-sub{font-size:10px;color:var(--muted);margin-top:1px}
 
 /* ── AFFIRMATION ── */
-.aff-box{background:linear-gradient(135deg,rgba(200,169,110,.08),rgba(200,169,110,.02));border:1px solid rgba(200,169,110,.2);border-radius:12px;padding:24px;text-align:center;margin-bottom:14px}
-.aff-text{font-family:'Instrument Serif',serif;font-style:italic;font-size:19px;line-height:1.55;color:var(--gold);margin-bottom:6px}
+.aff-box{background:linear-gradient(135deg,rgba(201,169,110,.08),rgba(201,169,110,.02));border:1px solid rgba(201,169,110,.18);border-radius:12px;padding:22px;text-align:center;margin-bottom:12px}
+.aff-text{font-family:'Instrument Serif',serif;font-style:italic;font-size:18px;line-height:1.55;color:var(--gold);margin-bottom:5px}
 .aff-sub{font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
 
 /* ── STATS ── */
-.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
-.stat-box{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
-.stat-num{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1}
-.stat-lbl{font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+.stat-box{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:13px;text-align:center}
+.stat-num{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;line-height:1}
+.stat-lbl{font-size:9px;color:var(--muted);letter-spacing:.09em;text-transform:uppercase;margin-top:4px}
 
 /* ── INPUTS ── */
-.log-area{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;padding:11px;resize:none;outline:none;line-height:1.6;min-height:80px;transition:border-color .15s}
+.log-area{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;padding:10px;resize:none;outline:none;line-height:1.6;min-height:76px;transition:border-color .15s}
 .log-area:focus{border-color:var(--gold)}
 .log-area::placeholder{color:var(--muted)}
-.txt-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;padding:7px 10px;outline:none;transition:border-color .15s}
-.txt-input:focus{border-color:var(--gold)}
-.txt-input::placeholder{color:var(--muted)}
+.txt-in{background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;padding:6px 9px;outline:none;transition:border-color .15s;width:100%}
+.txt-in:focus{border-color:var(--gold)}
+.txt-in::placeholder{color:var(--muted)}
 
 /* ── BUTTONS ── */
-.btn{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.04em;padding:7px 14px;border-radius:7px;cursor:pointer;border:none;transition:all .15s}
+.btn{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.04em;padding:6px 13px;border-radius:7px;cursor:pointer;border:none;transition:all .15s}
 .btn-gold{background:var(--gold);color:var(--bg)}
 .btn-gold:hover{opacity:.85}
 .btn-ghost{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
 .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
-.btn-sm{font-size:10px;padding:4px 10px}
 
 /* ── LOG ENTRIES ── */
-.log-entry{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:11px 36px 11px 12px;margin-bottom:8px;position:relative}
-.log-time{font-size:9px;color:var(--muted);margin-bottom:3px;letter-spacing:.05em}
+.log-entry{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 32px 10px 11px;margin-bottom:7px;position:relative}
+.log-time{font-size:9px;color:var(--muted);margin-bottom:3px;letter-spacing:.04em}
 .log-text{font-size:12px;line-height:1.55;white-space:pre-wrap}
-.log-del{position:absolute;right:8px;top:8px;font-size:10px;color:var(--muted);cursor:pointer;padding:2px 5px;border-radius:3px;transition:all .15s}
-.log-del:hover{color:var(--red);background:var(--red-dim)}
+.log-del{position:absolute;right:7px;top:7px;font-size:10px;color:var(--muted);cursor:pointer;padding:2px 5px;border-radius:3px;transition:all .15s}
+.log-del:hover{color:var(--red);background:var(--red-d)}
 .no-entries{font-size:11px;color:var(--muted);padding:8px 0;font-style:italic}
 
 /* ── MILESTONES ── */
-.milestone{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.milestone{display:flex;align-items:flex-start;gap:11px;padding:10px 0;border-bottom:1px solid var(--border)}
 .milestone:last-child{border-bottom:none}
-.ms-circle{width:30px;height:30px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;cursor:pointer;transition:all .2s;font-family:'Syne',sans-serif;font-weight:700}
-.ms-circle.done{background:var(--green);border-color:var(--green);color:var(--bg)}
-.ms-circle.next{border-color:var(--gold);color:var(--gold)}
-.ms-info{flex:1}
+.ms-c{width:28px;height:28px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;cursor:pointer;transition:all .2s;font-family:'Syne',sans-serif;font-weight:700;margin-top:1px}
+.ms-c.done{background:var(--green);border-color:var(--green);color:var(--bg)}
+.ms-c.next{border-color:var(--gold);color:var(--gold)}
 .ms-name{font-size:12px;font-weight:500}
-.ms-desc{font-size:10px;color:var(--muted);margin-top:2px;line-height:1.4}
+.ms-desc{font-size:10px;color:var(--muted);margin-top:2px;line-height:1.45}
 
 /* ── SPLITS ── */
-.split-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)}
+.split-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border)}
 .split-row:last-child{border-bottom:none}
-.split-input{background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;padding:5px 8px;width:70px;text-align:right;outline:none}
-.split-input:focus{border-color:var(--green)}
+.split-in{background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;padding:4px 8px;width:68px;text-align:right;outline:none;transition:border-color .15s}
+.split-in:focus{border-color:var(--green)}
 
 /* ── SHOWS ── */
-.show-item{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--border)}
+.show-item{display:flex;gap:11px;padding:12px 0;border-bottom:1px solid var(--border)}
 .show-item:last-child{border-bottom:none}
-.show-emoji{font-size:22px;flex-shrink:0;width:36px;text-align:center;margin-top:2px}
+.show-emoji{font-size:20px;flex-shrink:0;width:32px;text-align:center;margin-top:2px}
 .show-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700}
 .show-meta{font-size:10px;color:var(--muted);margin-top:2px}
-.show-why{font-size:11px;color:var(--text);margin-top:6px;line-height:1.55;opacity:.85}
-.show-btns{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
-.s-tag{font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:100px;cursor:pointer;font-family:'DM Mono',monospace;border:1px solid var(--border);color:var(--muted);background:var(--surface3);transition:all .15s}
-.s-tag.on-watched{background:var(--green-dim);color:var(--green);border-color:rgba(110,158,138,.35)}
-.s-tag.on-understood{background:var(--gold-dim);color:var(--gold);border-color:rgba(200,169,110,.35)}
+.show-why{font-size:11px;color:var(--text);margin-top:5px;line-height:1.55;opacity:.85}
+.s-tag{font-size:9px;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:100px;cursor:pointer;font-family:'DM Mono',monospace;border:1px solid var(--border);color:var(--muted);background:var(--surface3);transition:all .15s;margin-top:8px;display:inline-block;margin-right:5px}
+.s-tag.on-w{background:var(--green-d);color:var(--green);border-color:rgba(95,168,122,.3)}
+.s-tag.on-u{background:var(--gold-d);color:var(--gold);border-color:rgba(201,169,110,.3)}
 
-/* ── CALENDAR HEATMAP ── */
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:12px}
-.cal-cell{aspect-ratio:1;border-radius:3px;cursor:pointer;transition:all .2s;position:relative}
-.cal-cell:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:var(--surface3);border:1px solid var(--border);border-radius:5px;padding:4px 8px;font-size:9px;white-space:nowrap;z-index:999;pointer-events:none}
-.cal-label{font-size:9px;color:var(--muted);text-align:center}
+/* ── HEATMAP ── */
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:10px}
+.cal-cell{aspect-ratio:1;border-radius:3px;transition:opacity .2s;cursor:default;position:relative}
+.cal-cell:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:var(--surface3);border:1px solid var(--border);border-radius:5px;padding:4px 8px;font-size:9px;white-space:nowrap;z-index:999;pointer-events:none;font-family:'DM Mono',monospace}
+
+/* ── HISTORY ── */
+.hist-day{border:1px solid var(--border);border-radius:10px;margin-bottom:9px;overflow:hidden}
+.hist-hd{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:var(--surface2);cursor:pointer;transition:background .15s}
+.hist-hd:hover{background:var(--surface3)}
+.hist-body{padding:12px 14px;display:none;border-top:1px solid var(--border)}
+.hist-body.open{display:block}
+.hist-bar{height:5px;background:var(--surface3);border-radius:100px;overflow:hidden;flex:1;margin:0 10px}
+.hist-bar-fill{height:100%;background:var(--gold);border-radius:100px}
 
 /* ── VENTURE ── */
-.venture{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:15px;margin-bottom:10px}
-.venture h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:5px}
+.venture{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:9px}
+.venture h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:4px}
 .venture p{font-size:11px;color:var(--muted);line-height:1.6}
 
-/* ── JOB ROWS ── */
-.job-row{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}
-.job-row:last-child{border-bottom:none}
+/* ── GRID ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 
-/* ── HISTORY PANEL ── */
-.hist-day{border:1px solid var(--border);border-radius:10px;margin-bottom:10px;overflow:hidden}
-.hist-day-hd{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--surface2);cursor:pointer}
-.hist-day-hd:hover{background:var(--surface3)}
-.hist-day-body{padding:12px 16px;display:none}
-.hist-day-body.open{display:block}
-.hist-pct-bar{height:6px;background:var(--surface3);border-radius:100px;overflow:hidden;flex:1;margin:0 12px}
-.hist-pct-fill{height:100%;background:var(--gold);border-radius:100px}
+/* ── FRENCH SKILL BARS ── */
+.skill-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.skill-row:last-child{border-bottom:none}
+.skill-name{font-size:11px;flex:1;min-width:120px}
+.skill-bar-track{flex:2;height:5px;background:var(--surface3);border-radius:100px;overflow:hidden;cursor:pointer;position:relative}
+.skill-bar-fill{height:100%;border-radius:100px;background:var(--blue);transition:width .3s}
+.skill-pct{font-size:10px;color:var(--muted);width:30px;text-align:right}
 
-/* ── PRAYER STREAK ── */
-.streak-flame{font-size:28px;line-height:1}
+/* ── MODULE PLACEHOLDER ── */
+.module-placeholder{border:2px dashed var(--border);border-radius:12px;padding:28px;text-align:center;margin-bottom:12px;opacity:.5;cursor:default}
+.module-placeholder h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+.module-placeholder p{font-size:11px;color:var(--muted)}
 
-/* ── DIVIDER ── */
-.divider{border:none;border-top:1px solid var(--border);margin:14px 0}
+/* ── SPIRITUAL QUOTE ── */
+.spirit-quote{background:linear-gradient(135deg,rgba(155,127,212,.08),rgba(155,127,212,.02));border:1px solid rgba(155,127,212,.2);border-radius:12px;padding:20px;text-align:center;margin-bottom:12px}
 
 /* ── COLORS ── */
-.c-gold{color:var(--gold)}.c-green{color:var(--green)}.c-purple{color:var(--purple)}.c-red{color:var(--red)}.c-blue{color:var(--blue)}
-.bg-gold{background:var(--gold-dim);border:1px solid rgba(200,169,110,.2)}
-.bg-green{background:var(--green-dim);border:1px solid rgba(110,158,138,.2)}
-.bg-purple{background:var(--purple-dim);border:1px solid rgba(142,126,192,.2)}
-.bg-red{background:var(--red-dim);border:1px solid rgba(200,120,104,.2)}
-.bg-blue{background:var(--blue-dim);border:1px solid rgba(94,142,174,.2)}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.c-gold{color:var(--gold)}.c-green{color:var(--green)}.c-purple{color:var(--purple)}.c-red{color:var(--red)}.c-blue{color:var(--blue)}.c-teal{color:var(--teal)}.c-orange{color:var(--orange)}
+.bg-gold{background:var(--gold-d);border:1px solid rgba(201,169,110,.2)}
+.bg-green{background:var(--green-d);border:1px solid rgba(95,168,122,.2)}
+.bg-purple{background:var(--purple-d);border:1px solid rgba(155,127,212,.2)}
+.bg-red{background:var(--red-d);border:1px solid rgba(208,112,104,.2)}
+.bg-blue{background:var(--blue-d);border:1px solid rgba(90,141,176,.2)}
+.bg-teal{background:var(--teal-d);border:1px solid rgba(79,168,154,.2)}
+.bg-orange{background:var(--orange-d);border:1px solid rgba(196,122,69,.2)}
 
-/* ── SCROLLBAR ── */
+.divider{border:none;border-top:1px solid var(--border);margin:12px 0}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
@@ -184,16 +193,14 @@ h1,h2,h3,h4,h5,h6,.syne{font-family:'Syne',sans-serif}
 </head>
 <body>
 
-<!-- ═══════════════════════════ SIDEBAR ═══════════════════════════ -->
 <nav id="sidebar">
   <div class="sb-logo">
-    <div class="sb-logo-title">VERANO 2026</div>
-    <div class="sb-logo-sub">Oliver · Venezuela</div>
-    <div class="sb-logo-dates">Jun 17 → Aug 28 · 72 days</div>
+    <div class="sb-logo-title">OLIVER OS</div>
+    <div class="sb-logo-sub">Life Tracker</div>
+    <div class="sb-version">v1.0 · Est. 2026</div>
   </div>
-
   <div class="sb-section">
-    <div class="sb-label">Overview</div>
+    <div class="sb-label">Life</div>
     <div class="nav-item active" onclick="nav('dashboard',this)"><div class="nav-dot" style="background:var(--gold)"></div>Dashboard</div>
     <div class="nav-item" onclick="nav('history',this)"><div class="nav-dot" style="background:var(--muted)"></div>Past Days</div>
   </div>
@@ -211,477 +218,426 @@ h1,h2,h3,h4,h5,h6,.syne{font-family:'Syne',sans-serif}
   <div class="sb-section">
     <div class="sb-label">French</div>
     <div class="nav-item" onclick="nav('french',this)"><div class="nav-dot" style="background:var(--blue)"></div>Mastery Track</div>
+    <div class="nav-item" onclick="nav('speaking',this)"><div class="nav-dot" style="background:var(--blue)"></div>Speaking & Oral</div>
     <div class="nav-item" onclick="nav('media',this)"><div class="nav-dot" style="background:var(--blue)"></div>Immersion Hub</div>
   </div>
   <div class="sb-section">
-    <div class="sb-label">Curiosity</div>
-    <div class="nav-item" onclick="nav('nature',this)"><div class="nav-dot" style="background:#7ab87a"></div>Nature & Botany</div>
+    <div class="sb-label">Knowledge</div>
+    <div class="nav-item" onclick="nav('curiosity',this)"><div class="nav-dot" style="background:var(--teal)"></div>Curiosity Lab</div>
     <div class="nav-item" onclick="nav('content',this)"><div class="nav-dot" style="background:var(--muted)"></div>Content Pipeline</div>
   </div>
   <div class="sb-section">
     <div class="sb-label">Future</div>
     <div class="nav-item" onclick="nav('finance',this)"><div class="nav-dot" style="background:var(--gold)"></div>Finance & Ventures</div>
   </div>
+  <div class="sb-section">
+    <div class="sb-label">Coming Soon</div>
+    <div class="nav-item nav-coming"><div class="nav-dot" style="background:var(--muted)"></div>Homework Tracker</div>
+    <div class="nav-item nav-coming"><div class="nav-dot" style="background:var(--muted)"></div>Grades & GPA</div>
+    <div class="nav-item nav-coming"><div class="nav-dot" style="background:var(--muted)"></div>Career Planner</div>
+  </div>
 </nav>
 
-<!-- ═══════════════════════════ MAIN ═══════════════════════════ -->
 <div id="main">
-
-  <!-- TOPBAR -->
   <div class="topbar">
-    <div class="topbar-left">
-      <strong id="tb-date">—</strong>
-      <span id="tb-time"></span>
-    </div>
-    <div style="display:flex;align-items:center;gap:10px">
-      <span class="days-left" id="tb-days-left"></span>
-      <span class="day-pill" id="tb-day-pill">DAY —</span>
+    <div class="tb-left"><strong id="tb-date">—</strong><span id="tb-time"></span></div>
+    <div class="tb-right">
+      <span style="font-size:10px;color:var(--muted)" id="tb-context"></span>
+      <span class="day-pill" id="tb-pill">—</span>
     </div>
   </div>
 
-  <!-- ══════════ DASHBOARD ══════════ -->
   <div id="panel-dashboard" class="panel active">
-    <div class="section-hd">
-      <h2>Good day, Oliver. 🇻🇪</h2>
-      <p>Your daily command centre. Execute deeply. Stay accountable.</p>
-    </div>
-
-    <!-- Affirmation -->
+    <div class="sec-hd"><h2>Good day, Oliver. 🇻🇪</h2><p>Your life operating system. One day at a time.</p></div>
     <div class="aff-box">
-      <div class="aff-text" id="aff-text">Loading...</div>
+      <div class="aff-text" id="aff-text">—</div>
       <div class="aff-sub" id="aff-sub">Daily Affirmation</div>
     </div>
-
-    <!-- Summer bar -->
-    <div class="card" style="margin-bottom:14px">
+    
+    <div class="card" id="summer-card" style="margin-bottom:12px">
       <div class="card-hd">
-        <div class="card-title c-gold">☀️ Summer Progress</div>
+        <div class="card-title c-gold">☀️ Verano Venezuela 2026</div>
         <span id="summer-pct-lbl" style="font-family:Syne;font-size:13px;font-weight:800;color:var(--gold)">0%</span>
       </div>
       <div class="prog-track"><div class="prog-fill" id="summer-fill" style="width:0%;background:linear-gradient(90deg,var(--gold),var(--green))"></div></div>
-      <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--muted);margin-top:5px"><span>Jun 17</span><span>Aug 28</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--muted);margin-top:5px"><span>Jun 17, 2026</span><span id="summer-days-lbl"></span><span>Aug 28, 2026</span></div>
     </div>
 
-    <!-- Stats -->
     <div class="stat-grid">
-      <div class="stat-box"><div class="stat-num c-gold" id="stat-day">1</div><div class="stat-lbl">Current Day</div></div>
+      <div class="stat-box"><div class="stat-num c-gold" id="stat-streak">—</div><div class="stat-lbl">Day / Streak</div></div>
       <div class="stat-box"><div class="stat-num c-green" id="stat-habits">0%</div><div class="stat-lbl">Today's Habits</div></div>
-      <div class="stat-box"><div class="stat-num c-red" id="stat-fearless">0</div><div class="stat-lbl">Fearless Acts</div></div>
+      <div class="stat-box"><div class="stat-num c-red" id="stat-fear">0</div><div class="stat-lbl">Fearless Acts</div></div>
+      <div class="stat-box"><div class="stat-num c-blue" id="stat-duo">0</div><div class="stat-lbl">🦉 Duo Streak</div></div>
     </div>
 
-    <!-- Daily checklist -->
     <div class="card">
       <div class="card-hd">
         <div class="card-title">⚡ Daily Non-Negotiables</div>
-        <div style="display:flex;gap:6px">
-          <span id="dc-pct" class="pct-tag" style="background:var(--gold-dim);color:var(--gold)">0%</span>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="pct-tag" id="dc-pct" style="background:var(--gold-d);color:var(--gold)">0%</span>
+          <button class="btn btn-ghost" style="font-size:9px;padding:3px 9px" onclick="if(confirm('Reset today\'s checklist?'))resetCL('dc',DAILY_CHECKS,'dc-list','var(--gold)',updateDash)">Reset</button>
         </div>
       </div>
-      <div class="prog-track" style="margin-bottom:14px"><div class="prog-fill" id="dc-fill" style="width:0%;background:var(--gold)"></div></div>
+      <div class="prog-track" style="margin-bottom:12px"><div class="prog-fill" id="dc-fill" style="width:0%;background:var(--gold)"></div></div>
       <div id="dc-list"></div>
     </div>
 
-    <!-- Intention -->
     <div class="card">
       <div class="card-hd"><div class="card-title">📝 Today's Intention</div></div>
       <textarea class="log-area" id="f-daily-intention" placeholder="What is your single most important focus today?" oninput="sf('daily-intention')"></textarea>
     </div>
   </div>
 
-  <!-- ══════════ PAST DAYS / HISTORY ══════════ -->
   <div id="panel-history" class="panel">
-    <div class="section-hd">
-      <h2>Past Days</h2>
-      <p>Every day you showed up. A record of your summer.</p>
-    </div>
-
-    <!-- Heatmap -->
+    <div class="sec-hd"><h2>Past Days</h2><p>Every day you showed up is recorded here permanently.</p></div>
     <div class="card">
-      <div class="card-hd"><div class="card-title">📅 72-Day Habit Heatmap</div></div>
-      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px" id="day-labels">
-        <span style="font-size:9px;color:var(--muted);width:100%">Mon · Tue · Wed · Thu · Fri · Sat · Sun</span>
-      </div>
-      <div class="cal-grid" id="heatmap-grid"></div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:10px">
+      <div class="card-hd"><div class="card-title">📅 Habit Heatmap</div></div>
+      <div style="font-size:9px;color:var(--muted);margin-bottom:4px">Mon → Sun · hover for details</div>
+      <div class="cal-grid" id="heatmap"></div>
+      <div style="display:flex;align-items:center;gap:5px;margin-top:10px">
         <span style="font-size:9px;color:var(--muted)">Less</span>
-        <div style="width:12px;height:12px;border-radius:2px;background:var(--surface3)"></div>
-        <div style="width:12px;height:12px;border-radius:2px;background:rgba(200,169,110,.3)"></div>
-        <div style="width:12px;height:12px;border-radius:2px;background:rgba(200,169,110,.6)"></div>
-        <div style="width:12px;height:12px;border-radius:2px;background:var(--gold)"></div>
+        <div style="width:10px;height:10px;border-radius:2px;background:var(--surface3)"></div>
+        <div style="width:10px;height:10px;border-radius:2px;background:rgba(201,169,110,.3)"></div>
+        <div style="width:10px;height:10px;border-radius:2px;background:rgba(201,169,110,.6)"></div>
+        <div style="width:10px;height:10px;border-radius:2px;background:var(--gold)"></div>
         <span style="font-size:9px;color:var(--muted)">More</span>
       </div>
     </div>
-
-    <!-- Day entries -->
     <div class="card">
       <div class="card-hd"><div class="card-title">📖 Day-by-Day Log</div></div>
       <div id="history-entries"></div>
     </div>
   </div>
 
-  <!-- ══════════ SPIRITUALITY ══════════ -->
   <div id="panel-spirit" class="panel">
-    <div class="section-hd">
-      <h2 class="c-purple">Spirituality & Prayer</h2>
-      <p>Build peace. Release worry. Connect deeply.</p>
-    </div>
-
-    <div class="card bg-purple" style="text-align:center;padding:22px;margin-bottom:14px">
-      <div class="serif" style="font-style:italic;font-size:15px;color:var(--purple);line-height:1.7">
-        "Do not be anxious about anything, but in every situation,<br>by prayer and petition, with thanksgiving,<br>present your requests to God."
+    <div class="sec-hd"><h2 class="c-purple">Spirituality & Prayer</h2><p>Build peace. Release worry. Connect deeply every single day.</p></div>
+    <div class="spirit-quote">
+      <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;color:var(--purple);line-height:1.7" id="spirit-verse-text">
+        "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God."
       </div>
-      <div style="font-size:9px;color:var(--muted);margin-top:10px;letter-spacing:.1em;text-transform:uppercase">Philippians 4:6</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:9px;letter-spacing:.1em;text-transform:uppercase" id="spirit-verse-ref">Philippians 4:6</div>
+      <button class="btn btn-ghost" style="margin-top:10px;font-size:9px;border-color:var(--purple);color:var(--purple)" onclick="nextVerse()">Next verse ↻</button>
     </div>
-
     <div class="card">
       <div class="card-hd">
         <div class="card-title c-purple">🕊 Prayer Checklist</div>
         <div style="display:flex;align-items:center;gap:8px">
-          <span class="streak-flame">🔥</span>
-          <span style="font-family:Syne;font-size:16px;font-weight:800;color:var(--purple)" id="prayer-streak-num">0</span>
+          <span style="font-size:18px">🔥</span>          <span style="font-family:Syne;font-size:16px;font-weight:800;color:var(--purple)" id="prayer-streak">0</span>
           <span style="font-size:9px;color:var(--muted)">day streak</span>
+          <button class="btn btn-ghost" style="font-size:9px;padding:3px 9px;border-color:var(--purple);color:var(--purple)" onclick="resetCL('prayer',PRAYER_CHECKS,'prayer-list','var(--purple)',updatePrayerStreak)">Reset</button>
         </div>
       </div>
       <div id="prayer-list"></div>
     </div>
-
     <div class="card">
       <div class="card-hd"><div class="card-title c-purple">🙏 Gratitude · 3 Things</div></div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:10px;color:var(--muted);width:16px;flex-shrink:0">1.</span><input class="txt-input" id="f-grat-1" placeholder="I am grateful for..." oninput="sf('grat-1')"></div>
-        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:10px;color:var(--muted);width:16px;flex-shrink:0">2.</span><input class="txt-input" id="f-grat-2" placeholder="I am grateful for..." oninput="sf('grat-2')"></div>
-        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:10px;color:var(--muted);width:16px;flex-shrink:0">3.</span><input class="txt-input" id="f-grat-3" placeholder="I am grateful for..." oninput="sf('grat-3')"></div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:10px;color:var(--muted);width:16px;flex-shrink:0">1.</span><input class="txt-in" id="f-grat-1" placeholder="I am grateful for..." oninput="sf('grat-1')"></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:10px;color:var(--muted);width:16px;flex-shrink:0">2.</span><input class="txt-in" id="f-grat-2" placeholder="I am grateful for..." oninput="sf('grat-2')"></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:10px;color:var(--muted);width:16px;flex-shrink:0">3.</span><input class="txt-in" id="f-grat-3" placeholder="I am grateful for..." oninput="sf('grat-3')"></div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-hd"><div class="card-title c-purple">📓 Prayer Journal</div></div>
-      <textarea class="log-area" id="f-prayer-journal" placeholder="Write your prayer, reflection, or what's on your heart..." style="min-height:120px" oninput="sf('prayer-journal')"></textarea>
+      <textarea class="log-area" id="f-prayer-journal" placeholder="Write your prayer, reflection, or what's on your heart..." style="min-height:110px" oninput="sf('prayer-journal')"></textarea>
+      <div style="display:flex;justify-content:flex-end;margin-top:8px">
+        <button class="btn" style="background:var(--purple);color:var(--bg)" onclick="saveJournalEntry()">Save Entry</button>
+      </div>
     </div>
-
     <div class="card">
-      <div class="card-hd"><div class="card-title c-purple">📚 Reflection Log</div></div>
-      <textarea class="log-area" id="spirit-inp" placeholder="Log a moment of peace, insight, or answered prayer..."></textarea>
-      <button class="btn btn-ghost" style="margin-top:8px;border-color:var(--purple);color:var(--purple)" onclick="addLog('spirit','spirit-inp','spirit-log')">+ Log Entry</button>
-      <div class="divider"></div>
+      <div class="card-hd"><div class="card-title c-purple">📚 Reflection History</div></div>
       <div id="spirit-log"></div>
     </div>
   </div>
 
-  <!-- ══════════ FEARLESS ══════════ -->
   <div id="panel-fearless" class="panel">
-    <div class="section-hd">
-      <h2 class="c-red">Fearless Log</h2>
-      <p>Every uncomfortable moment is a rep for your character.</p>
+    <div class="sec-hd"><h2 class="c-red">Fearless Log</h2><p>Every uncomfortable moment is a rep for your character.</p></div>
+    <div class="card bg-red" style="text-align:center;padding:20px">
+      <div style="font-family:Syne;font-size:42px;font-weight:800;color:var(--red);line-height:1" id="fear-total">0</div>
+      <div style="font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:5px">Total Fearless Acts · All Time</div>
     </div>
-
-    <div class="card bg-red" style="text-align:center;padding:22px;margin-bottom:14px">
-      <div style="font-family:Syne;font-size:44px;font-weight:800;color:var(--red);line-height:1" id="fearless-total">0</div>
-      <div style="font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:6px">Total Fearless Acts This Summer</div>
-    </div>
-
     <div class="card">
       <div class="card-hd"><div class="card-title c-red">🔥 Log a Fearless Moment</div></div>
-      <div style="margin-bottom:10px">
-        <div style="font-size:9px;color:var(--muted);margin-bottom:7px;letter-spacing:.08em;text-transform:uppercase">Category</div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap" id="fear-cats">
-          <button class="btn btn-ghost btn-sm fear-btn active" data-c="Social">Social</button>
-          <button class="btn btn-ghost btn-sm fear-btn" data-c="Physical">Physical</button>
-          <button class="btn btn-ghost btn-sm fear-btn" data-c="Creative">Creative</button>
-          <button class="btn btn-ghost btn-sm fear-btn" data-c="Financial">Financial</button>
-          <button class="btn btn-ghost btn-sm fear-btn" data-c="Spiritual">Spiritual</button>
-          <button class="btn btn-ghost btn-sm fear-btn" data-c="Other">Other</button>
+      <div style="margin-bottom:9px">
+        <div style="font-size:9px;color:var(--muted);margin-bottom:6px;letter-spacing:.08em;text-transform:uppercase">Category</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap" id="fear-cats">
+          <button class="btn btn-ghost fear-btn active" data-c="Social">Social</button>
+          <button class="btn btn-ghost fear-btn" data-c="Physical">Physical</button>
+          <button class="btn btn-ghost fear-btn" data-c="Creative">Creative</button>
+          <button class="btn btn-ghost fear-btn" data-c="Financial">Financial</button>
+          <button class="btn btn-ghost fear-btn" data-c="Spiritual">Spiritual</button>
+          <button class="btn btn-ghost fear-btn" data-c="Other">Other</button>
         </div>
       </div>
       <textarea class="log-area" id="fear-inp" placeholder="Describe what you did that scared you. Be specific. How did it feel after?"></textarea>
       <button class="btn" style="margin-top:8px;background:var(--red);color:var(--bg)" onclick="addFear()">+ Log Fearless Act</button>
     </div>
-
-    <div class="card">
-      <div class="card-hd"><div class="card-title c-red">History</div></div>
-      <div id="fear-log"></div>
-    </div>
+    <div class="card"><div class="card-hd"><div class="card-title c-red">History</div></div><div id="fear-log"></div></div>
   </div>
 
-  <!-- ══════════ PHYSICAL ══════════ -->
   <div id="panel-physical" class="panel">
-    <div class="section-hd">
-      <h2 class="c-green">Calisthenics & Stretching</h2>
-      <p>Daily movement builds the body that carries the vision.</p>
-    </div>
-
+    <div class="sec-hd"><h2 class="c-green">Calisthenics & Stretching</h2><p>Daily movement builds the body that carries the vision.</p></div>
     <div class="card">
       <div class="card-hd">
         <div class="card-title c-green">🤸 Today's Routine</div>
-        <span class="pct-tag" id="phy-pct" style="background:var(--green-dim);color:var(--green)">0%</span>
+        <div style="display:flex;gap:8px">
+          <span class="pct-tag" id="phy-pct" style="background:var(--green-d);color:var(--green)">0%</span>
+          <button class="btn btn-ghost" style="font-size:9px;padding:3px 9px" onclick="resetCL('phy',PHYSICAL_CHECKS,'phy-list','var(--green)',()=>updateProg('phy-fill','phy-pct',getPct('phy',PHYSICAL_CHECKS)))">Reset</button>
+        </div>
       </div>
-      <div class="prog-track" style="margin-bottom:14px"><div class="prog-fill" id="phy-fill" style="width:0%;background:var(--green)"></div></div>
+      <div class="prog-track" style="margin-bottom:12px"><div class="prog-fill" id="phy-fill" style="width:0%;background:var(--green)"></div></div>
       <div id="phy-list"></div>
     </div>
-
-    <div class="card">
-      <div class="card-hd"><div class="card-title c-green">📝 Workout Notes</div></div>
-      <textarea class="log-area" id="f-phy-notes" placeholder="How did the session feel? Reps, sets, energy level..." oninput="sf('phy-notes')"></textarea>
+    <div class="card"><div class="card-hd"><div class="card-title c-green">📝 Workout Notes</div></div>
+      <textarea class="log-area" id="f-phy-notes" placeholder="How did the session feel? Reps, sets, energy..." oninput="sf('phy-notes')"></textarea>
     </div>
-
-    <div class="card">
-      <div class="card-hd"><div class="card-title c-green">📅 Session Log</div></div>
-      <textarea class="log-area" id="phy-inp" placeholder="Log today's highlights, PRs, or observations..."></textarea>
-      <button class="btn" style="margin-top:8px;background:var(--green);color:var(--bg)" onclick="addLog('phy','phy-inp','phy-log')">+ Log Session</button>
-      <div class="divider"></div>
-      <div id="phy-log"></div>
+    <div class="card"><div class="card-hd"><div class="card-title c-green">📅 Session Log</div></div>
+      <textarea class="log-area" id="phy-inp" placeholder="Log highlights, PRs, observations..."></textarea>
+      <button class="btn" style="margin-top:7px;background:var(--green);color:var(--bg)" onclick="addLog('phy','phy-inp','phy-log')">+ Log Session</button>
+      <div class="divider"></div><div id="phy-log"></div>
     </div>
   </div>
 
-  <!-- ══════════ HANDSTAND ══════════ -->
   <div id="panel-handstand" class="panel">
-    <div class="section-hd">
-      <h2 class="c-green">Handstand Progression</h2>
-      <p>Trust the process. Each milestone is a foundation for the next.</p>
-    </div>
-
+    <div class="sec-hd"><h2 class="c-green">Handstand Progression</h2><p>Trust the process. Each milestone is the foundation for the next.</p></div>
     <div class="card">
       <div class="card-hd">
         <div class="card-title c-green">🤲 Milestone Track</div>
-        <span class="pct-tag" id="hs-pct" style="background:var(--green-dim);color:var(--green)">0 / 5</span>
+        <span class="pct-tag" id="hs-pct" style="background:var(--green-d);color:var(--green)">0 / 5</span>
       </div>
-      <div class="prog-track" style="margin-bottom:14px"><div class="prog-fill" id="hs-fill" style="width:0%;background:var(--green)"></div></div>
+      <div class="prog-track" style="margin-bottom:12px"><div class="prog-fill" id="hs-fill" style="width:0%;background:var(--green)"></div></div>
       <div id="hs-milestones"></div>
     </div>
-
-    <div class="card">
-      <div class="card-hd"><div class="card-title c-green">📋 Daily Practice</div></div>
-      <div id="hs-daily-list"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-hd"><div class="card-title c-green">📅 Practice Log</div></div>
-      <textarea class="log-area" id="hs-inp" placeholder="Log today's handstand practice — attempts, holds, breakthroughs..."></textarea>
-      <button class="btn" style="margin-top:8px;background:var(--green);color:var(--bg)" onclick="addLog('hs','hs-inp','hs-log')">+ Log Practice</button>
-      <div class="divider"></div>
-      <div id="hs-log"></div>
+    <div class="card"><div class="card-hd"><div class="card-title c-green">📋 Daily Practice</div>      <button class="btn btn-ghost" style="font-size:9px;padding:3px 9px" onclick="resetCL('hs_daily',HS_DAILY,'hs-daily-list','var(--green)',()=>{})">Reset</button>
+    </div><div id="hs-daily-list"></div></div>
+    <div class="card"><div class="card-hd"><div class="card-title c-green">📅 Practice Log</div></div>
+      <textarea class="log-area" id="hs-inp" placeholder="Log today's handstand practice..."></textarea>      <button class="btn" style="margin-top:7px;background:var(--green);color:var(--bg)" onclick="addLog('hs','hs-inp','hs-log')">+ Log Practice</button>
+      <div class="divider"></div><div id="hs-log"></div>
     </div>
   </div>
 
-  <!-- ══════════ SPLITS ══════════ -->
   <div id="panel-splits" class="panel">
-    <div class="section-hd">
-      <h2 class="c-green">Splits Progression</h2>
-      <p>Track distance to floor. Small gains compound into full flexibility.</p>
-    </div>
-
+    <div class="sec-hd"><h2 class="c-green">Splits Progression</h2><p>Track distance to floor. Small gains compound over time.</p></div>
     <div class="card">
       <div class="card-hd"><div class="card-title c-green">📏 Distance to Floor</div></div>
-      <div style="font-size:10px;color:var(--muted);margin-bottom:12px">Record measurement in cm after your session. Lower = better.</div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px">Record in cm after your session. Lower = better.</div>
       <div id="splits-metrics"></div>
     </div>
-
-    <div class="card">
-      <div class="card-hd"><div class="card-title c-green">🧘 Flexibility Routine</div></div>
-      <div id="splits-routine"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-hd"><div class="card-title c-green">📅 Progress Journal</div></div>
-      <textarea class="log-area" id="splits-inp" placeholder="Log today's measurements, what opened up, what felt tight..."></textarea>
-      <button class="btn" style="margin-top:8px;background:var(--green);color:var(--bg)" onclick="addLog('splits','splits-inp','splits-log')">+ Log Session</button>
-      <div class="divider"></div>
-      <div id="splits-log"></div>
+    <div class="card"><div class="card-hd"><div class="card-title c-green">🧘 Flexibility Routine</div>      <button class="btn btn-ghost" style="font-size:9px;padding:3px 9px" onclick="resetCL('splits_r',SPLITS_ROUTINE,'splits-routine','var(--green)',()=>{})">Reset</button>
+    </div><div id="splits-routine"></div></div>
+    <div class="card"><div class="card-hd"><div class="card-title c-green">📅 Progress Journal</div></div>
+      <textarea class="log-area" id="splits-inp" placeholder="Log measurements, what opened up, what felt tight..."></textarea>
+      <button class="btn" style="margin-top:7px;background:var(--green);color:var(--bg)" onclick="addLog('splits','splits-inp','splits-log')">+ Log Session</button>
+      <div class="divider"></div><div id="splits-log"></div>
     </div>
   </div>
 
-  <!-- ══════════ FRENCH ══════════ -->
   <div id="panel-french" class="panel">
-    <div class="section-hd">
-      <h2 class="c-blue">French Mastery Track</h2>
-      <p>Build from your Bishop's foundation. Think, dream, speak in French.</p>
-    </div>
-
-    <!-- Duolingo -->
-    <div class="card bg-blue" style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px">
+    <div class="sec-hd"><h2 class="c-blue">French Mastery Track</h2><p>Reading · Writing · Listening · Speaking. Full proficiency is the goal.</p></div>
+    <div class="card bg-blue" style="display:flex;align-items:center;justify-content:space-between;padding:15px 18px">
       <div>
-        <div style="font-family:Syne;font-size:13px;font-weight:700;color:var(--blue)">🦉 Duolingo Session</div>
-        <div style="font-size:10px;color:var(--muted);margin-top:2px">Keep the streak alive. Even 5 minutes counts.</div>
+        <div style="font-family:Syne;font-size:12px;font-weight:700;color:var(--blue)">🦉 Duolingo Session</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:2px">Keep the streak. Even 5 min counts.</div>
       </div>
-      <div style="display:flex;align-items:center;gap:14px">
+      <div style="display:flex;align-items:center;gap:12px">
         <div style="text-align:center">
-          <div style="font-family:Syne;font-size:24px;font-weight:800;color:var(--blue)" id="duo-streak">0</div>
+          <div style="font-family:Syne;font-size:22px;font-weight:800;color:var(--blue)" id="duo-streak">0</div>
           <div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Streak</div>
         </div>
-        <div id="duo-box" onclick="toggleDuo()" style="width:34px;height:34px;border-radius:8px;border:2px solid var(--blue);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s"></div>
+        <div id="duo-box" onclick="toggleDuo()" style="width:32px;height:32px;border-radius:8px;border:2px solid var(--blue);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s"></div>
       </div>
     </div>
-
-    <div class="card" style="margin-top:14px">
+    <div class="card" style="margin-top:12px">
       <div class="card-hd">
         <div class="card-title c-blue">📚 Daily Study Checklist</div>
-        <span class="pct-tag" id="fr-pct" style="background:var(--blue-dim);color:var(--blue)">0%</span>
+        <div style="display:flex;gap:8px">
+          <span class="pct-tag" id="fr-pct" style="background:var(--blue-d);color:var(--blue)">0%</span>
+          <button class="btn btn-ghost" style="font-size:9px;padding:3px 9px" onclick="resetCL('fr',FRENCH_CHECKS,'fr-list','var(--blue)',()=>updateProg('fr-fill','fr-pct',getPct('fr',FRENCH_CHECKS)))">Reset</button>
+        </div>
       </div>
-      <div class="prog-track" style="margin-bottom:14px"><div class="prog-fill" id="fr-fill" style="width:0%;background:var(--blue)"></div></div>
+      <div class="prog-track" style="margin-bottom:12px"><div class="prog-fill" id="fr-fill" style="width:0%;background:var(--blue)"></div></div>
       <div id="fr-list"></div>
     </div>
-
+    <div class="card">
+      <div class="card-hd"><div class="card-title c-blue">📊 Proficiency Self-Assessment</div><span style="font-size:9px;color:var(--muted)">click bar to adjust</span></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px">Honest self-rating 0–100%. Update after each study block.</div>
+      <div id="fr-skill-bars"></div>
+    </div>
     <div class="card">
       <div class="card-hd"><div class="card-title c-blue">✍️ Daily French Writing</div></div>
-      <div style="font-size:10px;color:var(--muted);margin-bottom:8px">Write 5–10 sentences about your day IN French. Don't translate — think in French.</div>
-      <textarea class="log-area" id="f-fr-writing" placeholder="Aujourd'hui, j'ai..." style="min-height:110px" oninput="sf('fr-writing')"></textarea>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:7px">Write 5–10 sentences in French. Think in French — don't translate.</div>
+      <textarea class="log-area" id="f-fr-writing" placeholder="Aujourd'hui, j'ai..." style="min-height:100px" oninput="sf('fr-writing')"></textarea>
     </div>
-
     <div class="card">
       <div class="card-hd"><div class="card-title c-blue">🗂 Vocabulary Log</div></div>
-      <textarea class="log-area" id="fr-vocab-inp" placeholder="New words / phrases (e.g. épanoui = flourishing)..."></textarea>
-      <button class="btn" style="margin-top:8px;background:var(--blue);color:var(--bg)" onclick="addLog('fr-vocab','fr-vocab-inp','fr-vocab-log')">+ Save Words</button>
-      <div class="divider"></div>
-      <div id="fr-vocab-log"></div>
+      <textarea class="log-area" id="fr-vocab-inp" placeholder="New words / phrases learned today..."></textarea>
+      <button class="btn" style="margin-top:7px;background:var(--blue);color:var(--bg)" onclick="addLog('fr-vocab','fr-vocab-inp','fr-vocab-log')">+ Save Words</button>
+      <div class="divider"></div><div id="fr-vocab-log"></div>
     </div>
   </div>
 
-  <!-- ══════════ MEDIA HUB ══════════ -->
-  <div id="panel-media" class="panel">
-    <div class="section-hd">
-      <h2 class="c-blue">French Immersion Hub</h2>
-      <p>Native input is the fastest path to fluency. Watch, absorb, repeat.</p>
+  <div id="panel-speaking" class="panel">
+    <div class="sec-hd"><h2 class="c-blue">Speaking & Oral Mastery</h2><p>The hardest skill. The most rewarding. Track it deliberately.</p></div>
+    <div class="card bg-blue" style="padding:18px;margin-bottom:12px">
+      <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:14px;color:var(--blue);line-height:1.65;text-align:center">
+        "Language is not learned by studying rules. It is acquired through massive, comprehensible input — and then activated through consistent speaking output."
+      </div>
+      <div style="font-size:9px;color:var(--muted);text-align:center;margin-top:8px;letter-spacing:.08em;text-transform:uppercase">The acquisition principle · Krashen</div>
     </div>
-
     <div class="card">
-      <div class="card-hd"><div class="card-title c-blue">🎬 Curated Show List</div></div>
-      <div id="shows-list"></div>
+      <div class="card-hd"><div class="card-title c-blue">🗺 Complete Speaking Roadmap</div></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:12px">The full picture of what oral French mastery requires. Not all at once — but nothing missing.</div>
+      <div id="speaking-roadmap"></div>
     </div>
-
-    <div class="card">
-      <div class="card-hd"><div class="card-title c-blue">📝 Viewing Notes</div></div>
-      <textarea class="log-area" id="media-inp" placeholder='e.g. "Lupin Ep3 — slang: baraque = house. Pattern: dropped R at end of infinitives"'></textarea>
-      <button class="btn" style="margin-top:8px;background:var(--blue);color:var(--bg)" onclick="addLog('media','media-inp','media-log')">+ Log Note</button>
-      <div class="divider"></div>
-      <div id="media-log"></div>
-    </div>
-  </div>
-
-  <!-- ══════════ NATURE ══════════ -->
-  <div id="panel-nature" class="panel">
-    <div class="section-hd">
-      <h2 style="color:#7ab87a">Nature & Curiosity</h2>
-      <p>Venezuela is one of the world's most biodiverse places. Document everything.</p>
-    </div>
-
     <div class="card">
       <div class="card-hd">
-        <div class="card-title" style="color:#7ab87a">🌿 Daily Curiosity Dives</div>
-        <span class="pct-tag" id="nat-pct" style="background:rgba(122,184,122,.12);color:#7ab87a">0%</span>
+        <div class="card-title c-blue">🎙 Daily Oral Practice</div>
+        <div style="display:flex;gap:8px">
+          <span class="pct-tag" id="oral-pct" style="background:var(--blue-d);color:var(--blue)">0%</span>
+          <button class="btn btn-ghost" style="font-size:9px;padding:3px 9px" onclick="resetCL('oral',ORAL_CHECKS,'oral-list','var(--blue)',()=>updateProg('oral-fill','oral-pct',getPct('oral',ORAL_CHECKS)))">Reset</button>
+        </div>
       </div>
-      <div class="prog-track" style="margin-bottom:14px"><div class="prog-fill" id="nat-fill" style="width:0%;background:#7ab87a"></div></div>
-      <div id="nat-list"></div>
+      <div class="prog-track" style="margin-bottom:12px"><div class="prog-fill" id="oral-fill" style="width:0%;background:var(--blue)"></div></div>
+      <div id="oral-list"></div>
     </div>
-
     <div class="card">
-      <div class="card-hd"><div class="card-title" style="color:#7ab87a">🌱 Botany Discovery Log</div></div>
-      <textarea class="log-area" id="bot-inp" placeholder="Plant name, where you found it, what's fascinating about it..."></textarea>
-      <button class="btn" style="margin-top:8px;background:#7ab87a;color:var(--bg)" onclick="addLog('bot','bot-inp','bot-log')">+ Log Discovery</button>
-      <div class="divider"></div>
-      <div id="bot-log"></div>
+      <div class="card-hd"><div class="card-title c-blue">🔊 Shadowing Session Log</div></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:8px">Shadowing = listen to native audio, repeat immediately, match rhythm & intonation. Log source + what you noticed.</div>
+      <textarea class="log-area" id="shadow-inp" placeholder='e.g. "Shadowed Lupin S1E2 — 5 min. Noticed: elided ne in negation (\"j\'sais pas\"), fast liaison in \"vous_avez\". Still struggle with nasal vowels on/an."'></textarea>
+      <button class="btn" style="margin-top:7px;background:var(--blue);color:var(--bg)" onclick="addLog('shadow','shadow-inp','shadow-log')">+ Log Session</button>
+      <div class="divider"></div><div id="shadow-log"></div>
     </div>
-
     <div class="card">
-      <div class="card-hd"><div class="card-title" style="color:#7ab87a">🦕 Extinct Animals Research</div></div>
-      <textarea class="log-area" id="ext-inp" placeholder="Animal name, era, why it fascinates you, key facts..."></textarea>
-      <button class="btn" style="margin-top:8px;background:#7ab87a;color:var(--bg)" onclick="addLog('ext','ext-inp','ext-log')">+ Log Research</button>
-      <div class="divider"></div>
-      <div id="ext-log"></div>
+      <div class="card-hd"><div class="card-title c-blue">🔬 Error Tracker</div></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:8px">Log recurring pronunciation or grammar errors you catch. Awareness kills them faster.</div>
+      <textarea class="log-area" id="error-inp" placeholder='e.g. "Still pronouncing final S in \"nous parlons\" — should be silent. Fix: listen and shadow."'></textarea>
+      <button class="btn" style="margin-top:7px;background:var(--blue);color:var(--bg)" onclick="addLog('fr-errors','error-inp','error-log')">+ Log Error</button>
+      <div class="divider"></div><div id="error-log"></div>
     </div>
   </div>
 
-  <!-- ══════════ CONTENT ══════════ -->
-  <div id="panel-content" class="panel">
-    <div class="section-hd">
-      <h2>Content Pipeline</h2>
-      <p>Your faceless nature & travel page. Documenting Venezuela and beyond.</p>
+  <div id="panel-media" class="panel">
+    <div class="sec-hd"><h2 class="c-blue">French Immersion Hub</h2><p>Native input is the fastest path to fluency. Watch, absorb, repeat.</p></div>
+    <div class="card"><div class="card-hd"><div class="card-title c-blue">🎬 Curated Show List</div></div><div id="shows-list"></div></div>
+    <div class="card"><div class="card-hd"><div class="card-title c-blue">📝 Viewing Notes</div></div>
+      <textarea class="log-area" id="media-inp" placeholder='e.g. "Lupin Ep3 — baraque = house/shack. Dropped R pattern. Speed: faster than expected."'></textarea>
+      <button class="btn" style="margin-top:7px;background:var(--blue);color:var(--bg)" onclick="addLog('media','media-inp','media-log')">+ Log Note</button>
+      <div class="divider"></div><div id="media-log"></div>
     </div>
+  </div>
 
+  <div id="panel-curiosity" class="panel">
+    <div class="sec-hd"><h2 class="c-teal">Curiosity Lab</h2><p>Know your body. Know the world. Stay a student forever.</p></div>
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-title c-teal">🧪 Daily Exploration Checklist</div>
+        <div style="display:flex;gap:8px">
+          <span class="pct-tag" id="cur-pct" style="background:var(--teal-d);color:var(--teal)">0%</span>
+          <button class="btn btn-ghost" style="font-size:9px;padding:3px 9px" onclick="resetCL('cur',CURIOSITY_CHECKS,'cur-list','var(--teal)',()=>updateProg('cur-fill','cur-pct',getPct('cur',CURIOSITY_CHECKS)))">Reset</button>
+        </div>
+      </div>
+      <div class="prog-track" style="margin-bottom:12px"><div class="prog-fill" id="cur-fill" style="width:0%;background:var(--teal)"></div></div>
+      <div id="cur-list"></div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><div class="card-title c-teal">🫀 Human Body & Nutrition Log</div></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px">Understand your own biology. How systems work, what you eat, how it affects you.</div>
+      <div id="body-topics"></div>
+      <div class="divider"></div>
+      <textarea class="log-area" id="body-inp" placeholder="What did you learn about your body or nutrition today? System, concept, or experiment..."></textarea>
+      <button class="btn" style="margin-top:7px;background:var(--teal);color:var(--bg)" onclick="addLog('body','body-inp','body-log')">+ Log Discovery</button>
+      <div class="divider"></div><div id="body-log"></div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><div class="card-title c-teal">🌿 Botany & Plant Life</div></div>
+      <textarea class="log-area" id="bot-inp" placeholder="Plant species, where you found it, what's fascinating..."></textarea>
+      <button class="btn" style="margin-top:7px;background:var(--teal);color:var(--bg)" onclick="addLog('bot','bot-inp','bot-log')">+ Log Discovery</button>
+      <div class="divider"></div><div id="bot-log"></div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><div class="card-title c-teal">🦕 Extinct Animals</div></div>
+      <textarea class="log-area" id="ext-inp" placeholder="Animal name, era, why it fascinates you, key facts..."></textarea>
+      <button class="btn" style="margin-top:7px;background:var(--teal);color:var(--bg)" onclick="addLog('ext','ext-inp','ext-log')">+ Log Research</button>
+      <div class="divider"></div><div id="ext-log"></div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><div class="card-title c-teal">🧠 Mental Models & Philosophy</div></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:8px">Frameworks for thinking clearly. Stoicism, cognitive biases, systems thinking — the invisible tools of great minds.</div>
+      <textarea class="log-area" id="phil-inp" placeholder='e.g. "Inversion (Charlie Munger) — instead of asking how to succeed, ask what causes failure and avoid it."'></textarea>
+      <button class="btn" style="margin-top:7px;background:var(--teal);color:var(--bg)" onclick="addLog('phil','phil-inp','phil-log')">+ Log Model</button>
+      <div class="divider"></div><div id="phil-log"></div>
+    </div>
+  </div>
+
+  <div id="panel-content" class="panel">
+    <div class="sec-hd"><h2>Content Pipeline</h2><p>Your faceless nature & travel page. Document everything.</p></div>
     <div class="card">
       <div class="card-hd">
         <div class="card-title">🎥 Pipeline Milestones</div>
         <span class="pct-tag" id="ct-pct" style="background:var(--surface3);color:var(--muted)">0 / 8</span>
       </div>
-      <div class="prog-track" style="margin-bottom:14px"><div class="prog-fill" id="ct-fill" style="width:0%;background:var(--text)"></div></div>
+      <div class="prog-track" style="margin-bottom:12px"><div class="prog-fill" id="ct-fill" style="width:0%;background:var(--text)"></div></div>
       <div id="ct-milestones"></div>
     </div>
-
-    <div class="card">
-      <div class="card-hd"><div class="card-title">💡 Ideas Backlog</div></div>
+    <div class="card"><div class="card-hd"><div class="card-title">💡 Ideas Backlog</div></div>
       <textarea class="log-area" id="ct-idea-inp" placeholder="Video idea, topic, location, angle..."></textarea>
-      <button class="btn btn-ghost" style="margin-top:8px" onclick="addLog('ct-ideas','ct-idea-inp','ct-ideas-log')">+ Add Idea</button>
-      <div class="divider"></div>
-      <div id="ct-ideas-log"></div>
+      <button class="btn btn-ghost" style="margin-top:7px" onclick="addLog('ct-ideas','ct-idea-inp','ct-ideas-log')">+ Add Idea</button>
+      <div class="divider"></div><div id="ct-ideas-log"></div>
     </div>
-
-    <div class="card">
-      <div class="card-hd"><div class="card-title">📊 Publishing Log</div></div>
+    <div class="card"><div class="card-hd"><div class="card-title">📊 Publishing Log</div></div>
       <textarea class="log-area" id="ct-pub-inp" placeholder="What did you post? Platform, engagement, learnings..."></textarea>
-      <button class="btn btn-ghost" style="margin-top:8px" onclick="addLog('ct-pub','ct-pub-inp','ct-pub-log')">+ Log Post</button>
-      <div class="divider"></div>
-      <div id="ct-pub-log"></div>
+      <button class="btn btn-ghost" style="margin-top:7px" onclick="addLog('ct-pub','ct-pub-inp','ct-pub-log')">+ Log Post</button>
+      <div class="divider"></div><div id="ct-pub-log"></div>
     </div>
   </div>
 
-  <!-- ══════════ FINANCE ══════════ -->
   <div id="panel-finance" class="panel">
-    <div class="section-hd">
-      <h2 class="c-gold">Finance & Future Ventures</h2>
-      <p>1.5 years to graduation. Build the foundation now.</p>
-    </div>
-
+    <div class="sec-hd"><h2 class="c-gold">Finance & Future Ventures</h2><p>1.5 years to graduation. Build the foundation now.</p></div>
     <div class="card">
       <div class="card-hd">
         <div class="card-title c-gold">📈 Financial Literacy</div>
-        <span class="pct-tag" id="fin-pct" style="background:var(--gold-dim);color:var(--gold)">0%</span>
+        <div style="display:flex;gap:8px">
+          <span class="pct-tag" id="fin-pct" style="background:var(--gold-d);color:var(--gold)">0%</span>
+          <button class="btn btn-ghost" style="font-size:9px;padding:3px 9px" onclick="resetCL('fin',FINANCE_CHECKS,'fin-list','var(--gold)',()=>updateProg('fin-fill','fin-pct',getPct('fin',FINANCE_CHECKS)))">Reset</button>
+        </div>
       </div>
-      <div class="prog-track" style="margin-bottom:14px"><div class="prog-fill" id="fin-fill" style="width:0%;background:var(--gold)"></div></div>
+      <div class="prog-track" style="margin-bottom:12px"><div class="prog-fill" id="fin-fill" style="width:0%;background:var(--gold)"></div></div>
       <div id="fin-list"></div>
     </div>
-
-    <div class="card">
-      <div class="card-hd"><div class="card-title c-gold">💡 Investment Notes</div></div>
+    <div class="card"><div class="card-hd"><div class="card-title c-gold">💡 Investment Notes</div></div>
       <textarea class="log-area" id="f-invest-notes" placeholder="Concepts, strategies, frameworks you're learning..." oninput="sf('invest-notes')"></textarea>
     </div>
-
     <div class="card">
       <div class="card-hd"><div class="card-title c-gold">🍁 Quebec Job Market</div></div>
-      <div style="font-size:10px;color:var(--muted);margin-bottom:12px">Log potential roles, required skills, and salary benchmarks.</div>
-      <div style="display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:8px;margin-bottom:8px">
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px">Log potential roles, required skills, salary benchmarks.</div>
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:7px;margin-bottom:7px">
         <span style="font-size:9px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase">Role</span>
         <span style="font-size:9px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase">Salary</span>
         <span style="font-size:9px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase">Key Skill</span>
         <span></span>
       </div>
       <div id="job-rows"></div>
-      <button class="btn btn-ghost" style="margin-top:10px;font-size:10px" onclick="addJobRow()">+ Add Role</button>
+      <button class="btn btn-ghost" style="margin-top:9px;font-size:9px" onclick="addJobRow()">+ Add Role</button>
     </div>
-
     <div class="card">
       <div class="card-hd"><div class="card-title c-gold">🚀 Low-Capital Ventures</div></div>
-      <div style="font-size:10px;color:var(--muted);margin-bottom:14px">Scalable from Quebec. Aligned with your BIT, CS, and language skills.</div>
       <div id="ventures-list"></div>
     </div>
-
-    <div class="card">
-      <div class="card-hd"><div class="card-title c-gold">📓 Learning Log</div></div>
+    <div class="card"><div class="card-hd"><div class="card-title c-gold">📓 Learning Log</div></div>
       <textarea class="log-area" id="fin-inp" placeholder="Book chapter, podcast insight, concept learned..."></textarea>
-      <button class="btn" style="margin-top:8px;background:var(--gold);color:var(--bg)" onclick="addLog('fin','fin-inp','fin-log')">+ Log Entry</button>
-      <div class="divider"></div>
-      <div id="fin-log"></div>
+      <button class="btn" style="margin-top:7px;background:var(--gold);color:var(--bg)" onclick="addLog('fin','fin-inp','fin-log')">+ Log Entry</button>
+      <div class="divider"></div><div id="fin-log"></div>
     </div>
   </div>
-
-</div><!-- /main -->
+</div>
 
 <script>
-// ════════════════════════════════════════
+// ═══════════════════════════════════════
 // CONSTANTS
-// ════════════════════════════════════════
+// ═══════════════════════════════════════
 const SUMMER_START = new Date('2026-06-17T00:00:00');
 const SUMMER_END   = new Date('2026-08-28T23:59:59');
 const TOTAL_DAYS   = 72;
-
 const AFFIRMATIONS = [
   "I am capable of more than I can currently imagine.",
   "Fear is a compass. I move toward it.",
@@ -704,34 +660,33 @@ const AFFIRMATIONS = [
   "Ireanna is building her path in Spain. I'm building mine here.",
   "Discipline today. Freedom tomorrow.",
   "Every centimetre closer to the floor is earned.",
-  "A handstand begins with trust in your own hands.",
+  "A handstand begins with trusting your own hands.",
   "Le courage, c'est savoir avoir peur et y aller quand même.",
   "Curiosity is a superpower. Stay a student forever.",
   "I am becoming the man my future self will thank.",
   "Nature doesn't rush. And yet everything gets done.",
-  "72 days. Infinite compound returns.",
   "Bogotá, Caracas, Sherbrooke — I carry all of them with me.",
+  "The body you want is built in the sessions you don't want to do.",
+  "Understanding your own biology is the ultimate life hack.",
+  "Parler français, c'est ouvrir une autre version de toi-même.",
 ];
-
 const DAILY_CHECKS = [
   {id:'dc1',label:'Morning Prayer / Reflection',sub:'Even 5 minutes of stillness'},
   {id:'dc2',label:'Movement / Workout',sub:'Calisthenics, walk, or stretch'},
   {id:'dc3',label:'French Study',sub:'Duolingo + reading or writing'},
-  {id:'dc4',label:'Hydration Goal',sub:'2L+ of water'},
-  {id:'dc5',label:'Curiosity Dive',sub:'Botany, extinct animals, or nature walk'},
+  {id:'dc4',label:'Hydration Goal (2L+)',sub:''},
+  {id:'dc5',label:'Curiosity Dive',sub:'Body, botany, extinct animals, or philosophy'},
   {id:'dc6',label:'No mindless scrolling >30 min',sub:'Intentional screen time only'},
-  {id:'dc7',label:'Journal / Log entry',sub:'Reflect on the day'},
+  {id:'dc7',label:'Journal or log entry',sub:'Reflect on the day'},
   {id:'dc8',label:'In bed by midnight',sub:'Protect recovery'},
 ];
-
 const PRAYER_CHECKS = [
   {id:'pc1',label:'Express gratitude (3 specific things)',sub:''},
   {id:'pc2',label:'Name and release one worry to God',sub:'Surrender it completely'},
   {id:'pc3',label:'Pray for Pablo, Rossanne & Ireanna',sub:''},
   {id:'pc4',label:'Ask for clarity on your path',sub:''},
-  {id:'pc5',label:'Meditate on a verse or affirmation',sub:'5 minutes of silence'},
+  {id:'pc5',label:'Meditate on a verse or affirmation',sub:'5 min of silence'},
 ];
-
 const PHYSICAL_CHECKS = [
   {id:'ph1',label:'Warm-up (5–10 min)',sub:'Joint circles, light cardio'},
   {id:'ph2',label:'Push-ups (3 sets)',sub:'Full range of motion'},
@@ -740,74 +695,110 @@ const PHYSICAL_CHECKS = [
   {id:'ph5',label:'Core work (15 min)',sub:'Hollow body, plank, leg raises'},
   {id:'ph6',label:'Squats / Lunges (3 sets)',sub:''},
   {id:'ph7',label:'Full-body stretch (10 min)',sub:'End every session with this'},
-  {id:'ph8',label:'Handstand practice (10–15 min)',sub:'Dedicated skill work'},
+  {id:'ph8',label:'Handstand practice (10–15 min)',sub:''},
   {id:'ph9',label:'Splits / Flexibility work (10 min)',sub:''},
 ];
-
 const HS_MILESTONES = [
-  {id:'hs1',name:'Wrist & Shoulder Mobility',desc:'Pain-free loaded wrist extension, dislocates with band'},
-  {id:'hs2',name:'Hollow Body Hold (30 sec)',desc:'Posterior tilt locked in, lower back pressed down'},
-  {id:'hs3',name:'Crow Pose (5 sec hold)',desc:'Balance point found, arms supporting full body'},
-  {id:'hs4',name:'Wall Walks (5 reps)',desc:'Walk up wall, hold 10s at top, controlled descent'},
-  {id:'hs5',name:'Chest-to-Wall Hold (30 sec)',desc:'Straight line, working toward free balance'},
+  {id:'hs1',name:'Wrist & Shoulder Mobility',desc:'Pain-free loaded wrist extension, band dislocates with control'},
+  {id:'hs2',name:'Hollow Body Hold (30 sec)',desc:'Posterior pelvic tilt locked, lower back pressed flat'},
+  {id:'hs3',name:'Crow Pose (5 sec hold)',desc:'Balance point found, arms supporting full body weight'},
+  {id:'hs4',name:'Wall Walks (5 reps)',desc:'Walk up wall, 10s hold at top, controlled descent'},
+  {id:'hs5',name:'Chest-to-Wall Hold (30 sec)',desc:'Straight line, actively working toward free balance'},
 ];
-
 const HS_DAILY = [
   {id:'hd1',label:'Wrist warm-up protocol',sub:''},
-  {id:'hd2',label:'Hollow body practice (3×30s)',sub:''},
+  {id:'hd2',label:'Hollow body (3×30s)',sub:''},
   {id:'hd3',label:'Kick-up attempts (10 reps)',sub:'Consistent entry focus'},
   {id:'hd4',label:'Wall-supported holds (3×10s)',sub:''},
 ];
-
 const SPLITS_METRICS = [
   {id:'sm1',label:'Right Leg Forward Split'},
   {id:'sm2',label:'Left Leg Forward Split'},
   {id:'sm3',label:'Middle / Straddle Split'},
   {id:'sm4',label:'Seated Hamstring Reach'},
 ];
-
 const SPLITS_ROUTINE = [
   {id:'sr1',label:'Standing hamstring stretch (2×60s each)',sub:''},
   {id:'sr2',label:'Lizard / hip flexor stretch (2×60s each)',sub:''},
   {id:'sr3',label:'Groin / butterfly stretch (2×60s)',sub:''},
   {id:'sr4',label:'Pigeon pose (2×90s each side)',sub:''},
   {id:'sr5',label:'Forward fold hold (2×60s)',sub:''},
-  {id:'sr6',label:'Split attempt with blocks/support',sub:'Measure and record'},
+  {id:'sr6',label:'Split attempt with blocks / support',sub:'Measure and record'},
 ];
-
 const FRENCH_CHECKS = [
   {id:'fr1',label:'Duolingo (min. 1 lesson)',sub:''},
-  {id:'fr2',label:'Pronunciation practice (10 min)',sub:'Read aloud, shadow native audio'},
-  {id:'fr3',label:'Present tense — 5 irregular verbs',sub:''},
-  {id:'fr4',label:'Passé composé practice',sub:'avoir / être auxiliary selection'},
+  {id:'fr2',label:'Read 1 page of French text',sub:'News, book, or social post'},
+  {id:'fr3',label:'Conjugation drill (5 verbs)',sub:'Irregular verbs priority'},
+  {id:'fr4',label:'Passé composé practice',sub:'avoir / être auxiliary'},
   {id:'fr5',label:'Future tense practice',sub:'Futur simple + conditionnel'},
   {id:'fr6',label:'French writing (5+ sentences)',sub:'Think in French, not translate'},
-  {id:'fr7',label:'French listening (show / podcast)',sub:'20+ minutes'},
+  {id:'fr7',label:'French listening (20+ min)',sub:'Show, podcast, or radio'},
 ];
-
-const NATURE_CHECKS = [
-  {id:'nc1',label:'Time outdoors observing nature',sub:''},
-  {id:'nc2',label:'Identify & log 1 plant species',sub:''},
-  {id:'nc3',label:'Research 1 extinct animal',sub:''},
-  {id:'nc4',label:'Capture content (photo / video)',sub:'For the faceless page'},
-  {id:'nc5',label:'Write field observations in log',sub:''},
+const ORAL_CHECKS = [
+  {id:'or1',label:'Shadowing session (10–15 min)',sub:'Match rhythm, intonation, speed of native speaker'},
+  {id:'or2',label:'Read aloud (5 min)',sub:'Any French text — feel your mouth forming sounds'},
+  {id:'or3',label:'Nasal vowel drill (on / an / en / in / un)',sub:'5 min targeted practice'},
+  {id:'or4',label:'Liaison practice',sub:'Identify and practice 5 liaison examples from listening'},
+  {id:'or5',label:'Speak freely for 2+ min',sub:'Voice record yourself. No script. Just talk in French.'},
+  {id:'or6',label:'Review 1 error from error tracker',sub:'Correct it consciously'},
 ];
-
+const SPEAKING_ROADMAP = [
+  {cat:'🗣 Pronunciation Foundations', items:[
+    {id:'rm1',name:'IPA vowel chart mastery',desc:'All French vowels distinct from English — especially é/è/ê, u/ou, o/au'},
+    {id:'rm2',name:'Nasal vowels (on, an/en, in/ein, un)',desc:'The most common stumbling block for English speakers'},
+    {id:'rm3',name:'Semi-vowels (w, j, ɥ)',desc:'Words like "nuit", "lui", "oui" require specific mouth positions'},
+    {id:'rm4',name:'The French R (uvular)',desc:'Back-of-throat, not rolled — a completely different motor pattern'},
+    {id:'rm5',name:'Silent final consonants',desc:'Most S, T, D, P, X are silent at word ends — but knowing exceptions'},
+  ]},
+  {cat:'🔗 Connected Speech', items:[
+    {id:'rm6',name:'Liaison',desc:'When final consonants link to next vowel (vous_avez, les_enfants)'},
+    {id:'rm7',name:'Enchaînement',desc:'Linking across word boundaries smoothly — sounds like one long word'},
+    {id:'rm8',name:'Élision',desc:'Dropping vowels before other vowels (je → j\', que → qu\', le → l\')'},
+    {id:'rm9',name:'E caduc (schwa)',desc:'Knowing when unstressed "e" is pronounced or dropped'},
+  ]},
+  {cat:'🎧 Listening Comprehension', items:[
+    {id:'rm10',name:'Comprehend at 80% in slow/standard speech',desc:'News anchors, documentaries, clear speakers'},
+    {id:'rm11',name:'Comprehend at 60%+ in fast casual speech',desc:'Friends talking, phone calls, non-scripted TV'},
+    {id:'rm12',name:'Recognise Quebec accent patterns',desc:'Vowel shifts, affrication of t/d, dropped syllables'},
+  ]},
+  {cat:'📖 Reading Fluency', items:[
+    {id:'rm13',name:'Read a paragraph aloud without pausing',desc:'Smooth flow, correct liaison, natural rhythm'},
+    {id:'rm14',name:'Read a news article in <10 min',desc:'Le Monde, Radio-Canada, CBC French'},
+  ]},
+  {cat:'✍️ Writing Accuracy', items:[
+    {id:'rm15',name:'Accents correct consistently (é,è,ê,ç,à,â)',desc:'No more missing accents — they change pronunciation'},
+    {id:'rm16',name:'Gender agreement (adj + noun)',desc:'le/la, mon/ma, beau/belle — always correct'},
+    {id:'rm17',name:'Subjunctive mood introduction',desc:'Il faut que, je veux que — used constantly in real speech'},
+  ]},
+  {cat:'💬 Speaking Output', items:[
+    {id:'rm18',name:'Sustain 2-min monologue without English',desc:'Any topic. No code-switching allowed.'},
+    {id:'rm19',name:'Hold a 5-min back-and-forth conversation',desc:'With a native or near-native speaker'},
+    {id:'rm20',name:'Think in French during daily tasks',desc:'Internal monologue shifts — the true sign of acquisition'},
+  ]},
+];
+const CURIOSITY_CHECKS = [
+  {id:'cu1',label:'Learn 1 body system or nutrition concept',sub:'Digestion, hormones, sleep, macros...'},
+  {id:'cu2',label:'Identify or research 1 plant / tree',sub:'Venezuela biodiversity is extraordinary'},
+  {id:'cu3',label:'Log a mental model or philosophical insight',sub:''},
+  {id:'cu4',label:'Read or watch something purely for curiosity',sub:'No algorithm — your own choosing'},
+  {id:'cu5',label:'Connect what you learned to your own life',sub:'Write 1 sentence of application'},
+];
+const BODY_TOPICS = [
+  {id:'bt1',name:'Muscular system & hypertrophy',desc:'How muscles grow, tear, recover — relevant to your training'},
+  {id:'bt2',name:'Nervous system & CNS fatigue',desc:'Why overtraining feels different from muscle soreness'},
+  {id:'bt3',name:'Hormonal system (testosterone, cortisol, insulin)',desc:'The chemistry behind energy, recovery, and mood'},
+  {id:'bt4',name:'Digestive system & gut microbiome',desc:'How what you eat becomes who you are'},
+  {id:'bt5',name:'Macros & meal timing',desc:'Protein synthesis windows, carb use during training'},
+  {id:'bt6',name:'Sleep architecture (REM, NREM cycles)',desc:'Why 7–9 hours is non-negotiable for gains and cognition'},
+  {id:'bt7',name:'Cardiovascular system',desc:'VO2 max, heart rate zones, longevity implications'},
+  {id:'bt8',name:'Fascia & flexibility science',desc:'What\'s actually happening when you stretch — proprioceptors, golgi tendon organ'},
+];
 const FINANCE_CHECKS = [
-  {id:'fin1',label:'Read investing content (20 min)',sub:'Books, Investopedia, reports'},
-  {id:'fin2',label:'Finance podcast or video',sub:'We Study Billionaires, Motley Fool'},
+  {id:'fin1',label:'Read investing content (20 min)',sub:''},
+  {id:'fin2',label:'Finance podcast or video',sub:'We Study Billionaires, Motley Fool, etc.'},
   {id:'fin3',label:'Log 1 concept or insight',sub:''},
   {id:'fin4',label:'Research 1 Quebec job opportunity',sub:''},
 ];
-
-const SHOWS = [
-  {id:'lupin',emoji:'🎩',title:'Lupin',meta:'Netflix · Drama / Thriller',difficulty:'Beginner–Intermediate',why:"Omar Sy's articulate, clear diction — ideal for first-pass comprehension. Excellent for modern slang, Parisian French, and formal-to-casual register shifts."},
-  {id:'callmyagent',emoji:'📞',title:'Dix pour cent (Call My Agent)',meta:'Netflix · Comedy / Drama',difficulty:'Intermediate',why:"Fast-paced, overlapping conversation. Perfect for learning real French rhythm — the way sentences interrupt each other, exactly how Québécois conversations feel."},
-  {id:'chefstable',emoji:'🍽',title:"Chef's Table: France",meta:'Netflix · Documentary',difficulty:'Beginner',why:"Slow, deliberate speech from chefs and narrators. Pure listening comprehension without pressure. Rich culinary vocabulary that doubles as food culture immersion."},
-  {id:'famille',emoji:'🌻',title:"Famille d'accueil",meta:'French TV · Family Drama',difficulty:'Beginner',why:"Rural everyday French, slower tempo. Great for domestic and community vocabulary — very close to conversational Quebec French."},
-  {id:'bureau',emoji:'🕵️',title:'Le Bureau des Légendes',meta:'Canal+ · Spy Thriller',difficulty:'Advanced',why:"Sophisticated, complex French. Best for advanced sessions — political, diplomatic, and professional vocabulary in dense, fast context."},
-];
-
 const CONTENT_MILESTONES = [
   {id:'cm1',name:'Choose page name & niche'},
   {id:'cm2',name:'Design visual brand (colors, logo concept)'},
@@ -818,621 +809,567 @@ const CONTENT_MILESTONES = [
   {id:'cm7',name:'First collaboration or feature'},
   {id:'cm8',name:'First monetization (affiliate / brand)'},
 ];
-
+const SHOWS = [
+  {id:'lupin',e:'🎩',title:'Lupin',meta:'Netflix · Drama',diff:'Beginner–Int.',why:"Omar Sy's clear, articulate Parisian diction. Excellent for modern slang and register shifts."},
+  {id:'callmyagent',e:'📞',title:'Dix pour cent',meta:'Netflix · Comedy',diff:'Intermediate',why:"Fast-paced overlapping speech — real French rhythm. How people actually talk."},
+  {id:'chefstable',e:'🍽',title:"Chef's Table: France",meta:'Netflix · Doc',diff:'Beginner',why:"Slow, deliberate narrator speech. Zero pressure comprehension. Rich vocabulary."},
+  {id:'famille',e:'🌻',title:"Famille d'accueil",meta:'French TV',diff:'Beginner',why:"Rural everyday French, slower tempo. Very close to conversational Quebec French."},
+  {id:'bureau',e:'🕵️',title:'Le Bureau des Légendes',meta:'Canal+',diff:'Advanced',why:"Dense, sophisticated French. Political vocabulary. Best for advanced sessions."},
+];
 const VENTURES = [
-  {name:'🌐 Bilingual Tutoring (FR/EN/ES)',desc:'Leverage French (improving), English (fluent), and Spanish (native). Tutor via Superprof, Preply, or direct referrals in Sherbrooke. Zero capital, immediate income.'},
-  {name:'📱 Faceless Nature Content Page',desc:'Already in progress. Monetize through affiliate links (field guides, gear), brand deals, and eventually digital products (Venezuela biodiversity identification guides).'},
-  {name:'💻 Student Tech Services (Bishop\'s area)',desc:'Your BIT background gives an edge. Offer: website builds for local SMBs, data cleaning, small automation scripts. $40–80/hr. Referral-based.'},
-  {name:'📊 BIT Consulting for Quebec SMBs',desc:'Post-graduation: help SMBs with system design, database decisions, and digital workflow. Quebec\'s SMB sector is underserved by consultants fluent in French AND systems thinking.'},
+  {name:'🌐 Bilingual Tutoring (FR/EN/ES)',desc:'Leverage French (improving), English (fluent), Spanish (native). Tutor via Superprof or Preply. Zero capital, immediate income.'},
+  {name:'📱 Faceless Nature Content Page',desc:'Already in progress. Monetize through affiliate links, brand deals, Venezuela biodiversity digital guides.'},
+  {name:'💻 Student Tech Services',desc:'BIT background gives an edge. Website builds, data cleaning, automation scripts for local SMBs. $40–80/hr, referral-based.'},
+  {name:'📊 BIT Consulting (Quebec SMBs)',desc:'Post-graduation: help SMBs with system design and digital workflows. Quebec SMB sector is underserved by bilingual tech consultants.'},
+];
+const VERSES = [
+  {text:"Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",ref:"Philippians 4:6"},
+  {text:"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",ref:"Jeremiah 29:11"},
+  {text:"I can do all things through Christ who strengthens me.",ref:"Philippians 4:13"},
+  {text:"Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",ref:"Proverbs 3:5–6"},
+  {text:"The Lord is my shepherd; I shall not want. He makes me lie down in green pastures.",ref:"Psalm 23:1–2"},
+  {text:"And we know that in all things God works for the good of those who love him.",ref:"Romans 8:28"},
+  {text:"Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",ref:"Joshua 1:9"},
+  {text:"Come to me, all you who are weary and burdened, and I will give you rest.",ref:"Matthew 11:28"},
+];
+const FR_SKILLS = [
+  {id:'sk-read',name:'Reading'},
+  {id:'sk-write',name:'Writing'},
+  {id:'sk-listen',name:'Listening'},
+  {id:'sk-speak',name:'Speaking'},
+  {id:'sk-vocab',name:'Vocabulary'},
+  {id:'sk-grammar',name:'Grammar'},
+  {id:'sk-pron',name:'Pronunciation'},
+  {id:'sk-quebecois',name:'Québécois accent'},
 ];
 
-// ════════════════════════════════════════
-// STORAGE HELPERS
-// ════════════════════════════════════════
-const S = key => { try { return JSON.parse(localStorage.getItem('vs26_'+key)) } catch(e) { return null } };
-const W = (key,val) => { try { localStorage.setItem('vs26_'+key, JSON.stringify(val)) } catch(e){} };
-function sf(id) { W('field_'+id, document.getElementById('f-'+id)?.value || ''); }
-function lf(id) { const el=document.getElementById('f-'+id); if(el) el.value = S('field_'+id) || ''; }
+// ═══════════════════════════════════════
+// STORAGE
+// ═══════════════════════════════════════
+const S = k => { try { return JSON.parse(localStorage.getItem('os26_'+k)) } catch(e) { return null } };
+const W = (k,v) => { try { localStorage.setItem('os26_'+k, JSON.stringify(v)) } catch(e){} };
+function sf(id) { W('field_'+id, document.getElementById('f-'+id)?.value||''); }
+function lf(id) { const el=document.getElementById('f-'+id); if(el) el.value=S('field_'+id)||''; }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'); }
 
-// ════════════════════════════════════════
-// DATE / TIME / TOPBAR
-// ════════════════════════════════════════
-function todayKey() {
-  const n = new Date();
-  return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`;
-}
-function dayNumber(date) {
-  const d = date || new Date();
-  const diff = d - SUMMER_START;
-  return Math.max(1, Math.min(TOTAL_DAYS, Math.ceil(diff / 86400000)));
-}
-function isInSummer(date) {
-  return date >= SUMMER_START && date <= SUMMER_END;
-}
+// ═══════════════════════════════════════
+// DATE HELPERS
+// ═══════════════════════════════════════
+function todayKey(){const n=new Date();return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`;}
+function inSummer(){const n=new Date();return n>=SUMMER_START&&n<=SUMMER_END;}
+function summerDayNum(){return Math.max(1,Math.min(TOTAL_DAYS,Math.ceil((new Date()-SUMMER_START)/86400000)));}
 
-function updateTopbar() {
-  const now = new Date();
-  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  document.getElementById('tb-date').textContent = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
-  document.getElementById('tb-time').textContent = now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-
-  const inSum = isInSummer(now);
-  const dayNum = inSum ? dayNumber() : (now < SUMMER_START ? 0 : TOTAL_DAYS);
-  const pct = Math.round((dayNum / TOTAL_DAYS) * 100);
-
-  document.getElementById('summer-pct-lbl').textContent = pct + '%';
-  document.getElementById('summer-fill').style.width = pct + '%';
-  document.getElementById('stat-day').textContent = inSum ? dayNum : (now < SUMMER_START ? '—' : '72');
-  document.getElementById('tb-day-pill').textContent = inSum ? `DAY ${dayNum}` : (now < SUMMER_START ? 'STARTS JUN 17' : 'DONE!');
-
-  const daysLeft = Math.max(0, Math.ceil((SUMMER_END - now) / 86400000));
-  document.getElementById('tb-days-left').textContent = inSum ? `${daysLeft} days left` : '';
-
-  // Affirmation
-  const doy = Math.floor((now - new Date(now.getFullYear(),0,0)) / 86400000);
-  document.getElementById('aff-text').textContent = AFFIRMATIONS[doy % AFFIRMATIONS.length];
-  document.getElementById('aff-sub').textContent = `Daily Affirmation · ${months[now.getMonth()]} ${now.getDate()}`;
-}
-
-// ════════════════════════════════════════
-// AUTO-RESET DAILY CHECKLISTS
-// ════════════════════════════════════════
-// Each checklist stores: { date: 'YYYY-MM-DD', checks: {} }
-// If date !== today, snapshot yesterday then reset
-function getTodayState(key, items) {
-  const today = todayKey();
-  const stored = S('cl_'+key) || { date: today, checks: {} };
-  if (stored.date !== today) {
-    // Snapshot yesterday
-    snapshotDay(stored.date, key, stored.checks, items);
-    return { date: today, checks: {} };
+// ═══════════════════════════════════════
+// TOPBAR
+// ═══════════════════════════════════════
+function updateTopbar(){
+  const now=new Date();
+  const DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('tb-date').textContent=`${DAYS[now.getDay()]}, ${MONTHS[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+  document.getElementById('tb-time').textContent=now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  const pill=document.getElementById('tb-pill');
+  const ctx=document.getElementById('tb-context');
+  const sc=document.getElementById('summer-card');
+  const sf2=document.getElementById('summer-fill');
+  const sl=document.getElementById('summer-pct-lbl');
+  const sd=document.getElementById('summer-days-lbl');
+  
+  if(inSummer()){
+    const d=summerDayNum();
+    const pct=Math.round(d/TOTAL_DAYS*100);
+    pill.textContent=`DAY ${d}`;pill.className='day-pill';
+    ctx.textContent=`${TOTAL_DAYS-d} days left`;
+    sc.style.display='';sf2.style.width=pct+'%';sl.textContent=pct+'%';
+    sd.textContent=`Day ${d} of ${TOTAL_DAYS}`;
+  } else if(now<SUMMER_START){
+    const daysUntil=Math.ceil((SUMMER_START-now)/86400000);
+    pill.textContent=`${daysUntil}d to Venezuela`;pill.className='day-pill offseason';
+    ctx.textContent='';sc.style.display='none';
+  } else {
+    pill.textContent='Summer Done ✓';pill.className='day-pill';
+    ctx.textContent='';
+    sc.style.display='';sf2.style.width='100%';sl.textContent='100%';sd.textContent='Completed';
   }
-  return stored;
-}
-function saveCL(key, state) { W('cl_'+key, state); }
+  // Affirmation
+  const doy=Math.floor((now-new Date(now.getFullYear(),0,0))/86400000);
+  document.getElementById('aff-text').textContent=AFFIRMATIONS[doy%AFFIRMATIONS.length];
+  const m2=MONTHS[now.getMonth()];
+  document.getElementById('aff-sub').textContent=`Daily Affirmation · ${m2} ${now.getDate()}, ${now.getFullYear()}`;}
 
-function snapshotDay(dateStr, key, checks, items) {
-  const done = items.filter(i => checks[i.id]).length;
-  const pct = items.length ? Math.round(done/items.length*100) : 0;
-  const snapshots = S('snapshots') || {};
-  if (!snapshots[dateStr]) snapshots[dateStr] = {};
-  snapshots[dateStr][key] = { done, total: items.length, pct };
-  W('snapshots', snapshots);
-  updateHeatmap();
-}
-
-// ════════════════════════════════════════
-// CHECKLIST BUILDER
-// ════════════════════════════════════════
-function buildChecklist(containerId, items, storeKey, color, onChangeCb) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  const state = getTodayState(storeKey, items);
-  container.innerHTML = '';
-  items.forEach(item => {
-    const div = document.createElement('div');
-    const isDone = !!state.checks[item.id];
-    div.className = 'check-item' + (isDone ? ' done' : '');
-    div.innerHTML = `<div class="chk" style="${isDone ? `background:${color};border-color:${color};color:var(--bg)` : ''}"></div>
-      <div class="chk-label">${item.label}${item.sub ? `<div class="chk-sub">${item.sub}</div>` : ''}</div>`;
-    div.onclick = () => {
-      const s = getTodayState(storeKey, items);
-      s.checks[item.id] = !s.checks[item.id];
-      saveCL(storeKey, s);
-      div.classList.toggle('done', !!s.checks[item.id]);
-      const chkEl = div.querySelector('.chk');
-      if (s.checks[item.id]) {
-        chkEl.style.background = color; chkEl.style.borderColor = color; chkEl.style.color = 'var(--bg)';
-      } else {
-        chkEl.style.background = ''; chkEl.style.borderColor = ''; chkEl.style.color = '';
-      }
-      if (onChangeCb) onChangeCb();
+// ═══════════════════════════════════════
+// CHECKLIST ENGINE (with auto-reset)
+// ═══════════════════════════════════════
+function getCLState(key,items){
+  const today=todayKey();
+  const stored=S('cl_'+key)||{date:today,checks:{}};
+  if(stored.date!==today){
+    snapshotDay(stored.date,key,stored.checks,items);
+    return {date:today,checks:{}};
+  }
+  return stored;}
+function saveCL(key,state){W('cl_'+key,state);}
+function snapshotDay(dateStr,key,checks,items){
+  const done=items.filter(i=>checks[i.id]).length;
+  const pct=items.length?Math.round(done/items.length*100):0;
+  const snaps=S('snapshots')||{};
+  if(!snaps[dateStr])snaps[dateStr]={};
+  snaps[dateStr][key]={done,total:items.length,pct};
+  W('snapshots',snaps);}
+function resetCL(key,items,listId,color,cb){
+  W('cl_'+key,{date:todayKey(),checks:{}});
+  buildChecklist(listId,items,key,color,cb);
+  if(cb)cb();}
+function getPct(key,items){
+  const s=getCLState(key,items);
+  const done=items.filter(i=>s.checks[i.id]).length;
+  return items.length?Math.round(done/items.length*100):0;}
+function buildChecklist(containerId,items,storeKey,color,onCb){
+  const el=document.getElementById(containerId);if(!el)return;
+  const state=getCLState(storeKey,items);
+  el.innerHTML='';
+  items.forEach(item=>{
+    const div=document.createElement('div');
+    const isDone=!!state.checks[item.id];
+    div.className='check-item'+(isDone?' done':'');
+    const chkStyle=isDone?`background:${color};border-color:${color};color:var(--bg)`:'';
+    div.innerHTML=`<div class="chk" style="${chkStyle}"></div>
+      <div class="chk-lbl">${item.label}${item.sub?`<div class="chk-sub">${item.sub}</div>`:''}</div>`;
+    div.onclick=()=>{
+      const s=getCLState(storeKey,items);
+      s.checks[item.id]=!s.checks[item.id];
+      saveCL(storeKey,s);
+      div.classList.toggle('done',!!s.checks[item.id]);
+      const c=div.querySelector('.chk');
+      if(s.checks[item.id]){c.style.background=color;c.style.borderColor=color;c.style.color='var(--bg)';}
+      else{c.style.background='';c.style.borderColor='';c.style.color='';}
+      if(onCb)onCb();
     };
-    container.appendChild(div);
-  });
-}
+    el.appendChild(div);
+  });}
+function updateProg(fillId,pctId,pct){
+  const f=document.getElementById(fillId);const p=document.getElementById(pctId);
+  if(f)f.style.width=pct+'%';if(p)p.textContent=pct+'%';}
 
-function getPct(storeKey, items) {
-  const s = getTodayState(storeKey, items);
-  const done = items.filter(i => s.checks[i.id]).length;
-  return items.length ? Math.round(done/items.length*100) : 0;
-}
+// ═══════════════════════════════════════
+// DASHBOARD STATS
+// ═══════════════════════════════════════
+function updateDash(){
+  const pct=getPct('dc',DAILY_CHECKS);
+  document.getElementById('stat-habits').textContent=pct+'%';
+  document.getElementById('dc-pct').textContent=pct+'%';
+  document.getElementById('dc-fill').style.width=pct+'%';
+  document.getElementById('stat-fear').textContent=(S('logs_fear')||[]).length;
+  const duo=S('duo')||{streak:0};
+  document.getElementById('stat-duo').textContent=duo.streak||0;
+  document.getElementById('stat-streak').textContent=inSummer()?summerDayNum():(S('global_streak')||0);}
 
-function updateDashStats() {
-  const pct = getPct('dc', DAILY_CHECKS);
-  document.getElementById('stat-habits').textContent = pct + '%';
-  document.getElementById('dc-pct').textContent = pct + '%';
-  document.getElementById('dc-fill').style.width = pct + '%';
-  document.getElementById('stat-fearless').textContent = (S('logs_fear') || []).length;
-}
+// ═══════════════════════════════════════
+// MIDNIGHT AUTO-RESET CHECK
+// ═══════════════════════════════════════
+function midnightCheck(){
+  const today=todayKey();
+  const last=S('last_date');
+  if(last&&last!==today){
+    const allCLs=[
+      {k:'dc',it:DAILY_CHECKS},{k:'prayer',it:PRAYER_CHECKS},
+      {k:'phy',it:PHYSICAL_CHECKS},{k:'hs_daily',it:HS_DAILY},
+      {k:'splits_r',it:SPLITS_ROUTINE},{k:'fr',it:FRENCH_CHECKS},
+      {k:'oral',it:ORAL_CHECKS},{k:'cur',it:CURIOSITY_CHECKS},
+      {k:'fin',it:FINANCE_CHECKS},
+    ];
+    allCLs.forEach(({k,it})=>{
+      const stored=S('cl_'+k);
+      if(stored&&stored.date!==today){
+        snapshotDay(stored.date,k,stored.checks,it);
+        W('cl_'+k,{date:today,checks:{}});
+      }
+    });
+  }
+  W('last_date',today);}
 
-function updateProg(fillId, pctId, storeKey, items, color) {
-  const pct = getPct(storeKey, items);
-  const fill = document.getElementById(fillId);
-  const pctEl = document.getElementById(pctId);
-  if (fill) fill.style.width = pct + '%';
-  if (pctEl) pctEl.textContent = pct + '%';
-}
-
-// ════════════════════════════════════════
-// LOG ENTRY SYSTEM
-// ════════════════════════════════════════
-function addLog(key, inputId, listId) {
-  const inp = document.getElementById(inputId);
-  const text = inp.value.trim();
-  if (!text) return;
-  const logs = S('logs_'+key) || [];
-  logs.unshift({ text, time: new Date().toLocaleString(), date: todayKey(), id: Date.now() });
-  W('logs_'+key, logs);
-  inp.value = '';
-  renderLog(key, listId);
-  updateDashStats();
-}
-
-function renderLog(key, listId) {
-  const el = document.getElementById(listId);
-  if (!el) return;
-  const logs = S('logs_'+key) || [];
-  if (!logs.length) { el.innerHTML = '<div class="no-entries">No entries yet.</div>'; return; }
-  el.innerHTML = logs.map(l => `
-    <div class="log-entry">
-      <div class="log-time">${l.date || ''} · ${l.time}</div>
-      <div class="log-text">${esc(l.text)}</div>
-      <span class="log-del" onclick="delLog('${key}','${listId}',${l.id})">✕</span>
-    </div>`).join('');
-}
-
-function delLog(key, listId, id) {
-  W('logs_'+key, (S('logs_'+key)||[]).filter(l=>l.id!==id));
-  renderLog(key, listId);
-  updateDashStats();
-}
-
-function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'); }
-
-// ════════════════════════════════════════
+// ═══════════════════════════════════════
 // NAVIGATION
-// ════════════════════════════════════════
-function nav(panel, el) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+// ═══════════════════════════════════════
+function nav(panel,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.getElementById('panel-'+panel).classList.add('active');
   el.classList.add('active');
-  if (panel === 'history') { buildHeatmap(); buildHistoryEntries(); }
-}
+  document.getElementById('main').scrollTop=0;
+  if(panel==='history'){buildHeatmap();buildHistoryEntries();}}
 
-// ════════════════════════════════════════
-// HEATMAP
-// ════════════════════════════════════════
-function buildHeatmap() {
-  const grid = document.getElementById('heatmap-grid');
-  if (!grid) return;
-  const snapshots = S('snapshots') || {};
-  grid.innerHTML = '';
-  // Fill blank cells before Jun 17 (Mon = index 1, Jun 17 2026 is a Wednesday)
-  const startDay = SUMMER_START.getDay(); // 0=Sun
-  const offset = (startDay === 0 ? 6 : startDay - 1); // make Mon=0
-  for (let i=0;i<offset;i++) {
-    const blank = document.createElement('div');
-    blank.className = 'cal-cell';
-    blank.style.background = 'transparent';
-    grid.appendChild(blank);
-  }
-  for (let d=0;d<TOTAL_DAYS;d++) {
-    const date = new Date(SUMMER_START);
-    date.setDate(date.getDate() + d);
-    const key = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
-    const snap = snapshots[key];
-    const avgPct = snap ? Math.round(Object.values(snap).reduce((a,v)=>a+v.pct,0)/Object.values(snap).length) : 0;
-    const isFuture = date > new Date();
-    const cell = document.createElement('div');
-    cell.className = 'cal-cell';
-    if (isFuture) {
-      cell.style.background = 'var(--surface2)';
-      cell.style.border = '1px solid var(--border)';
-    } else if (avgPct === 0) {
-      cell.style.background = 'var(--surface3)';
-    } else if (avgPct < 40) {
-      cell.style.background = 'rgba(200,169,110,.25)';
-    } else if (avgPct < 75) {
-      cell.style.background = 'rgba(200,169,110,.55)';
-    } else {
-      cell.style.background = 'var(--gold)';
-    }
+// ═══════════════════════════════════════
+// LOG SYSTEM
+// ═══════════════════════════════════════
+function addLog(key,inputId,listId){
+  const inp=document.getElementById(inputId);
+  const text=inp.value.trim();if(!text)return;
+  const logs=S('logs_'+key)|| [];
+  logs.unshift({text,time:new Date().toLocaleString(),date:todayKey(),id:Date.now()});
+  W('logs_'+key,logs);inp.value='';
+  renderLog(key,listId);updateDash();}
+function renderLog(key,listId){
+  const el=document.getElementById(listId);if(!el)return;
+  const logs=S('logs_'+key)|| [];
+  if(!logs.length){el.innerHTML='<div class="no-entries">No entries yet.</div>';return;}
+  el.innerHTML=logs.map(l=>`<div class="log-entry">
+    <div class="log-time">${l.date||''} · ${l.time}</div>
+    <div class="log-text">${esc(l.text)}</div>
+    <span class="log-del" onclick="delLog('${key}','${listId}',${l.id})">✕</span>
+  </div>`).join('');}
+function delLog(key,listId,id){
+  W('logs_'+key,(S('logs_'+key)||[]).filter(l=>l.id!==id));
+  renderLog(key,listId);updateDash();}
+
+// ═══════════════════════════════════════
+// HEATMAP & HISTORY
+// ═══════════════════════════════════════
+function buildHeatmap(){
+  const grid=document.getElementById('heatmap');if(!grid)return;
+  const snaps=S('snapshots')||{};
+  grid.innerHTML='';
+  for(let i=0;i<2;i++){const b=document.createElement('div');b.className='cal-cell';b.style.background='transparent';grid.appendChild(b);}
+  for(let d=0;d<TOTAL_DAYS;d++){
+    const date=new Date(SUMMER_START);date.setDate(date.getDate()+d);
+    const key=`${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+    const snap=snaps[key];
+    const vals=snap?Object.values(snap):[];
+    const avg=vals.length?Math.round(vals.reduce((a,v)=>a+v.pct,0)/vals.length):0;
+    const isFuture=date>new Date();
+    const cell=document.createElement('div');cell.className='cal-cell';
+    if(isFuture){cell.style.background='var(--surface2)';cell.style.border='1px solid var(--border)';}
+    else if(avg===0)cell.style.background='var(--surface3)';
+    else if(avg<40)cell.style.background='rgba(201,169,110,.25)';
+    else if(avg<75)cell.style.background='rgba(201,169,110,.55)';
+    else cell.style.background='var(--gold)';
     const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    cell.setAttribute('data-tip', `${months[date.getMonth()]} ${date.getDate()} · Day ${d+1}${snap ? ' · '+avgPct+'%' : ''}`);
-    cell.title = cell.getAttribute('data-tip');
+    cell.setAttribute('data-tip',`${months[date.getMonth()]} ${date.getDate()} · Day ${d+1}${snap?' · '+avg+'%':''}`);
     grid.appendChild(cell);
-  }
-}
-function updateHeatmap() { buildHeatmap(); }
-
-// ════════════════════════════════════════
-// HISTORY ENTRIES
-// ════════════════════════════════════════
-function buildHistoryEntries() {
-  const container = document.getElementById('history-entries');
-  if (!container) return;
-  const snapshots = S('snapshots') || {};
-  const allLogs = {};
-  ['spirit','fear','phy','hs','splits','fr-vocab','media','bot','ext','ct-ideas','ct-pub','fin'].forEach(k => {
-    const logs = S('logs_'+k) || [];
-    logs.forEach(l => {
-      if (!allLogs[l.date]) allLogs[l.date] = [];
-      allLogs[l.date].push({key:k, text:l.text});
+  }}
+function buildHistoryEntries(){
+  const container=document.getElementById('history-entries');if(!container)return;
+  const snaps=S('snapshots')||{};
+  const allLogs={};
+  ['spirit','fear','phy','hs','splits','fr-vocab','shadow','fr-errors','media','body','bot','ext','phil','ct-ideas','ct-pub','fin'].forEach(k=>{
+    (S('logs_'+k)||[]).forEach(l=>{
+      if(!allLogs[l.date])allLogs[l.date]=[];
+      allLogs[l.date].push({k,text:l.text});
     });
   });
-
-  const allDates = new Set([...Object.keys(snapshots), ...Object.keys(allLogs)]);
-  const sorted = [...allDates].sort().reverse();
-
-  if (!sorted.length) { container.innerHTML = '<div class="no-entries">No past days recorded yet. Come back after your first day.</div>'; return; }
-
-  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  container.innerHTML = sorted.map((dateStr, idx) => {
-    const [y,m,d] = dateStr.split('-').map(Number);
-    const dateObj = new Date(y,m-1,d);
-    const snap = snapshots[dateStr] || {};
-    const avgPct = Object.values(snap).length ? Math.round(Object.values(snap).reduce((a,v)=>a+v.pct,0)/Object.values(snap).length) : 0;
-    const dayLogs = allLogs[dateStr] || [];
-    const dayN = Math.ceil((dateObj - SUMMER_START) / 86400000) + 1;
-    const logHTML = dayLogs.slice(0,4).map(l=>`<div style="font-size:11px;margin-bottom:4px;padding:6px 8px;background:var(--surface3);border-radius:6px"><span style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">${l.key}</span><br>${esc(l.text.slice(0,120))}${l.text.length>120?'…':''}</div>`).join('');
-    return `<div class="hist-day">
-      <div class="hist-day-hd" onclick="toggleHist('h${idx}')">
-        <div>
-          <div style="font-family:Syne;font-size:13px;font-weight:700">${months[m-1]} ${d} · Day ${dayN}</div>
-          <div style="font-size:10px;color:var(--muted);margin-top:2px">${dayLogs.length} log entr${dayLogs.length===1?'y':'ies'}</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px">
-          <div class="hist-pct-bar"><div class="hist-pct-fill" style="width:${avgPct}%"></div></div>
-          <span style="font-family:Syne;font-size:12px;font-weight:700;color:${avgPct>=75?'var(--gold)':avgPct>=40?'var(--text)':'var(--muted)'}">${avgPct}%</span>
+  const allDates=new Set([...Object.keys(snaps),...Object.keys(allLogs)]);
+  const sorted=[...allDates].filter(d=>d>='2026-06-17'&&d<='2026-08-28').sort().reverse();
+  if(!sorted.length){container.innerHTML='<div class="no-entries">No past days recorded yet.</div>';return;}
+  const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  container.innerHTML=sorted.map((ds,i)=>{
+    const [y,m,d]=ds.split('-').map(Number);
+    const snap=snaps[ds]||{};
+    const vals=Object.values(snap);
+    const avg=vals.length?Math.round(vals.reduce((a,v)=>a+v.pct,0)/vals.length):0;
+    const dl=allLogs[ds]||[];
+    const dayN=Math.ceil((new Date(y,m-1,d)-SUMMER_START)/86400000)+1;
+    const logHTML=dl.slice(0,3).map(l=>`<div style="font-size:11px;margin-bottom:4px;padding:5px 8px;background:var(--surface3);border-radius:5px"><span style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">${l.k}</span><br>${esc(l.text.slice(0,100))}${l.text.length>100?'…':''}</div>`).join('');
+    return`<div class="hist-day">
+      <div class="hist-hd" onclick="toggleH('hh${i}')">
+        <div><div style="font-family:Syne;font-size:12px;font-weight:700">${MONTHS[m-1]} ${d} · Day ${dayN}</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:1px">${dl.length} log entr${dl.length===1?'y':'ies'}</div></div>
+        <div style="display:flex;align-items:center;gap:9px">
+          <div class="hist-bar"><div class="hist-bar-fill" style="width:${avg}%"></div></div>
+          <span style="font-family:Syne;font-size:12px;font-weight:700;color:${avg>=75?'var(--gold)':avg>=40?'var(--text)':'var(--muted)'}">${avg}%</span>
           <span style="font-size:10px;color:var(--muted)">▾</span>
         </div>
       </div>
-      <div class="hist-day-body" id="h${idx}">
-        ${Object.entries(snap).map(([k,v])=>`<div style="display:flex;justify-content:space-between;font-size:11px;padding:4px 0;border-bottom:1px solid var(--border)"><span style="color:var(--muted)">${k}</span><span>${v.done}/${v.total} · ${v.pct}%</span></div>`).join('')}
-        ${logHTML ? '<div style="margin-top:10px">'+logHTML+'</div>' : ''}
-        ${!Object.keys(snap).length && !dayLogs.length ? '<div class="no-entries">No data recorded for this day.</div>' : ''}
+      <div class="hist-body" id="hh${i}">
+        ${Object.entries(snap).map(([k,v])=>`<div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;border-bottom:1px solid var(--border)"><span style="color:var(--muted)">${k}</span><span>${v.done}/${v.total} · ${v.pct}%</span></div>`).join('')}
+        ${logHTML?'<div style="margin-top:8px">'+logHTML+'</div>':''}
+        ${!vals.length&&!dl.length?'<div class="no-entries">No data for this day.</div>':''}
       </div>
     </div>`;
-  }).join('');
-}
+  }).join('');}
+function toggleH(id){const el=document.getElementById(id);if(el)el.classList.toggle('open');}
 
-function toggleHist(id) {
-  const el = document.getElementById(id);
-  if (el) el.classList.toggle('open');
-}
+// ═══════════════════════════════════════
+// SPIRITUALITY
+// ═══════════════════════════════════════
+let verseIdx=0;
+function nextVerse(){
+  verseIdx=(verseIdx+1)%VERSES.length;
+  document.getElementById('spirit-verse-text').textContent=`"${VERSES[verseIdx].text}"`;
+  document.getElementById('spirit-verse-ref').textContent=VERSES[verseIdx].ref;}
+function saveJournalEntry(){
+  const val=document.getElementById('f-prayer-journal').value.trim();
+  if(!val)return;
+  const logs=S('logs_spirit')|| [];
+  logs.unshift({text:val,time:new Date().toLocaleString(),date:todayKey(),id:Date.now()});
+  W('logs_spirit',logs);
+  renderLog('spirit','spirit-log');
+  document.getElementById('f-prayer-journal').value='';
+  W('field_prayer-journal','');}
+function updatePrayerStreak(){
+  const pct=getPct('prayer',PRAYER_CHECKS);
+  const today=todayKey();
+  const ps=S('prayer_streak')||{count:0,lastDate:''};
+  if(pct===100&&ps.lastDate!==today){ps.count++;ps.lastDate=today;W('prayer_streak',ps);}
+  document.getElementById('prayer-streak').textContent=ps.count||0;}
 
-// ════════════════════════════════════════
-// HANDSTAND MILESTONES
-// ════════════════════════════════════════
-function buildHsMilestones() {
-  const container = document.getElementById('hs-milestones');
-  if (!container) return;
-  const state = S('hs_milestones') || {};
-  container.innerHTML = HS_MILESTONES.map((m,i) => {
-    const done = !!state[m.id];
-    const isNext = !done && HS_MILESTONES.slice(0,i).every(pm => state[pm.id]);
-    return `<div class="milestone">
-      <div class="ms-circle ${done?'done':isNext?'next':''}" onclick="toggleMs('hs_milestones','${m.id}')">
-        ${done ? '✓' : (i+1)}
-      </div>
-      <div class="ms-info">
-        <div class="ms-name ${done?'c-green':''}">${m.name}</div>
-        <div class="ms-desc">${m.desc}</div>
-      </div>
+// ═══════════════════════════════════════
+// FEARLESS
+// ═══════════════════════════════════════
+let activeFearCat='Social';
+function addFear(){
+  const inp=document.getElementById('fear-inp');
+  const text=inp.value.trim();if(!text)return;
+  const logs=S('logs_fear')|| [];
+  logs.unshift({text,cat:activeFearCat,time:new Date().toLocaleString(),date:todayKey(),id:Date.now()});
+  W('logs_fear',logs);inp.value='';
+  renderFear();updateDash();}
+function renderFear(){
+  const el=document.getElementById('fear-log');if(!el)return;
+  const logs=S('logs_fear')|| [];
+  document.getElementById('fear-total').textContent=logs.length;
+  const cc={Social:'var(--red)',Physical:'var(--green)',Creative:'var(--purple)',Financial:'var(--gold)',Spiritual:'var(--blue)',Other:'var(--muted)'};
+  if(!logs.length){el.innerHTML='<div class="no-entries">No fearless acts logged yet. Go do something scary.</div>';return;}
+  el.innerHTML=logs.map(l=>`<div class="log-entry">
+    <div class="log-time" style="display:flex;align-items:center;gap:7px">
+      <span style="font-size:9px;padding:1px 7px;border-radius:100px;background:${cc[l.cat]||'var(--muted)'}22;color:${cc[l.cat]||'var(--muted)'};border:1px solid ${cc[l.cat]||'var(--muted)'}44;letter-spacing:.07em;text-transform:uppercase">${l.cat}</span>
+      <span>${l.date} · ${l.time}</span>
+    </div>
+    <div class="log-text" style="margin-top:5px">${esc(l.text)}</div>
+    <span class="log-del" onclick="delFear(${l.id})">✕</span>
+  </div>`).join('');}
+function delFear(id){W('logs_fear',(S('logs_fear')||[]).filter(l=>l.id!==id));renderFear();updateDash();}
+
+// ═══════════════════════════════════════
+// HANDSTAND / CONTENT MILESTONES
+// ═══════════════════════════════════════
+function buildMilestones(containerId,items,storeKey,pctId,fillId,total){
+  const el=document.getElementById(containerId);if(!el)return;
+  const state=S(storeKey)||{};
+  el.innerHTML=items.map((m,i)=>{
+    const done=!!state[m.id];
+    const isNext=!done&&items.slice(0,i).every(pm=>state[pm.id]);
+    return`<div class="milestone">
+      <div class="ms-c ${done?'done':isNext?'next':''}" onclick="toggleMs('${storeKey}','${m.id}','${containerId}','${pctId}','${fillId}',${total})">${done?'✓':(i+1)}</div>
+      <div><div class="ms-name ${done?'c-green':''}">${m.name}</div>${m.desc?`<div class="ms-desc">${m.desc}</div>`:''}</div>
     </div>`;
   }).join('');
-  const done = HS_MILESTONES.filter(m=>state[m.id]).length;
-  document.getElementById('hs-pct').textContent = `${done} / 5`;
-  document.getElementById('hs-fill').style.width = (done/5*100)+'%';
-}
+  const done=items.filter(m=>state[m.id]).length;
+  const p=document.getElementById(pctId);const f=document.getElementById(fillId);
+  if(p)p.textContent=`${done} / ${total}`;
+  if(f)f.style.width=(done/total*100)+'%';}
+function toggleMs(sk,id,cid,pid,fid,total){
+  const state=S(sk)||{};state[id]=!state[id];W(sk,state);
+  const items=sk==='hs_milestones'?HS_MILESTONES:CONTENT_MILESTONES;
+  buildMilestones(cid,items,sk,pid,fid,total);}
 
-function toggleMs(storeKey, id) {
-  const state = S(storeKey) || {};
-  state[id] = !state[id];
-  W(storeKey, state);
-  if (storeKey === 'hs_milestones') buildHsMilestones();
-  if (storeKey === 'ct_milestones') buildCtMilestones();
-}
+// ═══════════════════════════════════════
+// SPEAKING ROADMAP
+// ═══════════════════════════════════════
+function buildSpeakingRoadmap(){
+  const el=document.getElementById('speaking-roadmap');if(!el)return;
+  const state=S('speaking_roadmap')||{};
+  el.innerHTML=SPEAKING_ROADMAP.map(section=>`
+    <div style="margin-bottom:16px">
+      <div style="font-family:Syne;font-size:11px;font-weight:700;color:var(--blue);margin-bottom:8px;letter-spacing:.04em">${section.cat}</div>
+      ${section.items.map((item,i)=>{
+        const done=!!state[item.id];
+        return`<div class="milestone" style="padding:7px 0">
+          <div class="ms-c ${done?'done':''}" style="width:24px;height:24px;font-size:10px" onclick="toggleRoadmap('${item.id}')">${done?'✓':(i+1)}</div>
+          <div><div class="ms-name ${done?'c-green':''}" style="font-size:11px">${item.name}</div><div class="ms-desc">${item.desc}</div></div>
+        </div>`;
+      }).join('')}
+    </div>`).join('');}
+function toggleRoadmap(id){
+  const state=S('speaking_roadmap')||{};state[id]=!state[id];W('speaking_roadmap',state);
+  buildSpeakingRoadmap();}
 
-// ════════════════════════════════════════
-// CONTENT MILESTONES
-// ════════════════════════════════════════
-function buildCtMilestones() {
-  const container = document.getElementById('ct-milestones');
-  if (!container) return;
-  const state = S('ct_milestones') || {};
-  container.innerHTML = CONTENT_MILESTONES.map((m,i) => {
-    const done = !!state[m.id];
-    return `<div class="milestone">
-      <div class="ms-circle ${done?'done':''}" onclick="toggleMs('ct_milestones','${m.id}')">${done?'✓':(i+1)}</div>
-      <div class="ms-info"><div class="ms-name ${done?'c-green':''}">${m.name}</div></div>
+// ═══════════════════════════════════════
+// FRENCH SKILL BARS
+// ═══════════════════════════════════════
+function buildFrSkillBars(){
+  const el=document.getElementById('fr-skill-bars');if(!el)return;
+  const vals=S('fr_skills')||{};
+  el.innerHTML=FR_SKILLS.map(s=>{
+    const v=vals[s.id]||0;
+    return`<div class="skill-row">
+      <div class="skill-name">${s.name}</div>
+      <div class="skill-bar-track" onclick="adjustSkill('${s.id}',event)" title="Click to set level">
+        <div class="skill-bar-fill" id="sb-${s.id}" style="width:${v}%"></div>
+      </div>
+      <div class="skill-pct" id="sp-${s.id}">${v}%</div>
     </div>`;
-  }).join('');
-  const done = CONTENT_MILESTONES.filter(m=>state[m.id]).length;
-  document.getElementById('ct-pct').textContent = `${done} / ${CONTENT_MILESTONES.length}`;
-  document.getElementById('ct-fill').style.width = (done/CONTENT_MILESTONES.length*100)+'%';
-}
+  }).join('');}
+function adjustSkill(id,e){
+  const track=e.currentTarget;const rect=track.getBoundingClientRect();
+  const pct=Math.round(((e.clientX-rect.left)/rect.width)*100);
+  const clamped=Math.max(0,Math.min(100,pct));
+  const vals=S('fr_skills')||{};vals[id]=clamped;W('fr_skills',vals);
+  const f=document.getElementById('sb-'+id);const p=document.getElementById('sp-'+id);
+  if(f)f.style.width=clamped+'%';if(p)p.textContent=clamped+'%';}
 
-// ════════════════════════════════════════
+// ═══════════════════════════════════════
+// BODY TOPICS
+// ═══════════════════════════════════════
+function buildBodyTopics(){
+  const el=document.getElementById('body-topics');if(!el)return;
+  const state=S('body_topics')||{};
+  el.innerHTML=`<div style="font-size:10px;color:var(--muted);margin-bottom:8px">Topics to explore this summer — check off as you study each one:</div>`+
+  BODY_TOPICS.map(t=>{
+    const done=!!state[t.id];
+    return`<div class="milestone" style="padding:7px 0">
+      <div class="ms-c ${done?'done':''}" style="width:22px;height:22px;font-size:10px;cursor:pointer" onclick="toggleBodyTopic('${t.id}')">${done?'✓':''}</div>
+      <div><div class="ms-name ${done?'c-teal':''}" style="font-size:11px">${t.name}</div><div class="ms-desc">${t.desc}</div></div>
+    </div>`;
+  }).join('');}
+function toggleBodyTopic(id){
+  const state=S('body_topics')||{};state[id]=!state[id];W('body_topics',state);buildBodyTopics();}
+
+// ═══════════════════════════════════════
 // SPLITS METRICS
-// ════════════════════════════════════════
-function buildSplitsMetrics() {
-  const container = document.getElementById('splits-metrics');
-  if (!container) return;
-  container.innerHTML = SPLITS_METRICS.map(m => {
-    const val = S('split_'+m.id) || '';
-    return `<div class="split-row">
+// ═══════════════════════════════════════
+function buildSplitsMetrics(){
+  const el=document.getElementById('splits-metrics');if(!el)return;
+  el.innerHTML=SPLITS_METRICS.map(m=>`
+    <div class="split-row">
       <div style="font-size:12px">${m.label}</div>
       <div style="display:flex;align-items:center;gap:6px">
-        <input class="split-input" type="number" id="split_${m.id}" value="${val}" placeholder="—" oninput="W('split_${m.id}',this.value)">
+        <input class="split-in" type="number" id="spl_${m.id}" value="${S('split_'+m.id)||''}" placeholder="—" oninput="W('split_'+m.id}',this.value)">
         <span style="font-size:10px;color:var(--muted)">cm to floor</span>
       </div>
-    </div>`;
-  }).join('');
-}
+    </div>`).join('');}
 
-// ════════════════════════════════════════
-// SHOWS / MEDIA HUB
-// ════════════════════════════════════════
-function buildShows() {
-  const container = document.getElementById('shows-list');
-  if (!container) return;
-  const state = S('shows') || {};
-  container.innerHTML = SHOWS.map(s => {
-    const ws = state[s.id] || {};
-    return `<div class="show-item">
-      <div class="show-emoji">${s.emoji}</div>
+// ═══════════════════════════════════════
+// SHOWS
+// ═══════════════════════════════════════
+function buildShows(){
+  const el=document.getElementById('shows-list');if(!el)return;
+  const state=S('shows')||{};
+  el.innerHTML=SHOWS.map(s=>{
+    const ws=state[s.id]||{};
+    return`<div class="show-item">
+      <div class="show-emoji">${s.e}</div>
       <div>
         <div class="show-title">${s.title}</div>
-        <div class="show-meta">${s.meta} · <span style="color:var(--gold)">${s.difficulty}</span></div>
+        <div class="show-meta">${s.meta} · <span style="color:var(--gold)">${s.diff}</span></div>
         <div class="show-why">${s.why}</div>
-        <div class="show-btns">
-          <span class="s-tag ${ws.watched?'on-watched':''}" onclick="toggleShow('${s.id}','watched')">
-            ${ws.watched ? '✓ Watched' : '📺 Mark Watched'}
-          </span>
-          <span class="s-tag ${ws.understood?'on-understood':''}" onclick="toggleShow('${s.id}','understood')">
-            ${ws.understood ? '✓ Understood' : '💡 Mark Understood'}
-          </span>
+        <div>
+          <span class="s-tag ${ws.watched?'on-w':''}" onclick="toggleShow('${s.id}','watched')">${ws.watched?'✓ Watched':'📺 Mark Watched'}</span>
+          <span class="s-tag ${ws.understood?'on-u':''}" onclick="toggleShow('${s.id}','understood')">${ws.understood?'✓ Understood':'💡 Understood'}</span>
         </div>
       </div>
     </div>`;
-  }).join('');
-}
+  }).join('');}
+function toggleShow(id,prop){
+  const state=S('shows')||{};if(!state[id])state[id]={};
+  state[id][prop]=!state[id][prop];W('shows',state);buildShows();}
 
-function toggleShow(id, prop) {
-  const state = S('shows') || {};
-  if (!state[id]) state[id] = {};
-  state[id][prop] = !state[id][prop];
-  W('shows', state);
-  buildShows();
-}
-
-// ════════════════════════════════════════
-// FEARLESS
-// ════════════════════════════════════════
-let activeFearCat = 'Social';
-document.querySelectorAll('.fear-btn').forEach(b => {
-  b.addEventListener('click', () => {
-    document.querySelectorAll('.fear-btn').forEach(x => x.classList.remove('active'));
-    b.classList.add('active');
-    activeFearCat = b.dataset.c;
-  });
-});
-
-function addFear() {
-  const inp = document.getElementById('fear-inp');
-  const text = inp.value.trim();
-  if (!text) return;
-  const logs = S('logs_fear') || [];
-  logs.unshift({ text, cat: activeFearCat, time: new Date().toLocaleString(), date: todayKey(), id: Date.now() });
-  W('logs_fear', logs);
-  inp.value = '';
-  renderFear();
-  updateDashStats();
-}
-
-function renderFear() {
-  const el = document.getElementById('fear-log');
-  if (!el) return;
-  const logs = S('logs_fear') || [];
-  document.getElementById('fearless-total').textContent = logs.length;
-  const catC = {Social:'var(--red)',Physical:'var(--green)',Creative:'var(--purple)',Financial:'var(--gold)',Spiritual:'var(--blue)',Other:'var(--muted)'};
-  if (!logs.length) { el.innerHTML = '<div class="no-entries">No fearless acts logged yet. Go do something scary.</div>'; return; }
-  el.innerHTML = logs.map(l => `
-    <div class="log-entry">
-      <div class="log-time" style="display:flex;align-items:center;gap:8px">
-        <span style="font-size:9px;padding:1px 7px;border-radius:100px;background:${catC[l.cat]||'var(--muted)'}22;color:${catC[l.cat]||'var(--muted)'};border:1px solid ${catC[l.cat]||'var(--muted)'}44;letter-spacing:.08em;text-transform:uppercase">${l.cat}</span>
-        <span>${l.date} · ${l.time}</span>
-      </div>
-      <div class="log-text" style="margin-top:6px">${esc(l.text)}</div>
-      <span class="log-del" onclick="delFear(${l.id})">✕</span>
-    </div>`).join('');
-}
-
-function delFear(id) {
-  W('logs_fear', (S('logs_fear')||[]).filter(l=>l.id!==id));
-  renderFear();
-  updateDashStats();
-}
-
-// ════════════════════════════════════════
+// ═══════════════════════════════════════
 // DUOLINGO
-// ════════════════════════════════════════
-function toggleDuo() {
-  const today = todayKey();
-  const state = S('duo') || { streak: 0, lastDate: '', lastStreakDate: '' };
-  const wasDone = state.lastDate === today && state.done;
-  state.done = !wasDone;
-  state.lastDate = today;
-  if (state.done) {
-    const yesterday = new Date(); yesterday.setDate(yesterday.getDate()-1);
-    const yKey = `${yesterday.getFullYear()}-${String(yesterday.getMonth()+1).padStart(2,'0')}-${String(yesterday.getDate()).padStart(2,'0')}`;
-    if (state.lastStreakDate === yKey || !state.lastStreakDate) {
-      state.streak = (state.streak || 0) + 1;
-    } else if (state.lastStreakDate !== today) {
-      state.streak = 1;
-    }
-    state.lastStreakDate = today;
+// ═══════════════════════════════════════
+function toggleDuo(){
+  const today=todayKey();
+  const state=S('duo')||{streak:0,lastDate:'',done:false,lastStreakDate:''};
+  const wasDone=state.lastDate===today&&state.done;
+  state.done=!wasDone;state.lastDate=today;
+  if(state.done){
+    const yest=new Date();yest.setDate(yest.getDate()-1);
+    const yk=`${yest.getFullYear()}-${String(yest.getMonth()+1).padStart(2,'0')}-${String(yest.getDate()).padStart(2,'0')}`;
+    if(state.lastStreakDate===yk||!state.lastStreakDate)state.streak=(state.streak||0)+1;
+    else if(state.lastStreakDate!==today)state.streak=1;
+    state.lastStreakDate=today;
   }
-  W('duo', state);
-  renderDuo();
-}
+  W('duo',state);renderDuo();updateDash();}
+function renderDuo(){
+  const today=todayKey();const state=S('duo')||{streak:0};
+  const done=state.lastDate===today&&state.done;
+  document.getElementById('duo-streak').textContent=state.streak||0;
+  const box=document.getElementById('duo-box');
+  box.style.background=done?'var(--blue)':'transparent';
+  box.innerHTML=done?'<span style="color:white;font-size:15px">✓</span>':'';}
 
-function renderDuo() {
-  const today = todayKey();
-  const state = S('duo') || { streak: 0 };
-  const done = state.lastDate === today && state.done;
-  document.getElementById('duo-streak').textContent = state.streak || 0;
-  const box = document.getElementById('duo-box');
-  box.style.background = done ? 'var(--blue)' : 'transparent';
-  box.innerHTML = done ? '<span style="color:white;font-size:16px">✓</span>' : '';
-}
-
-// ════════════════════════════════════════
-// PRAYER STREAK
-// ════════════════════════════════════════
-function updatePrayerStreak() {
-  const pct = getPct('prayer', PRAYER_CHECKS);
-  const today = todayKey();
-  const ps = S('prayer_streak') || { count: 0, lastDate: '' };
-  if (pct === 100 && ps.lastDate !== today) {
-    ps.count++;
-    ps.lastDate = today;
-    W('prayer_streak', ps);
-  }
-  document.getElementById('prayer-streak-num').textContent = ps.count || 0;
-}
-
-// ════════════════════════════════════════
-// JOB ROWS
-// ════════════════════════════════════════
-function addJobRow(data) {
-  const container = document.getElementById('job-rows');
-  const row = document.createElement('div');
-  row.className = 'job-row';
-  row.innerHTML = `
-    <input class="txt-input" placeholder="Role title" value="${esc(data?.role||'')}" oninput="saveJobRows()">
-    <input class="txt-input" placeholder="~$CAD/hr" value="${esc(data?.salary||'')}" oninput="saveJobRows()">
-    <input class="txt-input" placeholder="Key skill" value="${esc(data?.skill||'')}" oninput="saveJobRows()">
-    <span class="log-del" style="position:static;padding:4px 8px" onclick="this.closest('.job-row').remove();saveJobRows()">✕</span>`;
-  container.appendChild(row);
-}
-
-function saveJobRows() {
-  const rows = [];
-  document.querySelectorAll('#job-rows .job-row').forEach(row => {
-    const inp = row.querySelectorAll('input');
-    rows.push({ role: inp[0].value, salary: inp[1].value, skill: inp[2].value });
-  });
-  W('job_rows', rows);
-}
-
-function loadJobRows() {
-  (S('job_rows') || []).forEach(r => addJobRow(r));
-}
-
-// ════════════════════════════════════════
+// ═══════════════════════════════════════
 // VENTURES
-// ════════════════════════════════════════
-function buildVentures() {
-  const el = document.getElementById('ventures-list');
-  if (!el) return;
-  el.innerHTML = VENTURES.map(v => `<div class="venture"><h4>${v.name}</h4><p>${v.desc}</p></div>`).join('');
-}
+// ═══════════════════════════════════════
+function buildVentures(){
+  const el=document.getElementById('ventures-list');if(!el)return;
+  el.innerHTML=VENTURES.map(v=>`<div class="venture"><h4>${v.name}</h4><p>${v.desc}</p></div>`).join('');}
 
-// ════════════════════════════════════════
-// MIDNIGHT AUTO-RESET CHECK
-// ════════════════════════════════════════
-function midnightCheck() {
-  // Force checklists to check their date on next render
-  // They already do this in getTodayState, so just rebuild them
-  const today = todayKey();
-  const lastSeen = S('last_seen_date');
-  if (lastSeen && lastSeen !== today) {
-    // Day changed — trigger snapshots for all checklists
-    const allCLs = [
-      {key:'dc', items:DAILY_CHECKS},
-      {key:'prayer', items:PRAYER_CHECKS},
-      {key:'phy', items:PHYSICAL_CHECKS},
-      {key:'hs_daily', items:HS_DAILY},
-      {key:'splits_r', items:SPLITS_ROUTINE},
-      {key:'fr', items:FRENCH_CHECKS},
-      {key:'nat', items:NATURE_CHECKS},
-      {key:'fin', items:FINANCE_CHECKS},
-    ];
-    allCLs.forEach(({key, items}) => {
-      const stored = S('cl_'+key);
-      if (stored && stored.date !== today) {
-        snapshotDay(stored.date, key, stored.checks, items);
-        W('cl_'+key, { date: today, checks: {} });
-      }
+// ═══════════════════════════════════════
+// JOB ROWS
+// ═══════════════════════════════════════
+function addJobRow(data){
+  const c=document.getElementById('job-rows');
+  const row=document.createElement('div');
+  row.style.cssText='display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:7px;align-items:center;padding:7px 0;border-bottom:1px solid var(--border)';
+  row.innerHTML=`<input class="txt-in" placeholder="Role title" value="${esc(data?.role||'')}" oninput="saveJobRows()">
+    <input class="txt-in" placeholder="~$CAD/hr" value="${esc(data?.salary||'')}" oninput="saveJobRows()">
+    <input class="txt-in" placeholder="Key skill" value="${esc(data?.skill||'')}" oninput="saveJobRows()">
+    <span class="log-del" style="position:static;padding:4px 7px" onclick="this.parentElement.remove();saveJobRows()">✕</span>`;
+  c.appendChild(row);}
+function saveJobRows(){
+  const rows=[];document.querySelectorAll('#job-rows > div').forEach(r=>{
+    const i=r.querySelectorAll('input');rows.push({role:i[0]?.value||'',salary:i[1]?.value||'',skill:i[2]?.value||''});
+  });W('job_rows',rows);}
+function loadJobRows(){(S('job_rows')||[]).forEach(r=>addJobRow(r));}
+
+// ═══════════════════════════════════════
+// FEAR BUTTONS
+// ═══════════════════════════════════════
+function initFearBtns(){
+  document.querySelectorAll('.fear-btn').forEach(b=>{
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('.fear-btn').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');activeFearCat=b.dataset.c;
     });
-  }
-  W('last_seen_date', today);
-}
+  });}
 
-// ════════════════════════════════════════
+// ═══════════════════════════════════════
 // INIT
-// ════════════════════════════════════════
-function init() {
+// ═══════════════════════════════════════
+function init(){
   midnightCheck();
   updateTopbar();
-  setInterval(updateTopbar, 60000);
-
-  // Load text fields
+  setInterval(updateTopbar,60000);
+  // Load persisted text fields
   ['daily-intention','grat-1','grat-2','grat-3','prayer-journal','phy-notes','fr-writing','invest-notes'].forEach(lf);
-
-  // Build checklists
-  buildChecklist('dc-list', DAILY_CHECKS, 'dc', 'var(--gold)', updateDashStats);
-  buildChecklist('prayer-list', PRAYER_CHECKS, 'prayer', 'var(--purple)', updatePrayerStreak);
-  buildChecklist('phy-list', PHYSICAL_CHECKS, 'phy', 'var(--green)', () => updateProg('phy-fill','phy-pct','phy',PHYSICAL_CHECKS,'var(--green)'));
-  buildChecklist('hs-daily-list', HS_DAILY, 'hs_daily', 'var(--green)', ()=>{});
-  buildChecklist('splits-routine', SPLITS_ROUTINE, 'splits_r', 'var(--green)', ()=>{});
-  buildChecklist('fr-list', FRENCH_CHECKS, 'fr', 'var(--blue)', () => updateProg('fr-fill','fr-pct','fr',FRENCH_CHECKS,'var(--blue)'));
-  buildChecklist('nat-list', NATURE_CHECKS, 'nat', '#7ab87a', () => updateProg('nat-fill','nat-pct','nat',NATURE_CHECKS,'#7ab87a'));
-  buildChecklist('fin-list', FINANCE_CHECKS, 'fin', 'var(--gold)', () => updateProg('fin-fill','fin-pct','fin',FINANCE_CHECKS,'var(--gold)'));
-
-  // Build complex components
-  buildHsMilestones();
-  buildCtMilestones();
+  // Checklists
+  buildChecklist('dc-list',DAILY_CHECKS,'dc','var(--gold)',updateDash);
+  buildChecklist('prayer-list',PRAYER_CHECKS,'prayer','var(--purple)',updatePrayerStreak);
+  buildChecklist('phy-list',PHYSICAL_CHECKS,'phy','var(--green)',()=>updateProg('phy-fill','phy-pct',getPct('phy',PHYSICAL_CHECKS)));
+  buildChecklist('hs-daily-list',HS_DAILY,'hs_daily','var(--green)',()=>{});
+  buildChecklist('splits-routine',SPLITS_ROUTINE,'splits_r','var(--green)',()=>{});
+  buildChecklist('fr-list',FRENCH_CHECKS,'fr','var(--blue)',()=>updateProg('fr-fill','fr-pct',getPct('fr',FRENCH_CHECKS)));
+  buildChecklist('oral-list',ORAL_CHECKS,'oral','var(--blue)',()=>updateProg('oral-fill','oral-pct',getPct('oral',ORAL_CHECKS)));
+  buildChecklist('cur-list',CURIOSITY_CHECKS,'cur','var(--teal)',()=>updateProg('cur-fill','cur-pct',getPct('cur',CURIOSITY_CHECKS)));
+  buildChecklist('fin-list',FINANCE_CHECKS,'fin','var(--gold)',()=>updateProg('fin-fill','fin-pct',getPct('fin',FINANCE_CHECKS)));
+  // Complex components
+  buildMilestones('hs-milestones',HS_MILESTONES,'hs_milestones','hs-pct','hs-fill',5);
+  buildMilestones('ct-milestones',CONTENT_MILESTONES,'ct_milestones','ct-pct','ct-fill',8);
+  buildSpeakingRoadmap();
+  buildFrSkillBars();
+  buildBodyTopics();
   buildSplitsMetrics();
   buildShows();
   buildVentures();
   loadJobRows();
-
   // Render all logs
-  const logPairs = [
-    ['spirit','spirit-log'],['phy','phy-log'],['hs','hs-log'],
-    ['splits','splits-log'],['fr-vocab','fr-vocab-log'],['media','media-log'],
-    ['bot','bot-log'],['ext','ext-log'],['ct-ideas','ct-ideas-log'],
-    ['ct-pub','ct-pub-log'],['fin','fin-log'],
-  ];
-  logPairs.forEach(([k,l]) => renderLog(k, l));
+  [['spirit','spirit-log'],['phy','phy-log'],['hs','hs-log'],['splits','splits-log'],
+   ['fr-vocab','fr-vocab-log'],['shadow','shadow-log'],['fr-errors','error-log'],
+   ['media','media-log'],['body','body-log'],['bot','bot-log'],['ext','ext-log'],
+   ['phil','phil-log'],['ct-ideas','ct-ideas-log'],['ct-pub','ct-pub-log'],['fin','fin-log']
+  ].forEach(([k,l])=>renderLog(k,l));
   renderFear();
-
-  // Duolingo, prayer streak, stats
+  // Misc
   renderDuo();
   updatePrayerStreak();
-  updateDashStats();
-  updateProg('phy-fill','phy-pct','phy',PHYSICAL_CHECKS);
-  updateProg('fr-fill','fr-pct','fr',FRENCH_CHECKS);
-  updateProg('nat-fill','nat-pct','nat',NATURE_CHECKS);
-  updateProg('fin-fill','fin-pct','fin',FINANCE_CHECKS);
-
-  // Fear cat buttons (re-attach after DOM)
-  document.querySelectorAll('.fear-btn').forEach(b => {
-    b.addEventListener('click', () => {
-      document.querySelectorAll('.fear-btn').forEach(x => x.classList.remove('active'));
-      b.classList.add('active');
-      activeFearCat = b.dataset.c;
-    });
-  });
-}
-
-document.addEventListener('DOMContentLoaded', init);
+  updateDash();
+  updateProg('phy-fill','phy-pct',getPct('phy',PHYSICAL_CHECKS));
+  updateProg('fr-fill','fr-pct',getPct('fr',FRENCH_CHECKS));
+  updateProg('oral-fill','oral-pct',getPct('oral',ORAL_CHECKS));
+  updateProg('cur-fill','cur-pct',getPct('cur',CURIOSITY_CHECKS));
+  updateProg('fin-fill','fin-pct',getPct('fin',FINANCE_CHECKS));
+  initFearBtns();}
+document.addEventListener('DOMContentLoaded',init);
 </script>
 </body>
 </html>
