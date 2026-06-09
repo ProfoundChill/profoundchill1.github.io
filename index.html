@@ -256,18 +256,18 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
       <div class="aff-sub" id="aff-sub">Daily Affirmation</div>
     </div>
 
-    <!-- Summer bar (shown only during summer) -->
+    <!-- Journey progress bar -->
     <div class="card" id="summer-card" style="margin-bottom:12px">
       <div class="card-hd">
-        <div class="card-title c-gold">☀️ Verano Venezuela 2026</div>
+        <div class="card-title c-gold">🗓 Journey Progress · Jun 2026 → Dec 2027</div>
         <span id="summer-pct-lbl" style="font-family:Syne;font-size:13px;font-weight:800;color:var(--gold)">0%</span>
       </div>
       <div class="prog-track"><div class="prog-fill" id="summer-fill" style="width:0%;background:linear-gradient(90deg,var(--gold),var(--green))"></div></div>
-      <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--muted);margin-top:5px"><span>Jun 17, 2026</span><span id="summer-days-lbl"></span><span>Aug 28, 2026</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--muted);margin-top:5px"><span>Jun 9, 2026</span><span id="summer-days-lbl"></span><span>Dec 31, 2027</span></div>
     </div>
 
     <div class="stat-grid">
-      <div class="stat-box"><div class="stat-num c-gold" id="stat-streak">—</div><div class="stat-lbl">Day / Streak</div></div>
+      <div class="stat-box"><div class="stat-num c-gold" id="stat-streak">—</div><div class="stat-lbl">Global Day</div></div>
       <div class="stat-box"><div class="stat-num c-green" id="stat-habits">0%</div><div class="stat-lbl">Today's Habits</div></div>
       <div class="stat-box"><div class="stat-num c-red" id="stat-fear">0</div><div class="stat-lbl">Fearless Acts</div></div>
       <div class="stat-box"><div class="stat-num c-blue" id="stat-duo">0</div><div class="stat-lbl">🦉 Duo Streak</div></div>
@@ -752,9 +752,11 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
 // ═══════════════════════════════════════
 // CONSTANTS
 // ═══════════════════════════════════════
-const SUMMER_START = new Date('2026-06-17T00:00:00');
+const APP_START    = new Date('2026-06-09T00:00:00'); // day the journey began
+const SUMMER_START = new Date('2026-06-17T00:00:00'); // Venezuela trip
 const SUMMER_END   = new Date('2026-08-28T23:59:59');
-const TOTAL_DAYS   = 72;
+const APP_END      = new Date('2027-12-31T23:59:59');
+const TOTAL_DAYS   = Math.ceil((APP_END - APP_START) / 86400000); // ~570 days
 
 const AFFIRMATIONS = [
   "I am capable of more than I can currently imagine.",
@@ -993,7 +995,8 @@ function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').rep
 // ═══════════════════════════════════════
 function todayKey(){const n=new Date();return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`;}
 function inSummer(){const n=new Date();return n>=SUMMER_START&&n<=SUMMER_END;}
-function summerDayNum(){return Math.max(1,Math.min(TOTAL_DAYS,Math.ceil((new Date()-SUMMER_START)/86400000)));}
+function summerDayNum(){return Math.max(1,Math.min(72,Math.ceil((new Date()-SUMMER_START)/86400000)));}
+function appDayNum(){return Math.max(1,Math.ceil((new Date()-APP_START)/86400000));}
 
 // ═══════════════════════════════════════
 // TOPBAR
@@ -1007,33 +1010,42 @@ function updateTopbar(){
 
   const pill=document.getElementById('tb-pill');
   const ctx=document.getElementById('tb-context');
+
+  // Global day counter (always shown)
+  const globalDay=appDayNum();
+  pill.textContent=`DAY ${globalDay}`;
+  pill.className='day-pill';
+
+  // Year-round progress bar
   const sc=document.getElementById('summer-card');
   const sf2=document.getElementById('summer-fill');
   const sl=document.getElementById('summer-pct-lbl');
   const sd=document.getElementById('summer-days-lbl');
+  const totalDaysRange=Math.ceil((APP_END-APP_START)/86400000);
+  const elapsed=Math.max(0,Math.ceil((now-APP_START)/86400000));
+  const pct=Math.min(100,Math.round(elapsed/totalDaysRange*100));
+  sc.style.display='';
+  sf2.style.width=pct+'%';
+  sl.textContent=pct+'%';
 
   if(inSummer()){
-    const d=summerDayNum();
-    const pct=Math.round(d/TOTAL_DAYS*100);
-    pill.textContent=`DAY ${d}`;pill.className='day-pill';
-    ctx.textContent=`${TOTAL_DAYS-d} days left`;
-    sc.style.display='';sf2.style.width=pct+'%';sl.textContent=pct+'%';
-    sd.textContent=`Day ${d} of ${TOTAL_DAYS}`;
+    const sd2=summerDayNum();
+    ctx.textContent=`☀️ Venezuela · Day ${sd2} of 72`;
+    sd.textContent=`${72-sd2} days left in Venezuela`;
   } else if(now<SUMMER_START){
     const daysUntil=Math.ceil((SUMMER_START-now)/86400000);
-    pill.textContent=`${daysUntil}d to Venezuela`;pill.className='day-pill offseason';
-    ctx.textContent='';sc.style.display='none';
+    ctx.textContent=`${daysUntil} days until Venezuela ✈️`;
+    sd.textContent=`Jun 17 – Aug 28, 2026`;
   } else {
-    pill.textContent='Summer Done ✓';pill.className='day-pill';
-    ctx.textContent='';
-    sc.style.display='';sf2.style.width='100%';sl.textContent='100%';sd.textContent='Completed';
+    ctx.textContent=``;
+    const daysLeft=Math.max(0,Math.ceil((APP_END-now)/86400000));
+    sd.textContent=`${daysLeft} days remaining · ends Dec 31, 2027`;
   }
 
   // Affirmation
   const doy=Math.floor((now-new Date(now.getFullYear(),0,0))/86400000);
   document.getElementById('aff-text').textContent=AFFIRMATIONS[doy%AFFIRMATIONS.length];
-  const m2=MONTHS[now.getMonth()];
-  document.getElementById('aff-sub').textContent=`Daily Affirmation · ${m2} ${now.getDate()}, ${now.getFullYear()}`;
+  document.getElementById('aff-sub').textContent=`Daily Affirmation · ${MONTHS[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
 }
 
 // ═══════════════════════════════════════
@@ -1107,7 +1119,7 @@ function updateDash(){
   document.getElementById('stat-fear').textContent=(S('logs_fear')||[]).length;
   const duo=S('duo')||{streak:0};
   document.getElementById('stat-duo').textContent=duo.streak||0;
-  document.getElementById('stat-streak').textContent=inSummer()?summerDayNum():(S('global_streak')||0);
+  document.getElementById('stat-streak').textContent=appDayNum();
 }
 
 // ═══════════════════════════════════════
@@ -1181,23 +1193,35 @@ function buildHeatmap(){
   const grid=document.getElementById('heatmap');if(!grid)return;
   const snaps=S('snapshots')||{};
   grid.innerHTML='';
-  // Jun 17 2026 = Wednesday = index 2 (Mon=0)
-  for(let i=0;i<2;i++){const b=document.createElement('div');b.className='cal-cell';b.style.background='transparent';grid.appendChild(b);}
-  for(let d=0;d<TOTAL_DAYS;d++){
-    const date=new Date(SUMMER_START);date.setDate(date.getDate()+d);
+  const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  // Show last 16 weeks (112 days) ending today — always a rolling window
+  const today=new Date(); today.setHours(0,0,0,0);
+  const windowStart=new Date(today); windowStart.setDate(windowStart.getDate()-111);
+
+  // Pad to start on Monday
+  const startDow=windowStart.getDay(); // 0=Sun
+  const padDays=(startDow===0)?6:(startDow-1);
+  for(let i=0;i<padDays;i++){
+    const b=document.createElement('div');b.className='cal-cell';b.style.background='transparent';grid.appendChild(b);
+  }
+
+  for(let d=0;d<112;d++){
+    const date=new Date(windowStart);date.setDate(date.getDate()+d);
     const key=`${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
     const snap=snaps[key];
     const vals=snap?Object.values(snap):[];
     const avg=vals.length?Math.round(vals.reduce((a,v)=>a+v.pct,0)/vals.length):0;
-    const isFuture=date>new Date();
+    const isFuture=date>today;
+    const isBeforeApp=date<APP_START;
     const cell=document.createElement('div');cell.className='cal-cell';
-    if(isFuture){cell.style.background='var(--surface2)';cell.style.border='1px solid var(--border)';}
+    if(isBeforeApp){cell.style.background='transparent';}
+    else if(isFuture){cell.style.background='var(--surface2)';cell.style.border='1px solid var(--border)';}
     else if(avg===0)cell.style.background='var(--surface3)';
     else if(avg<40)cell.style.background='rgba(201,169,110,.25)';
     else if(avg<75)cell.style.background='rgba(201,169,110,.55)';
     else cell.style.background='var(--gold)';
-    const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    cell.setAttribute('data-tip',`${months[date.getMonth()]} ${date.getDate()} · Day ${d+1}${snap?' · '+avg+'%':''}`);
+    cell.setAttribute('data-tip',`${MONTHS[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}${snap?' · '+avg+'%':''}`);
     grid.appendChild(cell);
   }
 }
@@ -1211,9 +1235,10 @@ function buildHistoryEntries(){
       allLogs[l.date].push({k,text:l.text});
     });
   });
+  const APP_START_KEY='2026-06-09';
   const allDates=new Set([...Object.keys(snaps),...Object.keys(allLogs)]);
-  const sorted=[...allDates].filter(d=>d>='2026-06-17'&&d<='2026-08-28').sort().reverse();
-  if(!sorted.length){container.innerHTML='<div class="no-entries">No past days recorded yet.</div>';return;}
+  const sorted=[...allDates].filter(d=>d>=APP_START_KEY).sort().reverse();
+  if(!sorted.length){container.innerHTML='<div class="no-entries">No past days recorded yet. Come back tomorrow.</div>';return;}
   const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   container.innerHTML=sorted.map((ds,i)=>{
     const [y,m,d]=ds.split('-').map(Number);
@@ -1221,11 +1246,15 @@ function buildHistoryEntries(){
     const vals=Object.values(snap);
     const avg=vals.length?Math.round(vals.reduce((a,v)=>a+v.pct,0)/vals.length):0;
     const dl=allLogs[ds]||[];
-    const dayN=Math.ceil((new Date(y,m-1,d)-SUMMER_START)/86400000)+1;
+    const dayN=Math.ceil((new Date(y,m-1,d)-APP_START)/86400000)+1;
+    // Label context
+    const dateObj=new Date(y,m-1,d);
+    const isSummer=dateObj>=SUMMER_START&&dateObj<=SUMMER_END;
+    const context=isSummer?` · ☀️ Venezuela`:'';
     const logHTML=dl.slice(0,3).map(l=>`<div style="font-size:11px;margin-bottom:4px;padding:5px 8px;background:var(--surface3);border-radius:5px"><span style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">${l.k}</span><br>${esc(l.text.slice(0,100))}${l.text.length>100?'…':''}</div>`).join('');
     return`<div class="hist-day">
       <div class="hist-hd" onclick="toggleH('hh${i}')">
-        <div><div style="font-family:Syne;font-size:12px;font-weight:700">${MONTHS[m-1]} ${d} · Day ${dayN}</div>
+        <div><div style="font-family:Syne;font-size:12px;font-weight:700">${MONTHS[m-1]} ${d}, ${y} · Day ${dayN}${context}</div>
           <div style="font-size:10px;color:var(--muted);margin-top:1px">${dl.length} log entr${dl.length===1?'y':'ies'}</div></div>
         <div style="display:flex;align-items:center;gap:9px">
           <div class="hist-bar"><div class="hist-bar-fill" style="width:${avg}%"></div></div>
@@ -1379,7 +1408,7 @@ function adjustSkill(id,e){
 function buildBodyTopics(){
   const el=document.getElementById('body-topics');if(!el)return;
   const state=S('body_topics')||{};
-  el.innerHTML=`<div style="font-size:10px;color:var(--muted);margin-bottom:8px">Topics to explore this summer — check off as you study each one:</div>`+
+  el.innerHTML=`<div style="font-size:10px;color:var(--muted);margin-bottom:8px">Topics to explore — check off as you study each one:</div>`+
   BODY_TOPICS.map(t=>{
     const done=!!state[t.id];
     return`<div class="milestone" style="padding:7px 0">
