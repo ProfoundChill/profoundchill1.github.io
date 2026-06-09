@@ -223,6 +223,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
     <div class="sb-label">Knowledge</div>
     <div class="nav-item" onclick="nav('curiosity',this)"><div class="nav-dot" style="background:var(--teal)"></div>Curiosity Lab</div>
     <div class="nav-item" onclick="nav('content',this)"><div class="nav-dot" style="background:var(--muted)"></div>Content Pipeline</div>
+    <div class="nav-item" onclick="nav('gallery',this)"><div class="nav-dot" style="background:var(--orange)"></div>Photo Gallery</div>
   </div>
   <div class="sb-section">
     <div class="sb-label">Future</div>
@@ -679,6 +680,72 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
     </div>
   </div>
 
+  <!-- ══════ GALLERY ══════ -->
+  <div id="panel-gallery" class="panel">
+    <div class="sec-hd"><h2 class="c-orange">📸 Summer Gallery</h2><p>Your visual diary. Every shot tells part of the story.</p></div>
+
+    <!-- Upload controls -->
+    <div class="card">
+      <div class="card-hd"><div class="card-title c-orange">Add a Photo</div></div>
+      <div class="g2" style="gap:14px;margin-bottom:12px">
+        <!-- Upload from device -->
+        <div>
+          <div style="font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px">From Device</div>
+          <label for="gallery-file-input" style="display:flex;align-items:center;justify-content:center;gap:8px;background:var(--surface2);border:1.5px dashed var(--border);border-radius:9px;padding:18px;cursor:pointer;transition:border-color .2s;font-size:11px;color:var(--muted)" onmouseover="this.style.borderColor='var(--orange)'" onmouseout="this.style.borderColor='var(--border)'">
+            <span style="font-size:20px">📁</span>Upload Photo
+          </label>
+          <input type="file" id="gallery-file-input" accept="image/*" multiple style="display:none" onchange="handleFileUpload(event)">
+        </div>
+        <!-- From URL -->
+        <div>
+          <div style="font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px">From URL</div>
+          <input class="txt-in" id="gallery-url-input" placeholder="Paste image URL..." style="margin-bottom:7px">
+          <button class="btn" style="background:var(--orange);color:var(--bg);width:100%;margin-top:4px" onclick="addPhotoFromUrl()">+ Add from URL</button>
+        </div>
+      </div>
+      <!-- Caption & location -->
+      <div class="g2" style="gap:10px;margin-bottom:10px">
+        <input class="txt-in" id="gallery-caption" placeholder="Caption (optional)...">
+        <input class="txt-in" id="gallery-location" placeholder="Location (e.g. Caracas, VE)...">
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div id="gallery-preview-wrap" style="display:none">
+          <img id="gallery-preview" style="height:60px;border-radius:6px;border:1px solid var(--border);object-fit:cover">
+          <button class="btn btn-ghost" style="font-size:9px;padding:3px 8px;margin-left:8px" onclick="clearGalleryPreview()">✕ Clear</button>
+        </div>
+        <div style="flex:1"></div>
+        <button class="btn" style="background:var(--orange);color:var(--bg)" onclick="saveGalleryPhoto()">Save to Gallery ✓</button>
+      </div>
+    </div>
+
+    <!-- Filter & stats row -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+      <div style="display:flex;gap:6px;flex-wrap:wrap" id="gallery-filters">
+        <button class="btn btn-ghost gallery-filter active" data-f="all" onclick="setGalleryFilter('all',this)">All</button>
+        <button class="btn btn-ghost gallery-filter" data-f="Caracas" onclick="setGalleryFilter('Caracas',this)">Caracas</button>
+        <button class="btn btn-ghost gallery-filter" data-f="Nature" onclick="setGalleryFilter('Nature',this)">Nature</button>
+        <button class="btn btn-ghost gallery-filter" data-f="People" onclick="setGalleryFilter('People',this)">People</button>
+        <button class="btn btn-ghost gallery-filter" data-f="Food" onclick="setGalleryFilter('Food',this)">Food</button>
+        <button class="btn btn-ghost gallery-filter" data-f="Architecture" onclick="setGalleryFilter('Architecture',this)">Architecture</button>
+      </div>
+      <div style="font-size:10px;color:var(--muted)" id="gallery-count">0 photos</div>
+    </div>
+
+    <!-- Masonry grid -->
+    <div id="gallery-masonry" style="columns:3;column-gap:10px"></div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:center;justify-content:center;flex-direction:column" onclick="closeLightbox(event)">
+      <div style="position:relative;max-width:90vw;max-height:85vh">
+        <img id="lb-img" style="max-width:90vw;max-height:80vh;border-radius:10px;object-fit:contain;display:block">
+        <div id="lb-caption" style="text-align:center;margin-top:12px;font-size:13px;color:var(--text)"></div>
+        <div id="lb-location" style="text-align:center;margin-top:4px;font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase"></div>
+        <button onclick="closeLightbox()" style="position:absolute;top:-14px;right:-14px;background:var(--surface2);border:1px solid var(--border);color:var(--text);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;font-family:Syne">✕</button>
+        <button id="lb-del" style="position:absolute;bottom:-44px;left:50%;transform:translateX(-50%);background:var(--red-d);border:1px solid rgba(208,112,104,.3);color:var(--red);font-size:10px;font-family:Syne;font-weight:700;padding:5px 14px;border-radius:6px;cursor:pointer;letter-spacing:.04em" onclick="deleteCurrentPhoto()">Delete Photo</button>
+      </div>
+    </div>
+  </div>
+
 </div><!-- /main -->
 
 <script>
@@ -1078,6 +1145,7 @@ function nav(panel,el){
   el.classList.add('active');
   document.getElementById('main').scrollTop=0;
   if(panel==='history'){buildHeatmap();buildHistoryEntries();}
+  if(panel==='gallery'){renderGallery();}
 }
 
 // ═══════════════════════════════════════
@@ -1485,7 +1553,137 @@ function init(){
   initFearBtns();
 }
 
-document.addEventListener('DOMContentLoaded',init);
+// ═══════════════════════════════════════
+// GALLERY
+// ═══════════════════════════════════════
+let galleryPendingDataUrl = null;
+let galleryPendingUrl = null;
+let currentLbId = null;
+let activeFilter = 'all';
+
+function handleFileUpload(e) {
+  const files = Array.from(e.target.files);
+  if (!files.length) return;
+  if (files.length > 1) {
+    let done = 0;
+    files.forEach(file => {
+      const r = new FileReader();
+      r.onload = ev => {
+        const photos = S('gallery') || [];
+        photos.unshift({ id: Date.now() + Math.random(), src: ev.target.result, caption: '', location: '', date: todayKey() });
+        W('gallery', photos);
+        if (++done === files.length) renderGallery();
+      };
+      r.readAsDataURL(file);
+    });
+    e.target.value = '';
+    return;
+  }
+  const r = new FileReader();
+  r.onload = ev => {
+    galleryPendingDataUrl = ev.target.result;
+    galleryPendingUrl = null;
+    const prev = document.getElementById('gallery-preview');
+    const wrap = document.getElementById('gallery-preview-wrap');
+    prev.src = ev.target.result;
+    wrap.style.display = 'flex';
+    wrap.style.alignItems = 'center';
+  };
+  r.readAsDataURL(files[0]);
+  e.target.value = '';
+}
+
+function addPhotoFromUrl() {
+  const url = document.getElementById('gallery-url-input').value.trim();
+  if (!url) return;
+  galleryPendingUrl = url;
+  galleryPendingDataUrl = null;
+  const prev = document.getElementById('gallery-preview');
+  const wrap = document.getElementById('gallery-preview-wrap');
+  prev.src = url;
+  wrap.style.display = 'flex';
+  wrap.style.alignItems = 'center';
+  document.getElementById('gallery-url-input').value = '';
+}
+
+function clearGalleryPreview() {
+  galleryPendingDataUrl = null;
+  galleryPendingUrl = null;
+  document.getElementById('gallery-preview-wrap').style.display = 'none';
+  document.getElementById('gallery-preview').src = '';
+}
+
+function saveGalleryPhoto() {
+  const src = galleryPendingDataUrl || galleryPendingUrl;
+  if (!src) { alert('Please select or paste a photo first.'); return; }
+  const caption = document.getElementById('gallery-caption').value.trim();
+  const location = document.getElementById('gallery-location').value.trim();
+  const photos = S('gallery') || [];
+  photos.unshift({ id: Date.now(), src, caption, location, date: todayKey() });
+  W('gallery', photos);
+  document.getElementById('gallery-caption').value = '';
+  document.getElementById('gallery-location').value = '';
+  clearGalleryPreview();
+  renderGallery();
+}
+
+function setGalleryFilter(f, btn) {
+  activeFilter = f;
+  document.querySelectorAll('.gallery-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGallery();
+}
+
+function renderGallery() {
+  const grid = document.getElementById('gallery-masonry');
+  const countEl = document.getElementById('gallery-count');
+  if (!grid) return;
+  let photos = S('gallery') || [];
+  if (activeFilter !== 'all') {
+    photos = photos.filter(p =>
+      (p.location && p.location.toLowerCase().includes(activeFilter.toLowerCase())) ||
+      (p.caption && p.caption.toLowerCase().includes(activeFilter.toLowerCase()))
+    );
+  }
+  countEl.textContent = `${photos.length} photo${photos.length !== 1 ? 's' : ''}`;
+  if (!photos.length) {
+    grid.innerHTML = `<div style="text-align:center;padding:48px 0;color:var(--muted);font-size:12px;font-style:italic">${activeFilter === 'all' ? 'No photos yet. Upload your first shot.' : 'No photos match this filter.'}</div>`;
+    return;
+  }
+  grid.innerHTML = photos.map(p => `
+    <div style="break-inside:avoid;margin-bottom:10px;cursor:pointer;border-radius:10px;overflow:hidden;background:var(--surface2);border:1px solid var(--border)" onclick="openLightbox(${p.id})">
+      <img src="${esc(p.src)}" alt="${esc(p.caption)}" style="width:100%;display:block;object-fit:cover;transition:opacity .2s" onerror="this.parentElement.style.display='none'" loading="lazy">
+      ${(p.caption || p.location) ? `<div style="padding:8px 10px">${p.caption ? `<div style="font-size:11px;line-height:1.4;color:var(--text)">${esc(p.caption)}</div>` : ''}${p.location ? `<div style="font-size:9px;color:var(--muted);margin-top:2px;letter-spacing:.06em;text-transform:uppercase">📍 ${esc(p.location)}</div>` : ''}</div>` : ''}
+    </div>`).join('');
+}
+
+function openLightbox(id) {
+  const p = (S('gallery') || []).find(x => x.id === id);
+  if (!p) return;
+  currentLbId = id;
+  document.getElementById('lb-img').src = p.src;
+  document.getElementById('lb-caption').textContent = p.caption || '';
+  document.getElementById('lb-location').textContent = p.location ? '📍 ' + p.location : '';
+  document.getElementById('lightbox').style.display = 'flex';
+}
+
+function closeLightbox(e) {
+  if (e && e.target.id !== 'lightbox') return;
+  document.getElementById('lightbox').style.display = 'none';
+  currentLbId = null;
+}
+
+function deleteCurrentPhoto() {
+  if (!currentLbId || !confirm('Delete this photo?')) return;
+  W('gallery', (S('gallery') || []).filter(p => p.id !== currentLbId));
+  document.getElementById('lightbox').style.display = 'none';
+  currentLbId = null;
+  renderGallery();
+}
+
+// gallery is rendered when its panel is opened via the nav function below
+
+document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
